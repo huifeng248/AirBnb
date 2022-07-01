@@ -1,6 +1,7 @@
 # `AirBnb`
 
-## Database Schema Design
+## Database Schema Design![Untitled (1)](https://user-images.githubusercontent.com/91226395/176801889-89d89b22-fbfb-4a58-9ca3-8890bd684bbc.png)
+
 
 `<insert database schema design here>`
 
