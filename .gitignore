@@ -1,0 +1,10 @@
+.env
+build
+.DS_Store
+*.db
+README-backend-phase-0
+README-backend-phase-1
+README-backend-phase-2
+README-backend-phase-3
+README-backend-phase-4
+README-backend-phase-5
