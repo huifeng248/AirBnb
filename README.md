@@ -424,7 +424,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: Post
-  * URL: /spots/:id
+  * URL: /spots/:id/edit
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -512,7 +512,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: Delete
-  * URL: spots/:id
+  * URL: spots/:id/delete
   * Body: none
 
 * Successful Response
@@ -653,7 +653,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: Post
-  * URL: reviews/:spotId
+  * URL: reviews/:spotId/new
   * Headers:
     * Content-Type: application/json
   * Body:
