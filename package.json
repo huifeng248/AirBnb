@@ -1,0 +1,28 @@
+{
+  "name": "AirBnb",
+  "version": "1.0.0",
+  "description": "## Database Schema Design![Untitled (1)](https://user-images.githubusercontent.com/91226395/176801889-89d89b22-fbfb-4a58-9ca3-8890bd684bbc.png)",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huifeng248/AirBnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huifeng248/AirBnb/issues"
+  },
+  "homepage": "https://github.com/huifeng248/AirBnb#readme"
+}
