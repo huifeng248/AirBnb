@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     toSafeObject() {
-      const {id, username, email} = this; // context will be the User instance
-      return {id, username, email}
+      const {id, username, firstName, lastName, email} = this; // context will be the User instance
+      return {id, username, firstName, lastName, email}
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString())
@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Booking,
         {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true}
       )
-      User.hasMany(models.Images,
+      User.hasMany(models.Image,
         {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true}
       )
     }
@@ -87,18 +87,27 @@ module.exports = (sequelize, DataTypes) => {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: [2, 256],
+        isAlpha: true,
+      },
     },
 
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: [2, 256],
+        isAlpha: true,
+      },
     },
 
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 256]
+        len: [3, 256],
+        isEmail: true,
       }
     },
     hashedPassword: {
@@ -114,17 +123,19 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     defaultScope: {
       attributes: {
-        exclude: ['hashedPassword','email','createdAt','updateAt']
+        exclude: ['hashedPassword','username','createdAt','updatedAt']
       }
     },
     scopes: {
       currentUser: {
         attributes: {
-          exclude: ['hashedPassword']
+          exclude: ['hashedPassword','createdAt', 'username', 'updatedAt']
         }
       },
       loginUser: {
-        attributes: {}
+        attributes: {
+          // exclude: ['createdAt', 'updatedAt']
+        }
       }
     }
   });

@@ -9,12 +9,12 @@ const handleValidationErrors = (req, _res, next) => {
   if (!validationErrors.isEmpty()) {
     const errors = validationErrors
       .array()
-      .map((error) => `${error.msg}`);
+      .map((error) => `${error.msg}`); //question 1: need to check with TA
 
-    const err = Error('Bad request.');
+    const err = Error('Validation error');
     err.errors = errors;
     err.status = 400;
-    err.title = 'Bad request.';
+    err.title = 'Validation error';
     next(err);
   }
   next();

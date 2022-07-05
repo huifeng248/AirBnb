@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       Image.belongsTo(models.Review, {foreignKey: 'reviewId'})
     }
   }
-  Images.init({
+  Image.init({
     previewImage: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Images',
+    modelName: 'Image',
     validate: {
       imageType() {
         if ((this.spotId && this.reviewId)||(!this.spotId && !this.reviewId)) {
@@ -46,5 +46,5 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-  return Images;
+  return Image;
 };
