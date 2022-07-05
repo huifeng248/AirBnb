@@ -53,7 +53,7 @@ const validateSignup = [
 
 
 //Get the Current User
-router.get('/', restoreUser, requireAuth, (req, res) => {
+router.get('/current', requireAuth, (req, res) => {
   const { user } = req;
   if (user) {
     return res.json({
