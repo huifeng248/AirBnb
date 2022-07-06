@@ -10,6 +10,7 @@ module.exports = {
        spotId: 1,
        userId: 1,
        reviewId: null,
+       imageableType: "Spot",
       },
       {
         previewImage: true,
@@ -17,6 +18,7 @@ module.exports = {
         spotId: 2,
         userId: 2,
         reviewId: null,
+        imageableType: "Spot",
        },
        {
         previewImage: true,
@@ -24,6 +26,7 @@ module.exports = {
         spotId: null,
         userId: 7,
         reviewId: 2,
+        imageableType: "Review",
        },
        {
         previewImage: true,
@@ -31,6 +34,7 @@ module.exports = {
         spotId: null,
         userId: 9,
         reviewId: 4,
+        imageableType: "Review",
        },
        {
         previewImage: true,
@@ -38,6 +42,7 @@ module.exports = {
         spotId: 3,
         userId: 3,
         reviewId: null,
+        imageableType: "Spot",
        },
   ], {});
   },

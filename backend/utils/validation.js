@@ -7,9 +7,8 @@ const handleValidationErrors = (req, _res, next) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    const errors = validationErrors
-      .array()
-      .map((error) => `${error.msg}`); //question 1: need to check with TA
+    const errors = {};
+    validationErrors.array().forEach((error) => errors[error.param]= `${error.msg}`); //question 1: need to check with T
 
     const err = Error('Validation error');
     err.errors = errors;
