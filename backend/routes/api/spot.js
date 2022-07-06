@@ -112,7 +112,7 @@ router.get('/:id', async (req, res, next) => {
 
         }
     )
-    console.log(spot)
+    
     if (!spot.id) {
         const err = new Error('Invalid credentials');
         err.message = "Spot couldn't be found'"
@@ -129,7 +129,7 @@ router.post('/', restoreUser, requireAuth, validateSpotPost, async (req, res, ne
     const {address, city, state, country, lat, lng, name, description, price} = req.body
     
     const ownerId = req.user.id
-    console.log(ownerId)
+    
     const newSpot = await Spot.create({ 
         ownerId,
         address, 
