@@ -16,7 +16,7 @@ const validateSignup = [
     .isEmail()
     .withMessage('Please provide a valid email.'),
   check('username')
-    .exists({ checkFalsy: true })
+    .exists({ checkFalsy: false }) //username is not required for sign up.
     .withMessage('username is required'),
   check('username')
     .isLength({ min: 4 })
@@ -57,7 +57,10 @@ router.get('/current', requireAuth, (req, res) => {
   const { user } = req;
   if (user) {
     return res.json({
-      user: user.toSafeObject()
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     });
   } else return res.json({});
 }
@@ -93,8 +96,11 @@ router.post('/log-in', validateLogin, async (req, res, next) => {
   let token = await setTokenCookie(res, user);
 
   return res.json({
-    user,
-    token
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    token: token
   });
 }
 );
@@ -109,23 +115,26 @@ router.post(
   
 
       //check if the email is unique
-      let userByEmail = await User.findOne({
-        where : {
-          email: email
-        }
-      })
-      if (userByEmail) {
-        const err = new Error("email address must be uqniue");
-        err.status = 403
-        res.json({
-          message: err.message,
-          statusCode: err.status,
-          errors: {
-            "email": "User with that email already exists"
-          }
-        });
-      }
+      if (email) {
 
+        let userByEmail = await User.findOne({
+          where : {
+            email: email
+          }
+        })
+        if (userByEmail) {
+          const err = new Error("email address must be uqniue");
+          err.status = 403
+          res.json({
+            message: err.message,
+            statusCode: err.status,
+            errors: {
+              "email": "User with that email already exists"
+            }
+          });
+        }
+      }
+        
     //question 1: need to check with TA for 400 for error in array
     // question 2: how to get rif of the newUser
     

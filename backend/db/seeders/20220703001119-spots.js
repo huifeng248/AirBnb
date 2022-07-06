@@ -19,6 +19,8 @@ module.exports = {
         name: 'Eagles Nest at Bass Lake near Yosemite',
         description: 'Welcome to Eagle\'s Nest, one of the most ideally located Lakefront homes on Bass Lake! Opportunities to see bald eagles and catch fish right from your own boat dock! In addition, the property is only 18.6 miles from the entrance to beloved Yosemite!',
         price: 300,
+        previewImage: 'https://a0.muscache.com/im/pictures/619ab404-7a6c-4425-a79c-9459b1c00b1b.jpg?im_w=1200',
+
       },
       {
         ownerId: '2',
@@ -31,6 +33,8 @@ module.exports = {
         name: 'Villa De Lago The Lake House, Dock and Buoy',
         description: 'VIlladeLago, The Lake House, is located in a secluded enclave in historic Cave Rock Nevada. Nestled in pines that sweep down through the riparian shrubbery from the home to the property’s private pier and buoy. ',
         price: 350,
+        previewImage:'https://a0.muscache.com/im/pictures/0d3f5072-2236-4648-b03e-b2a7ebd2f5c7.jpg?im_w=1200',
+
       },
       {
         ownerId: '3',
@@ -43,6 +47,8 @@ module.exports = {
         name: 'Modern double-height villa with private dock',
         description: 'Whether you want to relax by the water or get out and explore the lake, Villa De Lago makes it easy with a convenient dock, provided kayaks, and a furnished terrace with space for lounging and dining, plus a barbecue. After the sun sets over the mountains on the other side of the lake, gather around the pool table, flip on the streaming TV or share holiday photos via Wi-Fi.',
         price: 550,
+        previewImage: 'https://a0.muscache.com/im/pictures/01ba3e76-8d5e-45ad-8ae4-9c984c30f4c5.jpg?im_w=720',
+
       },
       {
         ownerId: '4',
