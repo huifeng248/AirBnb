@@ -55,8 +55,6 @@ const validateSpotPost = [
 //question 3: need to fix the preview Images
 router.get('/', async (req, res, next)=> {
     const spots = await Spot.findAll()
-
-   
     res.json({spots})
     res.status(200)
 })
@@ -68,10 +66,10 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     const {user} = req
     let { id } = user
     const spots = await Spot.findAll({
-        include: {
-            model: Image,   
-            attributes: ['url']
-        },
+        // include: {
+        //     model: Image,   
+        //     attributes: ['url']
+        // },
         where: {
             ownerId: id
         },
@@ -201,9 +199,6 @@ router.delete('/:id', requireAuth, async(req, res, next)=> {
 
     
 })
-
-
-
 
 
 module.exports = router;
