@@ -20,15 +20,18 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     review: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    star: {
+    stars: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate:{
+        min: 1,
+        max: 5
+      }
     },
     spotId: {
       type: DataTypes.INTEGER,
@@ -41,6 +44,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Review',
+    defaultScope: {
+      attributes: {
+        exclude: ['name']
+      }
+    },
   });
   return Review;
 };
