@@ -1,9 +1,9 @@
 # `AirBnb`
 
-## Database Schema Design![Untitled (1)]
+## Database Schema Design!
+![Untitled (2)](https://user-images.githubusercontent.com/91226395/177441795-e132b3a5-bd05-4150-97fb-f8e09dff37bf.png)
 
 
-`<insert database schema design here>`
 
 ## API Documentation
 
