@@ -2,7 +2,7 @@ const express = require('express')
 const {Review, User, Image, Spot} = require('../../db/models')
 const {requireAuth, restoreUser } = require('../../utils/auth')
 const {check} = require('express-validator')
-const { handleValidationErrors, validateReview } = require('../../utils/validation');
+const { handleValidationErrors, validateReview, imageValidate } = require('../../utils/validation');
 const spot = require('../../db/models/spot');
 
 
@@ -92,8 +92,55 @@ router.delete('/:id', requireAuth, async(req, res, next)=> {
     
 })
 
+//Add an Image to a Review based on the Review's id
 
+router.post('/:id/images', requireAuth, imageValidate, async(req, res,next)=>{
+    const userId = req.user.id
+    const reviewId = req.params.id
+    const review = await Review.findByPk(reviewId)
+    const {url} = req.body
 
+    if (!review) {
+        const err = new Error('');
+        err.message = "Review couldn't be found"
+        err.status = 404;
+        return next(err);
+    }
+
+    const imagesByReview = await Image.findAll({
+        where: {
+            reviewId
+        }
+    }) 
+
+    if (imagesByReview.length >= 10) {
+        const err = new Error();
+        err.message = "Maximum number of images for this resource was reached"
+        err.status = 400;
+        return next(err);
+    }
+
+    if (review.userId === userId) {
+        const newImage = await Image.create({
+            url,
+            reviewId, 
+            userId,
+            imageableType: "Review"
+        })
+        const result = {}
+        result.id = newImage.id,
+        result.imageableId = newImage.reviewId,
+        result.imageableType = newImage.imageableType
+        result.url = url
+        res.status(200)
+        return res.json(result)
+    } else {
+        const err = new Error();
+        err.message = "Forbidden"
+        err.status = 403;
+        return next(err);
+    }
+})
 
 
 

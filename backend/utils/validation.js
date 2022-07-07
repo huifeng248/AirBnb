@@ -67,10 +67,20 @@ const validateBooking = [
   handleValidationErrors
 ];
 
+const imageValidate = [
+  check('url')
+    .exists({checkFalsy:true})
+    .withMessage("Image is required")
+    .isURL()
+    .withMessage('must be url'),
+  handleValidationErrors
+]
 
 
 module.exports = {
   handleValidationErrors,
   validateReview,
   validateBooking,
+  imageValidate,
+  
 };
