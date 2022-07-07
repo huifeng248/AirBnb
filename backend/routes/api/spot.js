@@ -2,7 +2,7 @@ const express = require('express')
 const { User, Spot, Image, Review, Booking, sequelize } = require('../../db/models')
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { check } = require('express-validator');
-const { handleValidationErrors, validateReview, validateBooking } = require('../../utils/validation');
+const { handleValidationErrors, validateReview, validateBooking,imageValidate } = require('../../utils/validation');
 
 
 
@@ -447,6 +447,51 @@ router.post('/:id/bookings', requireAuth, validateBooking, spotValidaton, bookin
     return res.json(newBooking)
 
 })
+
+
+//Add an Image to a Spot based on the Spot's id
+router.post('/:id/images', requireAuth, imageValidate, async(req, res, next)=>{
+    const userId = req.user.id
+    const spotId = req.params.id
+    const spot = await Spot.findByPk(spotId)
+    const {url} = req.body
+   
+
+    if (!spot) {
+        const err = new Error('');
+        err.message = "Spot couldn't be found"
+        err.status = 404;
+        return next(err);
+    }
+
+    if (spot.ownerId === userId) {
+        const newImage = await Image.create({
+            url,
+            spotId, 
+            userId,
+            imageableType: "Spot"
+        })
+
+        const result = {}
+        result.id = newImage.id,
+        result.imageableId = newImage.spotId,
+        result.imageableType = newImage.imageableType
+        result.url = url
+        res.status(200)
+        return res.json(result)
+
+    } else {
+        const err = new Error();
+        err.message = "Forbidden"
+        err.status = 403;
+        return next(err);
+    }
+})
+
+
+
+
+
 
 module.exports = router;
 

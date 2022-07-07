@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Image.init({
     previewImage: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+
     },
     url: {
       type: DataTypes.STRING,
