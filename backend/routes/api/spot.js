@@ -156,6 +156,15 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
 
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     const spot = await Spot.findByPk(spotId)
+
+    if (!spot) {
+        const err = new Error('Spot couldn\'t be found');
+        err.message = "Spot couldn't be found'"
+        err.status = 404;
+        return next(err);
+    }
+
+
     if (spot.ownerId === ownerId) {
             spot.address = address,
             spot.city = city,
@@ -169,9 +178,9 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
             await spot.save()
         return res.json(spot)
     } else {
-        const err = new Error('Spot couldn\'t be found');
-        err.message = "Spot couldn't be found'"
-        err.status = 404;
+        const err = new Error();
+        err.message = "Forbidden"
+        err.status = 403;
         return next(err);
     }
 
@@ -182,20 +191,24 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     const spotId = req.params.id
     const ownerId = req.user.id
     const spot = await Spot.findByPk(spotId)
-    if (spot) {
-        if (spot.ownerId === ownerId) {
-            await spot.destroy()
-            res.status(200)
-            return res.json({
-                "message": "Successfully deleted",
-                "statusCode": 200
-            })
-        }
-
-    } else {
+    if (!spot) {
         const err = new Error('Spot couldn\'t be found');
         err.message = "Spot couldn't be found'"
         err.status = 404;
+        return next(err);
+    }
+
+    if (spot.ownerId === ownerId) {
+        await spot.destroy()
+        res.status(200)
+        return res.json({
+            "message": "Successfully deleted",
+            "statusCode": 200
+        })
+    } else {
+        const err = new Error();
+        err.message = "Forbidden"
+        err.status = 403;
         return next(err);
     }
 

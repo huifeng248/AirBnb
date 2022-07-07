@@ -58,7 +58,10 @@ router.put('/:id', requireAuth, validateReview, async(req, res, next) => {
     await reviewExited.save()
     return res.json(reviewExited)
   } else {
-    return res.send('Cannot edit others\' review')
+    const err = new Error();
+    err.message = "Forbidden"
+    err.status = 403;
+    return next(err);
   }
 })
 
@@ -81,7 +84,10 @@ router.delete('/:id', requireAuth, async(req, res, next)=> {
             "statusCode": 200 
         })
       } else {
-        return res.send('Cannot delete others\' review')
+        const err = new Error();
+        err.message = "Forbidden"
+        err.status = 403;
+        return next(err);
       }
     
 })
