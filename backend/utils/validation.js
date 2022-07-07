@@ -67,8 +67,10 @@ const validateBooking = [
   handleValidationErrors
 ];
 
+
+
 module.exports = {
   handleValidationErrors,
   validateReview,
-  validateBooking
+  validateBooking,
 };

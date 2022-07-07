@@ -55,6 +55,7 @@ router.put('/:id', requireAuth, validateReview, async(req, res, next) => {
   if (reviewExited.userId === userId) {
     reviewExited.review = review,
     reviewExited.stars = stars
+    await reviewExited.save()
     return res.json(reviewExited)
   } else {
     return res.send('Cannot edit others\' review')

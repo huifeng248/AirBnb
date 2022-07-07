@@ -157,7 +157,7 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     const spot = await Spot.findByPk(spotId)
     if (spot.ownerId === ownerId) {
-        spot.address = address,
+            spot.address = address,
             spot.city = city,
             spot.state = state,
             spot.country = country,
@@ -166,6 +166,7 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
             spot.name = name,
             spot.description = description,
             spot.price = price
+            await spot.save()
         return res.json(spot)
     } else {
         const err = new Error('Spot couldn\'t be found');
@@ -323,59 +324,8 @@ router.get('/:id/bookings', requireAuth, async(req, res, next) => {
 
 //Create a Booking from a Spot based on the Spot's id
 
-// const spotValidaton = async (req, res, next) => {
-//     const spotId = req.params.id
-//     const spot = await Spot.findByPk(spotId)
-//     if (!spot) {
-//         const err = new Error('');
-//         err.message = "Spot couldn't be found"
-//         err.status = 404;
-//         return next(err);
-//     }
-// }
-
-// const bookingScheduleValidation = async(req, res, next) => {
-//     const spotId = req.params.id
-//     const startDate = new Date(req.body.startDate)
-//     const endDate = new Date(req.body.endDate)
-//     const existingBookings = await Booking.findAll({
-//         where: {
-//             spotId
-//         },
-//         order: [['startDate']]
-//     })
-
-//     let dates = []
-//     console.log(existingBookings.length)
-//     for (let booking of existingBookings) {
-//         dates.push([booking.startDate, booking.endDate])
-//     }
-
-//     for (let pair of dates) {
-//         if ((startDate > new Date(pair[0]) && startDate < new Date(pair[1]))
-//             || (endDate > new Date(pair[0] && endDate < new Date(pair[1])))
-//             || (startDate < new Date(pair[0] && endDate > pair[0]))) {
-//             const err = new Error();
-//             err.message = "Sorry, this spot is already booked for the specified dates"
-//             err.errors = {
-//                 "startDate": "Start date conflicts with an existing booking",
-//                 "endDate": "End date conflicts with an existing booking"
-//             }
-//             err.status = 403;
-//             return next(err);
-            
-//         }
-//     }
-//     next()
-
-// }
-
-router.post('/:id/bookings', requireAuth, validateBooking, async(req, res, next)=>{
-    const userId = req.user.id
+const spotValidaton = async (req, res, next) => {
     const spotId = req.params.id
-    const startDate = new Date(req.body.startDate)
-    const endDate = new Date(req.body.endDate)
-
     const spot = await Spot.findByPk(spotId)
     if (!spot) {
         const err = new Error('');
@@ -383,7 +333,14 @@ router.post('/:id/bookings', requireAuth, validateBooking, async(req, res, next)
         err.status = 404;
         return next(err);
     }
+    next()
+}
 
+const bookingScheduleValidation = async(req, res, next) => {
+    const userId = req.user.id
+    const spotId = req.params.id
+    const startDate = new Date(req.body.startDate)
+    const endDate = new Date(req.body.endDate)
     const existingBookings = await Booking.findAll({
         where: {
             spotId
@@ -399,9 +356,12 @@ router.post('/:id/bookings', requireAuth, validateBooking, async(req, res, next)
     console.log(dates)
     console.log("~~~~~", startDate, endDate)
     for (let pair of dates) { // this is not working, need to work on this tomorrow.
+        // console.log(startDate.getTime() > new Date(pair[0]).getTime()  && startDate.getTime()  < new Date(pair[1].getTime() ))
+        // console.log((endDate.getTime()  > new Date(pair[0]).getTime()   && endDate.getTime()  < new Date(pair[1]).getTime() ), pair)
+        // console.log(startDate.getTime() <= new Date(pair[0].getTime()  && endDate.getTime() >= pair[0].getTime() , pair))
         if ((startDate > new Date(pair[0]) && startDate < new Date(pair[1]))
-            || (endDate > new Date(pair[0] && endDate < new Date(pair[1])))
-            || (startDate < new Date(pair[0] && endDate > pair[0]))) {
+            || ((endDate > new Date(pair[0]) && endDate < new Date(pair[1])))
+            || ((startDate <= new Date(pair[0]) && endDate >= new Date (pair[0])) )) {
             const err = new Error();
             err.message = "Sorry, this spot is already booked for the specified dates"
             err.errors = {
@@ -413,6 +373,55 @@ router.post('/:id/bookings', requireAuth, validateBooking, async(req, res, next)
             
         }
     }
+    next()
+}
+
+router.post('/:id/bookings', requireAuth, validateBooking, spotValidaton, bookingScheduleValidation, async(req, res, next)=>{
+    const userId = req.user.id
+    const spotId = req.params.id
+    const startDate = new Date(req.body.startDate)
+    const endDate = new Date(req.body.endDate)
+
+    // const spot = await Spot.findByPk(spotId)
+    // if (!spot) {
+    //     const err = new Error('');
+    //     err.message = "Spot couldn't be found"
+    //     err.status = 404;
+    //     return next(err);
+    // }
+
+    // const existingBookings = await Booking.findAll({
+    //     where: {
+    //         spotId
+    //     },
+    //     order: [['startDate']]
+    // })
+
+    // let dates = []
+    // console.log(existingBookings.length)
+    // for (let booking of existingBookings) {
+    //     dates.push([booking.startDate, booking.endDate])
+    // }
+    // console.log(dates)
+    // console.log("~~~~~", startDate, endDate)
+    // for (let pair of dates) { // this is not working, need to work on this tomorrow.
+    //     console.log(startDate.getTime() > new Date(pair[0]).getTime()  && startDate.getTime()  < new Date(pair[1].getTime() ))
+    //     console.log((endDate.getTime()  > new Date(pair[0]).getTime()   && endDate.getTime()  < new Date(pair[1]).getTime() ), pair)
+    //     console.log(startDate.getTime() <= new Date(pair[0].getTime()  && endDate.getTime() >= pair[0].getTime() , pair))
+    //     if ((startDate > new Date(pair[0]) && startDate < new Date(pair[1]))
+    //         || ((endDate > new Date(pair[0]) && endDate < new Date(pair[1])))
+    //         || ((startDate <= new Date(pair[0]) && endDate >= new Date (pair[0])) )) {
+    //         const err = new Error();
+    //         err.message = "Sorry, this spot is already booked for the specified dates"
+    //         err.errors = {
+    //             "startDate": "Start date conflicts with an existing booking",
+    //             "endDate": "End date conflicts with an existing booking"
+    //         }
+    //         err.status = 403;
+    //         return next(err);
+            
+    //     }
+    // }
     const newBooking = await Booking.create({
         spotId,
         userId,
