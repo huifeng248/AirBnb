@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+
+
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     /**
@@ -39,6 +41,27 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Booking',
+    scopes: {
+      owner() {
+        const {User} = require('../models')
+        return {
+          include: [
+            {
+              model: User,
+              attributes: ['id', 'firstName', 'lastName']
+            }
+          ],
+          attributes:{
+                    exclude: ['reviewId']
+          },
+        }
+      },
+      user:{
+        attributes: {
+          exclude: ['id','reviewId','userId','createdAt','updatedAt']
+      }
+      },
+    }
   });
   return Booking;
 };

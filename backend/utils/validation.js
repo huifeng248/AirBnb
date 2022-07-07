@@ -41,7 +41,34 @@ const validateReview = [
   handleValidationErrors
 ];
 
+const validateBooking = [
+  check('startDate')
+    .exists({checkFalsy: true})
+    .withMessage('startDate is required'),
+  check('endDate')
+    .exists({checkFalsy: true})
+    .withMessage('endDate is required'),
+
+  check('endDate')
+    .custom((value, { req }) => {
+      if(new Date(value) <= new Date(req.body.startDate)) {
+        throw new Error ('endDate cannot come before startDate');
+    }
+    return true;
+  }),
+  check('startDate')
+  .custom((value, { req }) => {
+    const today =new Date()
+    if(new Date(value) <= today) {
+      throw new Error ('Start Date must be greater than today')
+    }
+    return true;
+  }),
+  handleValidationErrors
+];
+
 module.exports = {
   handleValidationErrors,
-  validateReview
+  validateReview,
+  validateBooking
 };
