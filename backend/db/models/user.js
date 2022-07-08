@@ -73,6 +73,7 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     username: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         len: [4, 30],
         isNotEmail(value) {
