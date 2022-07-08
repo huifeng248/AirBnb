@@ -15,10 +15,10 @@ const validateSignup = [
   check('email')
     .isEmail()
     .withMessage('Please provide a valid email.'),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
+  // check('username')
+  //   .not()
+  //   .isEmail()
+  //   .withMessage('Username cannot be an email.'),
   check('firstName')
     .exists({ checkFalsy: true})
     .withMessage('First Name is required'),
@@ -105,7 +105,7 @@ router.post(
     '/',
     validateSignup,
     async (req, res, next) => {
-      const { email, password, firstName, lastName } = req.body;
+      const { email, username, password, firstName, lastName } = req.body;
   
 
       //check if the email is unique
@@ -131,7 +131,7 @@ router.post(
         
 
     
-      const user = await User.signup({ email, password, firstName, lastName});
+      const user = await User.signup({ username, email, password, firstName, lastName});
   
       let token = await setTokenCookie(res, user);
 
