@@ -180,7 +180,7 @@ router.get('/:id', requireAuth, async (req, res, next) => {
         createdAt: spot.createdAt,
         updatedAt: spot.updatedAt,
         numReviews: numReviews,
-        avgStatRating: reviewRating[0].avgStatRating,
+        avgStatRating: parseFloat(reviewRating[0].avgStatRating),
         images: images,
         owner: owner
     }
