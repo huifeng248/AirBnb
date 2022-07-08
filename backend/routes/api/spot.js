@@ -147,9 +147,9 @@ router.get('/:id', requireAuth, async (req, res, next) => {
         where: {
             spotId
         },
-        attributes: {
-            include: [[sequelize.fn("avg", sequelize.col('stars')), "avgStatRating"]]
-        },
+        attributes: [
+            [sequelize.fn("avg", sequelize.col('stars')), "avgStatRating"]
+        ],
         raw: true,
     })
     
