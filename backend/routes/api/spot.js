@@ -50,7 +50,7 @@ const validateSpotPost = [
 ]
 
 //Get all Spots
-//question 3: need to fix the preview Images
+
 router.get('/', queryParamValidate, async (req, res, next) => {
     let pagination = {}
     
@@ -96,7 +96,6 @@ router.get('/', queryParamValidate, async (req, res, next) => {
         where.price = {[Op.lte]: maxPrice}
     }
     
-    console.log(where)
 
 
     const spots = await Spot.findAll({
@@ -109,7 +108,7 @@ router.get('/', queryParamValidate, async (req, res, next) => {
 
 
 //Get all Spots owned by the Current User
-//question 3: need to fix the preview Images, also how to order the columns
+
 router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     const { user } = req
     let { id } = user
@@ -129,7 +128,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 })
 
 //Get details of a Spot from an id
-//Question: data need to get specifit column
+
 router.get('/:id', async (req, res, next) => {
     const id = req.params.id
     const spot = await Spot.findByPk(id,

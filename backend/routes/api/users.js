@@ -135,8 +135,7 @@ router.post(
         }
       }
         
-    //question 1: need to check with TA for 400 for error in array
-    // question 2: how to get rif of the newUser
+
     
       const user = await User.signup({ email, username, password, firstName, lastName});
   
