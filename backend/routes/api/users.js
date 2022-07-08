@@ -111,7 +111,7 @@ router.post(
     '/',
     validateSignup,
     async (req, res, next) => {
-      const { email, password, username, firstName, lastName } = req.body;
+      const { email, password, firstName, lastName } = req.body;
   
 
       //check if the email is unique
@@ -137,7 +137,7 @@ router.post(
         
 
     
-      const user = await User.signup({ email, username, password, firstName, lastName});
+      const user = await User.signup({ email, password, firstName, lastName});
   
       let token = await setTokenCookie(res, user);
 
