@@ -7,7 +7,7 @@ const { Op } = require("sequelize");
 
 const router = express.Router();
 
-router.delete('/:id', async(req, res, next)=>{
+router.delete('/:id', requireAuth, async(req, res, next)=>{
     const userId = req.user.id
     const imageId = req.params.id
     const image = await Image.findByPk(imageId)

@@ -59,7 +59,7 @@ router.put('/:id',requireAuth, validateBooking, async(req, res, next) => {
                 }
             }
         })
-        console.log(existingBookings)
+       
         let dates = []
         for (let booking of existingBookings) {
             dates.push([booking.startDate, booking.endDate])
