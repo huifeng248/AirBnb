@@ -31,7 +31,7 @@ module.exports = {
         lat: '39.564667',
         lng: '119.586254',
         name: 'Villa De Lago The Lake House, Dock and Buoy',
-        description: 'VIlladeLago, The Lake House, is located in a secluded enclave in historic Cave Rock Nevada. Nestled in pines that sweep down through the riparian shrubbery from the home to the property’s private pier and buoy. ',
+        description: 'VIlladeLago, The Lake House, is located in a secluded enclave in historic Cave Rock Nevada.',
         price: 350,
         previewImage:'https://a0.muscache.com/im/pictures/0d3f5072-2236-4648-b03e-b2a7ebd2f5c7.jpg?im_w=1200',
 
@@ -45,7 +45,7 @@ module.exports = {
         lat: '39.324667',
         lng: '119.666254',
         name: 'Modern double-height villa with private dock',
-        description: 'Whether you want to relax by the water or get out and explore the lake, Villa De Lago makes it easy with a convenient dock, provided kayaks, and a furnished terrace with space for lounging and dining, plus a barbecue. After the sun sets over the mountains on the other side of the lake, gather around the pool table, flip on the streaming TV or share holiday photos via Wi-Fi.',
+        description: 'Whether you want to relax by the water or get out and explore the lake, Villa De Lago makes it easy with a convenient dock, provided kayaks, and a furnished terrace.',
         price: 550,
         previewImage: 'https://a0.muscache.com/im/pictures/01ba3e76-8d5e-45ad-8ae4-9c984c30f4c5.jpg?im_w=720',
 
@@ -59,7 +59,7 @@ module.exports = {
         lat: '39.1970',
         lng: '120.2357',
         name: 'Amenities-packed chalet on Meeks Bay',
-        description: 'Not 1 but 4 hot tubs peer over Lake Tahoe at this massive retreat with 300 feet of shore on Meeks Bay. This villa is packed with character—from a work-of-art chandelier over the 14-top dining set to hanging oars and a kitchen island reminiscent of a surfboard.',
+        description: 'Not 1 but 4 hot tubs peer over Lake Tahoe at this massive retreat with 300 feet of shore on Meeks Bay.',
         price: 1000,
       },
       {
@@ -71,7 +71,7 @@ module.exports = {
         lat: '39.2266',
         lng: '120.0121',
         name: 'Beachfront Tahoe Home with panoramic Views of Lake Tahoe',
-        description: 'This is a beautiful beachfront, 3 bedroom cozy family cabin/home located in Marla Bay Zephyr Cove. The bonus room is only available in the Summer months as there is no heat in this room.',
+        description: 'This is a beautiful beachfront, 3 bedroom cozy family cabin/home located in Marla Bay Zephyr Cove.',
         price: 500,
       },
   
