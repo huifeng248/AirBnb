@@ -2,8 +2,8 @@ const express = require('express')
 const { User, Spot, Image, Review, Booking, sequelize } = require('../../db/models')
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { check } = require('express-validator');
-const { handleValidationErrors, validateReview, validateBooking,imageValidate } = require('../../utils/validation');
-
+const { handleValidationErrors, validateReview, validateBooking,imageValidate, queryParamValidate } = require('../../utils/validation');
+const { Op } = require("sequelize");
 
 
 const router = express.Router();
@@ -49,15 +49,62 @@ const validateSpotPost = [
 
 ]
 
-
-
-
 //Get all Spots
 //question 3: need to fix the preview Images
-router.get('/', async (req, res, next) => {
-    const spots = await Spot.findAll()
-    res.json({ spots })
+router.get('/', queryParamValidate, async (req, res, next) => {
+    let pagination = {}
+    
+
+    let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query
+    page = page === undefined? 0 : parseInt(page)
+    size = size === undefined? 20: parseInt(size)
+
+    if (size > 0 && page > 0) {
+        pagination.limit = size
+        pagination.offset = size * (page -1)
+    }
+
+    const where = {}
+    //latitude
+    if (minLat && maxLat) {
+        where.lat = { [Op.between] : [minLat, maxLat]}
+    }
+    if (minLat && !maxLat) {
+        where.lat = {[Op.gte]: minLat}
+    }
+    if (!minLat && maxLat) {
+        where.lat = {[Op.lte]: minLat}
+    }
+    
+    //longtitude
+    if (minLng && maxLng) {
+        where.lng = {[Op.between] : [minLng, maxLng]}
+    }
+    if (minLng && !maxLng) {
+        where.lng = {[Op.gte]: minLng}
+    }
+    if (!minLng && maxLng) {
+        where.lng = {[Op.lte]: maxLng}
+    }
+    if (minPrice && maxPrice) {
+        where.price = {[Op.between] : [minPrice, maxPrice]}
+    }
+    if (minPrice && !maxPrice) {
+        where.price = {[Op.gte]: minPrice}
+    }
+    if (!minPrice && maxPrice) {
+        where.price = {[Op.lte]: maxPrice}
+    }
+    
+    console.log(where)
+
+
+    const spots = await Spot.findAll({
+        where,
+        ...pagination
+    })
     res.status(200)
+    res.json({ spots })
 })
 
 

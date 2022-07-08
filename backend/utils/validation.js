@@ -74,6 +74,46 @@ const imageValidate = [
     .isURL()
     .withMessage('must be url'),
   handleValidationErrors
+];
+
+const queryParamValidate = [
+  check('page') 
+    .custom(value =>{
+      if (value < 0) {
+        throw new Error('Page must be greater than or equal to 0')
+      }
+      return true
+    }),
+  check('size')
+    .custom(value => value >=0 || value === undefined )
+    .withMessage('Size must be greater than or equal to 0'),
+  check('minLat')
+    .custom(value =>{
+      if (value < -90) {
+        throw new Error ('Minimum latitude is invalid')
+      }
+      return true
+    }), 
+  check('maxLat')
+    .custom(value =>{
+      if (value > 90) {
+        throw new Error('Maximum latitude is invalid')
+      }
+      return true
+    }),
+  check('minLng')
+    .custom(value => value === undefined || value >= -180)
+    .withMessage('Minimum longitude is invalid'),
+  check('maxLng')
+    .custom(value =>value <= 180 || value === undefined)
+    .withMessage('Maximum longitude is invalid'), 
+  check('minPrice')
+    .custom(value => value >0 || value === undefined)
+    .withMessage('Minimum price must be greater than 0'),
+  check('maxPrice')
+    .custom(value => value >0 || value === undefined)
+    .withMessage('Maximum price must be greater than 0'),
+  handleValidationErrors
 ]
 
 
@@ -82,5 +122,6 @@ module.exports = {
   validateReview,
   validateBooking,
   imageValidate,
+  queryParamValidate,
   
 };
