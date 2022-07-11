@@ -18,10 +18,10 @@ module.exports = {
       },
       reviewId: {
         type: Sequelize.INTEGER,
-        references: { 
-          model: 'Reviews',
-          key:'id' 
-        },
+        // references: { 
+        //   model: 'Reviews',
+        //   key:'id' 
+        // },
       },
       spotId: {
         type: Sequelize.INTEGER,

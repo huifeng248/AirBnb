@@ -69,14 +69,15 @@ router.put('/:id', requireAuth, validateReview, async(req, res, next) => {
 router.delete('/:id', requireAuth, async(req, res, next)=> {
     const reviewId = req.params.id
     const userId = req.user.id
+    
     const reviewExited = await Review.findByPk(reviewId)
+    
     if (!reviewExited) {
         const err = new Error();
         err.message = "Review couldn't be found"
         err.status = 404;
         return next(err);
     }
-
     if (reviewExited.userId === userId) {
         await reviewExited.destroy()
         return res.json({
