@@ -73,7 +73,7 @@ router.get('/', requireAuth, queryParamValidate, async (req, res, next) => {
         where.lat = {[Op.gte]: minLat}
     }
     if (!minLat && maxLat) {
-        where.lat = {[Op.lte]: minLat}
+        where.lat = {[Op.lte]: maxLat}
     }
     
     //longtitude
