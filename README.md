@@ -1,9 +1,11 @@
 # `AirBnb`
 
+* This is an online application that provide online marketplace for homestay lodging for vavation rentals and tourism stay. Feel free to brow the site and make bookings as you like.
+
 ## Database Schema Design!
 ![Untitled (2)](https://user-images.githubusercontent.com/91226395/177441795-e132b3a5-bd05-4150-97fb-f8e09dff37bf.png)
 
-* This is an online application that provide online marketplace for homestay lodging for vavation rentals and tourism stay. Feel free to brow the site and make bookings as you like.
+
 
 ## about this project
 * What was the most challenging part of this project?
