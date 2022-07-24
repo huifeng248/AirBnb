@@ -53,7 +53,6 @@ router.delete('/', (_req, res) => {
 //look at the cookie and get the current users
 router.get('/', restoreUser, (req, res) => {
     const { user } = req;
-    console.log("restore", user)
     if (user) {
       return res.json({
         user: user.toSafeObject()
