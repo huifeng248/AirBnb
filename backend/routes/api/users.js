@@ -19,6 +19,17 @@ const validateSignup = [
   //   .not()
   //   .isEmail()
   //   .withMessage('Username cannot be an email.'),
+  // check('email')
+  //   .custom(value => {
+  //     userByEmail = await User.findOne({
+  //       where : {
+  //         email: email
+  //       }
+  //     })
+  //     if (userByEmail) {
+  //       throw new Error('email address must be uqniue')
+  //     }
+  //     return true}),
   check('firstName')
     .exists({ checkFalsy: true})
     .withMessage('First Name is required'),
@@ -82,12 +93,14 @@ router.post('/log-in', validateLogin, async (req, res, next) => {
 
   if (!user) {
     const err = new Error('Invalid credentials');
-    err.message = "Invalid credentials'"
+    err.message = "Invalid credentials"
     err.status = 401;
+    err.errors = ['The provided credentials were invalid.'];
     return next(err);
   }
 
   let token = await setTokenCookie(res, user);
+
 
   return res.json({
     id: user.id,
@@ -107,38 +120,32 @@ router.post(
     async (req, res, next) => {
       const { email, username, password, firstName, lastName } = req.body;
   
-
       //check if the email is unique
       if (email) {
-
         let userByEmail = await User.findOne({
           where : {
             email: email
           }
         })
         if (userByEmail) {
-          const err = new Error("email address must be uqniue");
+          const err = new Error();
+          err.message = "email address must be uqniue"
           err.status = 403
-          res.json({
-            message: err.message,
-            statusCode: err.status,
-            errors: {
-              "email": "User with that email already exists"
-            }
-          });
+          err.errors = ["email address must be uqniue"]
+          next(err)
         }
       }
-        
-
-    
-      const user = await User.signup({ username, email, password, firstName, lastName});
-  
-      let token = await setTokenCookie(res, user);
-
-      const newUser = await User.findByPk(user.id)
+      const newUser = await User.signup({ username, email, password, firstName, lastName});
+      let token = await setTokenCookie(res, newUser);
+      const user = await User.findByPk(newUser.id)
       
       return res.json({
-        newUser,
+        id:user.id,
+        username: user.username,
+        email:user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password:user.password,
         token
       });
     }
