@@ -51,7 +51,7 @@ const validateSpotPost = [
 
 //Get all Spots
 
-router.get('/', requireAuth, queryParamValidate, async (req, res, next) => {
+router.get('/', queryParamValidate, async (req, res, next) => {
     let pagination = {}
     
 
