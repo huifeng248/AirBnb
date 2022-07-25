@@ -9,14 +9,15 @@ const loadSpots = (list) =>({
     list
 })
 
-const getSpotById = (id) => ({
+const getSpotById = (spot) => ({
     type: GET_One_Spot,
-    id
+    spot
 })
 
-const getSpotByCurrentUser = () => ({
+const getSpotByCurrentUser = (spots, user) => ({
     type: GET_Spot_User,
-    id
+    spots,
+    user
 })
 
 
@@ -45,8 +46,9 @@ export const getOneSpot = (id) => async dispatch => {
 export const getSpotByUser = () => async dispatch =>  {
     const response = await fetch('/api/spots/current')
     if (response.ok) {
-        const spot = await response.json()
-        dispatch(getSpotByUserId(spot))
+        const spots = await response.json()
+        console.log("get user spot", spots)
+        dispatch(getSpotByCurrentUser(spots))
     }
 }
 
@@ -63,12 +65,14 @@ const spotReducer = (state = initialState, action) =>{
         }
         case GET_One_Spot : {
             const newState = {...state}
-            newState[action.id] = action.type
+            newState[action.spot.id] = action.spot
             return newState
         }
         case GET_Spot_User : {
-            const newState = {}
-            newState[action.id] = action.type
+            const newState = {...state}
+            console.log("action in reducer", action)
+            newState.user = action.user
+            newState.spots = action.spots
             return newState
         }
         default: 

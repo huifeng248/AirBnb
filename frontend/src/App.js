@@ -42,7 +42,7 @@ const spot = spots[spotId]
           <Route exact path='/'>
             <SpotBrowser spots={spots}/>
           </Route>
-          <Route exact path='spots/current'>
+          <Route exact path='/spots/current'>
             <SpotDetailByUser />
           </Route>
           <Route exact path={`/spots/:id`}>
