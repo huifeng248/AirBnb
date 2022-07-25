@@ -179,6 +179,7 @@ router.get('/:id', async (req, res, next) => {
         price: spot.price,
         createdAt: spot.createdAt,
         updatedAt: spot.updatedAt,
+        previewImage:spot.previewImage,
         numReviews: numReviews,
         avgStatRating: parseFloat(reviewRating[0].avgStatRating),
         images: images,

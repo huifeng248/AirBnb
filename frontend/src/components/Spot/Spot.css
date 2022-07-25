@@ -7,3 +7,8 @@
     display: flex;
     flex-direction: row;
 }
+
+.spot_prevew_image {
+    height: 515.5px;
+    width: 515.5px;
+}

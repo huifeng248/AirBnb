@@ -21,14 +21,14 @@ function SpotBrowser () {
             .then(()=>setIsloaded(true))
     }, [dispatch])
 
-
+   
     return (
         isLoaded && <div>
             <h2>all spots</h2>
             {spots.map((spot)=> {
                 return (
                     <div key={spot.id} className='list_container_at_list_page'>
-                        <NavLink key={spot.id} to={`spots/${spot.id}`}>
+                        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
                             <img className='images_at_list_page' src={spot.previewImage}/>
                             <div>{spot.city} {spot.state}</div>
                             <div>{spot.price} night</div>

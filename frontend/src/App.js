@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 
 import SpotBrowser from "./components/Spot/SpotsBrowser";
 import SpotDetail from "./components/Spot/SpotDetail";
+import SpotDetailByUser from "./components/Spot/SpotByUser";
 import { getSpots } from "./store/spot";
 
 function App() {
@@ -41,7 +42,10 @@ const spot = spots[spotId]
           <Route exact path='/'>
             <SpotBrowser spots={spots}/>
           </Route>
-          <Route path={`/spots/:spotId`}>
+          <Route exact path='spots/current'>
+            <SpotDetailByUser />
+          </Route>
+          <Route exact path={`/spots/:id`}>
             <SpotDetail />
           </Route>
         </Switch>
