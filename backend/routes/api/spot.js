@@ -126,10 +126,10 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 
 //Get details of a Spot from an id
 
-router.get('/:id', requireAuth, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     const spotId = req.params.id
-    const userId = req.user.id
     const spot = await Spot.findByPk(spotId)
+    const userId = spot.ownerId
     if (!spot.id) {
         const err = new Error('Invalid credentials');
         err.message = "Spot couldn't be found'"

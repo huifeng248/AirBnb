@@ -1,0 +1,9 @@
+.images_at_list_page {
+    height: 306px;
+    width: 291px;
+}
+
+.list_container_at_list_page{
+    display: flex;
+    flex-direction: row;
+}

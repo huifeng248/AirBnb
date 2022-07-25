@@ -39,8 +39,13 @@ const setUser = (user) => {
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
     const data = await response.json();
-    dispatch(setUser(data.user)); //because i dont have the user attribute
-    return data;
+    if (Object.values(data).length) {
+      dispatch(setUser(data.user))
+      return response
+    }
+
+    dispatch(setUser(null)); //this set the user initial state to null
+    return response;
 };
 
 //sign up user
