@@ -121,7 +121,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     })
     if (!spots.length) return res.send('The current user does not have a listing property.')
 
-    res.json( spots )
+    res.json({ spots })
 })
 
 //Get details of a Spot from an id

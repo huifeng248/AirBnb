@@ -11,15 +11,39 @@ function SpotDetailByUser () {
     const spots = useSelector((state) => state.spots)
     const user = useSelector((state)=> state.session.user)
     console.log("user in detail by user", user)
-    console.log("spot in detail ", spots)
+    const filteredSpots = Object.values(spots).filter(spot => spot.ownerId === user.id)
     useEffect(()=> {
-        dispatch(getSpotByUser(spots, user))
-            .then(()=> setIsLoaded(true))
+        dispatch(getSpotByUser(filteredSpots))
+        .then(()=> setIsLoaded(true))
     },[dispatch])
+    console.log("filtered spots in detail ", filteredSpots)
 
     return (
         isLoaded&&<div>
-            spot by user
+            <div>
+                {
+                    filteredSpots.map(spot => (
+                        <div>
+                            <span>{spot.avgStatRating}</span>
+                            <span>{spot.numReviews}</span>
+                            <span>{`${spot.city},${spot.state},${spot.country}`}</span>
+                            <div>
+                                <div className='spot_image_container'>
+                                    <img className='spot_prevew_image' src={spot.previewImage}></img>
+                                </div> 
+                                <div>
+                                place holder for images array
+                                need to map through each
+                                </div>
+                            </div>
+                            <div>
+                                {spot.description}
+                            </div>
+                        </div>
+                    ))
+                }
+                
+            </div>
         </div>
     )
 
