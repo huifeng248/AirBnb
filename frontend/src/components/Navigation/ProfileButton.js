@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { Redirect, useHistory } from "react-router-dom";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const history = useHistory()
+
   
   const openMenu = () => {
     if (showMenu) return;
@@ -39,6 +43,10 @@ function ProfileButton({ user }) {
           {/* <li>{user.username}</li> */}
           <li>{user.firstName} {user.lastName}</li>
           <li>{user.email}</li>
+          {/* <li onClick={(e)=> {return (<Redirect to ='/spots/new'/>)}}> */}
+          <li onClick={(e)=> {history.push('/spots/new')}}>
+            Manage Listings
+          </li>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>

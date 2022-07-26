@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import './Spot.css'
-import {getOneSpot} from '../../store/spot'
+import {getOneSpot, DeleteSpot} from '../../store/spot'
+import { useHistory } from 'react-router-dom';
 
 function SpotDetail (){
     const {id} = useParams()
+    const history = useHistory()
     const dispatch = useDispatch()
     const [isLoaded, setIsloaded] = useState(false)
     const spots = useSelector((state) => state.spots)
@@ -40,6 +42,11 @@ function SpotDetail (){
                         {spot.description}
                     </div>
                 </div>
+                <button onClick={()=> {
+                    //my delete is working for data base but not for update the new state
+                    dispatch(DeleteSpot(spot))
+                        .then(()=>history.push('/'))}}>Delete</button>
+                <button>Edit</button>
             </div>
         </div>
     )

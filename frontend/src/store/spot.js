@@ -38,7 +38,7 @@ const deleteSpotAction = (spot) => ({
 })
 
 export const DeleteSpot = (spot) => async(dispatch) => {
-    const response = await csrfFetch('/api/spots', {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export const DeleteSpot = (spot) => async(dispatch) => {
 
 
 export const UpdateSpot = (spot) => async(dispatch) => {
-    const response = await csrfFetch('/api/spots', {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'

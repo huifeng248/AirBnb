@@ -11,6 +11,8 @@ import SpotBrowser from "./components/Spot/SpotsBrowser";
 import SpotDetail from "./components/Spot/SpotDetail";
 import SpotDetailByUser from "./components/Spot/SpotByUser";
 import { getSpots } from "./store/spot";
+import CreateSpotForm from "./components/Spot/CreateSpotForm";
+import EditSpotForm from './components/Spot/EditSpotForm'
 
 function App() {
   const dispatch = useDispatch();
@@ -45,9 +47,16 @@ const spot = spots[spotId]
           <Route exact path='/spots/current'>
             <SpotDetailByUser />
           </Route>
+          <Route exact path={`/spots/new`}>
+            <CreateSpotForm />
+          </Route>
+          <Route exact path={'/spots/:id/edit'}>
+            <EditSpotForm />
+          </Route>
           <Route exact path={`/spots/:id`}>
             <SpotDetail />
           </Route>
+          {/* <Route>404 Page Not Found</Route> */}
         </Switch>
       )}
     </>
