@@ -44,7 +44,7 @@ function SpotDetail (){
                 </div>
                 <button onClick={()=> {
                     //my delete is working for data base but not for update the new state
-                    dispatch(DeleteSpot(spot))
+                    dispatch(DeleteSpot(spot.id))
                         .then(()=>history.push('/'))}}>Delete</button>
                 <button>Edit</button>
             </div>

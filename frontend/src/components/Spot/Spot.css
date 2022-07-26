@@ -12,3 +12,10 @@
     height: 515.5px;
     width: 515.5px;
 }
+
+.spot_preview_image_at_listing {
+    max-width: 10%;
+    height: auto;
+    /* height: 200 px; */
+    /* width: 200 px; */
+}

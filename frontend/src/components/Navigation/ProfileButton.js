@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { Redirect, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function ProfileButton({ user }) {
@@ -44,8 +45,11 @@ function ProfileButton({ user }) {
           <li>{user.firstName} {user.lastName}</li>
           <li>{user.email}</li>
           {/* <li onClick={(e)=> {return (<Redirect to ='/spots/new'/>)}}> */}
-          <li onClick={(e)=> {history.push('/spots/new')}}>
+          {/* <li onClick={(e)=> {history.push('/spots/new')}}>
             Manage Listings
+          </li> */}
+          <li>
+            <Link to={'/spots/current'}> Manage Listings</Link>
           </li>
           <li>
             <button onClick={logout}>Log Out</button>

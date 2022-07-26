@@ -32,23 +32,22 @@ const createSpotAction = (spot) => ({
     spot
 })
 
-const deleteSpotAction = (spot) => ({
+const deleteSpotAction = (id) => ({
     type: DELETE_SPOT,
-    spot
+    id
 })
 
-export const DeleteSpot = (spot) => async(dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+export const DeleteSpot = (id) => async(dispatch) => {
+    const response = await csrfFetch(`/api/spots/${id}`, {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(spot)
+        }
     })
 
     if (response.ok) {
         const spot = await response.json()
-        dispatch(deleteSpotAction(spot))
+        dispatch(deleteSpotAction(id))
         return spot
     }
 }
@@ -136,9 +135,12 @@ const spotReducer = (state = initialState, action) =>{
         }
         case GET_Spot_User : {
             const newState = {...state}
+            console.log("state before getting current", newState)
+            console.log("aaaction", action)
             action.spots.spots.map(spot => {
-                return newState[action.spot] = spot
+                return newState[action.spot] = spot+"A"
             })
+            console.log("state after getting current", newState)
             return newState
         }
         case UPDATE_SPOT : {
@@ -153,7 +155,10 @@ const spotReducer = (state = initialState, action) =>{
         }  
         case DELETE_SPOT : {
             const newState = {...state}
-            delete newState[action.spot.id]
+            console.log("before deleting",newState)
+            console.log("action", action)
+            delete newState[action.id]
+            console.log("after deleting",newState)
             return newState
         }
 

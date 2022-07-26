@@ -3,9 +3,11 @@ import './Spot.css'
 import {getSpotByUser} from '../../store/spot'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { DeleteSpot} from '../../store/spot'
+import { useHistory } from 'react-router-dom';
 
 function SpotDetailByUser () {
-
+    const history = useHistory()
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const spots = useSelector((state) => state.spots)
@@ -21,6 +23,7 @@ function SpotDetailByUser () {
     return (
         isLoaded&&<div>
             <div>
+                <button onClick={()=>history.push('/spots/new')}>Create New Listing</button>
                 {
                     filteredSpots.map(spot => (
                         <div>
@@ -29,11 +32,11 @@ function SpotDetailByUser () {
                             <span>{`${spot.city},${spot.state},${spot.country}`}</span>
                             <div>
                                 <div className='spot_image_container'>
-                                    <img className='spot_prevew_image' src={spot.previewImage}></img>
+                                    <img className='spot_preview_image_at_listing' src={spot.previewImage}></img>
                                 </div> 
                                 <div>
-                                place holder for images array
-                                need to map through each
+                                <button>Edit</button>
+                                <button onClick={()=> dispatch(DeleteSpot(spot.id))}>Delete</button>
                                 </div>
                             </div>
                             <div>
