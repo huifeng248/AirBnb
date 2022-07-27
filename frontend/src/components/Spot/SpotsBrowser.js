@@ -13,7 +13,7 @@ function SpotBrowser () {
         const allSpots = state.spots
         return Object.values(allSpots)
     })
-    console.log("spotsssss", spots)
+  
 
     // need to use .then as need to wait for the images to come back.
     useEffect(()=> {

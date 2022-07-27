@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { DeleteSpot} from '../../store/spot'
 import { useHistory } from 'react-router-dom';
+// import { Redirect } from "react-router-dom";
+import SpotFormModal from '../SpotFormModal'
 
 function SpotDetailByUser () {
     const history = useHistory()
@@ -12,21 +14,22 @@ function SpotDetailByUser () {
     const [isLoaded, setIsLoaded] = useState(false)
     const spots = useSelector((state) => state.spots)
     const user = useSelector((state)=> state.session.user)
-    console.log("user in detail by user", user)
     const filteredSpots = Object.values(spots).filter(spot => spot.ownerId === user.id)
     useEffect(()=> {
         dispatch(getSpotByUser(filteredSpots))
         .then(()=> setIsLoaded(true))
     },[dispatch])
-    console.log("filtered spots in detail ", filteredSpots)
+
+    // if (!user) return history.push('/'); //this is a bug, it's not redirect to home page
 
     return (
         isLoaded&&<div>
             <div>
-                <button onClick={()=>history.push('/spots/new')}>Create New Listing</button>
+                {/* <button onClick={()=>history.push('/spots/new')}>Create New Listing</button> */}
+                <SpotFormModal action='Create a List' />
                 {
                     filteredSpots.map(spot => (
-                        <div>
+                        <div key={spot.id}>
                             <span>{spot.avgStatRating}</span>
                             <span>{spot.numReviews}</span>
                             <span>{`${spot.city},${spot.state},${spot.country}`}</span>
@@ -35,7 +38,9 @@ function SpotDetailByUser () {
                                     <img className='spot_preview_image_at_listing' src={spot.previewImage}></img>
                                 </div> 
                                 <div>
-                                <button>Edit</button>
+                                {/* <button>Edit</button> */}
+                                {console.log("spotID at detail page", spot.id)}
+                                <SpotFormModal action="Edit" spotId={spot.id}/>
                                 <button onClick={()=> dispatch(DeleteSpot(spot.id))}>Delete</button>
                                 </div>
                             </div>

@@ -54,6 +54,7 @@ export const DeleteSpot = (id) => async(dispatch) => {
 
 
 export const UpdateSpot = (spot) => async(dispatch) => {
+    console.log("@@@@", spot)
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: "PUT",
         headers: {
@@ -135,12 +136,9 @@ const spotReducer = (state = initialState, action) =>{
         }
         case GET_Spot_User : {
             const newState = {...state}
-            console.log("state before getting current", newState)
-            console.log("aaaction", action)
             action.spots.spots.map(spot => {
-                return newState[action.spot] = spot+"A"
+                return newState[spot.id] = spot
             })
-            console.log("state after getting current", newState)
             return newState
         }
         case UPDATE_SPOT : {
@@ -155,10 +153,7 @@ const spotReducer = (state = initialState, action) =>{
         }  
         case DELETE_SPOT : {
             const newState = {...state}
-            console.log("before deleting",newState)
-            console.log("action", action)
             delete newState[action.id]
-            console.log("after deleting",newState)
             return newState
         }
 

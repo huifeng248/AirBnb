@@ -38,9 +38,9 @@ const spot = spots[spotId]
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route exact path='/'>
             <SpotBrowser spots={spots}/>
           </Route>

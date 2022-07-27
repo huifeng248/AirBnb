@@ -12,14 +12,11 @@ function SpotDetail (){
     const [isLoaded, setIsloaded] = useState(false)
     const spots = useSelector((state) => state.spots)
     const spot = spots[+id]
-    console.log("detail page spot id!!!!!",id)
 
     useEffect(()=> {
         dispatch(getOneSpot(id))
             .then(()=>setIsloaded(true))
     },[dispatch, id])
-
-    console.log("spots deatils", spot)
 
     return (
         isLoaded&&<div>

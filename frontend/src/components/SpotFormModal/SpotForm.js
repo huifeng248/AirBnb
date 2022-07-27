@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import {UpdateSpot} from '../../store/spot'
+import { useHistory } from 'react-router-dom';
+import {CreateSpot, UpdateSpot} from '../../store/spot'
 
-const EditSpotForm = () => {
-    const {id} = useParams()
-    const dispatch = useDispatch()
-    const spots = useSelector((state)=>state.spots)
-    const spot = spots[id]
-    const [address, setAddress] = useState()// this is how to turn it into async and showing
+
+
+const SpotForm = ({action, spotId, onClose}) => {
+    console.log("!!!!!", spotId)
+    const spots = useSelector(state => state.spots)
+    console.log("spots!!", spots)
+    const dispatch = useDispatch();
+    const history = useHistory()
+    const [address, setAddress] = useState()
     const [city, setCity] = useState()
     const [state, setState] = useState()
     const [country, setCountry] = useState()
@@ -24,7 +27,7 @@ const EditSpotForm = () => {
         e.preventDefault()
 
         const payload = {
-            id,
+            id:spotId,
             address,
             city,
             state,
@@ -35,16 +38,33 @@ const EditSpotForm = () => {
             description,
             price,
         }
+        console.log("action", action)
         
-        dispatch(UpdateSpot(payload))
-            .catch(async (res) => {
-                const data = await res.json()
-                if (data && data.errors) setErrors (data.errors)
-                // else history.push(`/spots/${data.id}/edit`)  //this redirect is not working
-            })
+        if (action ==='Edit') {
+
+            dispatch(UpdateSpot(payload))
+                .then(()=>onClose()) //just need to close it 
+                // .then(()=> history.push('/spots/current')) //it does not work cause it stay in the original page
+                .catch(async (res) => {
+                    const data = await res.json()
+                    if (data && data.errors) setErrors (data.errors)
+                })
+        } else if (action = 'Create a List'){
+
+            dispatch(CreateSpot(payload))
+                .then(()=>onClose())
+                .catch(async (res) => {
+                    const data = await res.json()
+                    if (data && data.errors) setErrors (data.errors)
+                })
+        }
+        
     }
+
+
     return (
         <section>
+            <h2>{action}</h2>
             <form
                 onSubmit={handleSubmit}>
                     <ul>
@@ -99,7 +119,10 @@ const EditSpotForm = () => {
                         onChange={e => setLat(e.target.value)}
                         placeholder='Latitude'
                         // required
-                        type='text'
+                        type='number'
+                        min='-90'
+                        max='90'
+                        step='0.000001'
                         />
                     </label>
                     <label>
@@ -110,6 +133,9 @@ const EditSpotForm = () => {
                         placeholder='Longitude'
                         // required
                         type='number'
+                        min='-180'
+                        step='0.000001'
+                        max='180'
                         />
                     </label>
                     <label>
@@ -145,13 +171,13 @@ const EditSpotForm = () => {
                 <button
                     type="submit"
                 >
-                Update Spot
+                {action}
               </button>
             </form>
         </section>
     )
 
-
 }
 
-export default EditSpotForm
+
+export default SpotForm
