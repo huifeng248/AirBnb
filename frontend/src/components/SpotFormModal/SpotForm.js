@@ -8,18 +8,19 @@ import {CreateSpot, UpdateSpot} from '../../store/spot'
 const SpotForm = ({action, spotId, onClose}) => {
     console.log("!!!!!", spotId)
     const spots = useSelector(state => state.spots)
-    console.log("spots!!", spots)
+    const spot = spots[spotId]
+    console.log("spots!!", spot)
     const dispatch = useDispatch();
     const history = useHistory()
-    const [address, setAddress] = useState()
-    const [city, setCity] = useState()
-    const [state, setState] = useState()
-    const [country, setCountry] = useState()
-    const [lat, setLat] = useState()
-    const [lng, setLng] = useState()
-    const [name, setName] = useState()
-    const [description, setDescription] = useState()
-    const [price, setPrice] = useState()
+    const [address, setAddress] = useState(spot? spot.address : "")
+    const [city, setCity] = useState(spot? spot.city : "")
+    const [state, setState] = useState(spot? spot.state : "")
+    const [country, setCountry] = useState(spot? spot.country : "")
+    const [lat, setLat] = useState(spot? spot.lat : "")
+    const [lng, setLng] = useState(spot? spot.lng : "")
+    const [name, setName] = useState(spot? spot.name : "")
+    const [description, setDescription] = useState(spot? spot.description : "")
+    const [price, setPrice] = useState(spot? spot.price: "")
     const [isLoaded, setIsloaded] = useState(false)
     const [errors, setErrors] = useState([]);
 

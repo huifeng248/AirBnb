@@ -17,6 +17,7 @@ function SpotDetailByUser () {
     const filteredSpots = Object.values(spots).filter(spot => spot.ownerId === user.id)
     useEffect(()=> {
         dispatch(getSpotByUser(filteredSpots))
+        // .then(()=>)or try optional chaining in line 18 where you key into user... might be an easy way to do it as well
         .then(()=> setIsLoaded(true))
     },[dispatch])
 
