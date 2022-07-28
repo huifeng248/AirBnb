@@ -62,6 +62,7 @@ router.put('/:id', requireAuth, validateReview, async(req, res, next) => {
     reviewExited.review = review,
     reviewExited.stars = stars
     await reviewExited.save()
+    console.log("~~~~~~~", reviewExited)
     return res.json(reviewExited)
   } else {
     const err = new Error();

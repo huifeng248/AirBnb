@@ -41,7 +41,7 @@ function ReviewForm ({action, reviewId, onClose}) {
         
         if (action === 'Edit') {
             dispatch(updateReview(editPayload))
-            .then(()=> onclose())
+            .then(()=> onClose())
             .catch(async (res) => {
                 console.log("this is res", res)
                 const data = await res.json()

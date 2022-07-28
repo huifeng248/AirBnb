@@ -12,7 +12,7 @@ function ReviewDetailByUser () {
     const reviews = useSelector(state => {
         return Object.values(state.reviews)
     })
-
+    console.log("edit revviewssss", reviews)
     useEffect(() => {
        
         dispatch(getReviewByUser(reviews))
@@ -25,20 +25,21 @@ function ReviewDetailByUser () {
             <h1>review by current user</h1>
             {/* <ReviewFormModal action='Add Review'/> */}
             {
-                reviews.map(review => (
+                
+                reviews&&reviews.map(review => (
                     <div key={review.id}>
                         <div>{review.id}</div>
                         <div>{review.ownerId}</div>
                         <div>{review.review}</div>
                         <div>{review.stars}</div>
-
+{/* 
                         {
                             review.Images.map(image => (
                                 <span key={image.url}>
                                     <img src={image.url}>image</img>
                                 </span>
                             ))
-                        }
+                        } */}
                         <div>
                         <ReviewFormModal action='Edit' reviewId={review.id}/>
                         </div>
