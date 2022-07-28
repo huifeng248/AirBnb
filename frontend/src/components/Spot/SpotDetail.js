@@ -14,6 +14,7 @@ function SpotDetail (){
     const [isLoaded, setIsloaded] = useState(false)
     const spots = useSelector((state) => state.spots)
     const spot = spots[+id]
+    const user = useSelector(state=> state.session.user)
 
     useEffect(()=> {
         dispatch(getOneSpot(id))
@@ -48,7 +49,9 @@ function SpotDetail (){
                 <button>Edit</button> */}
 
                 <div>
+                    {user&&
                     <ReviewFormModal action='Add Review'/>
+                    }
                 </div>
                 <div>
                     <h2>

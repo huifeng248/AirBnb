@@ -17,8 +17,9 @@ function ReviewForm ({action, reviewId, onClose}) {
 
     const {id} = useParams()
     console.log("SPOTTTTT", id)
-    // const spots = useSelector(state => state.spots)
+    const spots = useSelector(state => state.spots)
     const user = useSelector(state =>state.session.user)
+    
     console.log("userrrrrr", user)
     const userId = user.id
 
@@ -53,6 +54,7 @@ function ReviewForm ({action, reviewId, onClose}) {
             .then(()=> onClose())
             .catch(async(res)=> {
                 const data = await res.json()
+                console.log("This is reading~~~", data)
                 if (data && data.errors) setErrors(data.errors)
             })
         }
