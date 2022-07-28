@@ -24,21 +24,29 @@ function SpotBrowser () {
    
     return (
         isLoaded && <div>
+            <div></div>
             <h2>all spots</h2>
+            <div className='list_container_at_list_page'>
+
             {spots.map((spot)=> {
                 return (
-                    <div key={spot.id} className='list_container_at_list_page'>
-                        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-                            <img className='images_at_list_page' src={spot.previewImage}/>
-                            <div>{spot.city} {spot.state}</div>
-                            <div>{spot.price} night</div>
-                            <div>{spot.avgStatRating} how to render rating</div>
-                        </NavLink>
+                    <div key={spot.id} className='spot_list_item' >
+                        <div key={spot.id}>
+                            <NavLink to={`/spots/${spot.id}`}>
+                                <img className='images_at_list_page' src={spot.previewImage}/>
+                            </NavLink>
+                                <div>
+                                    <div>
+                                        <div>{spot.city} {spot.state}</div>
+                                        <div>{spot.price} night</div>
+                                    </div>
+                                    <div>{spot.avgStatRating}rating</div>
+                                </div>
+                        </div>
                     </div>
                 )
-            })
-
-            } 
+            })} 
+        </div>
             
            
 

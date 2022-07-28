@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import './Spot.css'
 import {getOneSpot, DeleteSpot} from '../../store/spot'
 import { useHistory } from 'react-router-dom';
+import ReviewBySpot from '../Review/ReviewBySpot'
+import ReviewFormModal from '../ReviewFormModal'
 
 function SpotDetail (){
     const {id} = useParams()
@@ -39,11 +41,23 @@ function SpotDetail (){
                         {spot.description}
                     </div>
                 </div>
-                <button onClick={()=> {
+                {/* <button onClick={()=> {
                     //my delete is working for data base but not for update the new state
                     dispatch(DeleteSpot(spot.id))
                         .then(()=>history.push('/'))}}>Delete</button>
-                <button>Edit</button>
+                <button>Edit</button> */}
+
+                <div>
+                    <ReviewFormModal action='Add Review'/>
+                </div>
+                <div>
+                    <h2>
+                    review by Spot
+                    </h2>
+                    <div>
+                    <ReviewBySpot />
+                    </div>
+                </div>
             </div>
         </div>
     )

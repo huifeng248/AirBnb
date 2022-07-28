@@ -14,14 +14,14 @@ function SpotDetailByUser () {
     const [isLoaded, setIsLoaded] = useState(false)
     const spots = useSelector((state) => state.spots)
     const user = useSelector((state)=> state.session.user)
-    const filteredSpots = Object.values(spots).filter(spot => spot.ownerId === user.id)
+    const filteredSpots = Object.values(spots).filter(spot => spot?.ownerId === user?.id)
     useEffect(()=> {
         dispatch(getSpotByUser(filteredSpots))
-        // .then(()=>)or try optional chaining in line 18 where you key into user... might be an easy way to do it as well
+        // .then(()=>) //optional chaining in line 18 where you key into user... might be an easy way to do it as well
         .then(()=> setIsLoaded(true))
     },[dispatch])
 
-    // if (!user) return history.push('/'); //this is a bug, it's not redirect to home page
+    if (!user) return history.push('/'); //this is a bug, it's not redirect to home page
 
     return (
         isLoaded&&<div>

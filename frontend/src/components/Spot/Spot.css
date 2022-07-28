@@ -6,11 +6,16 @@
 .list_container_at_list_page{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.spot_list_item {
+    padding: 10px;
 }
 
 .spot_prevew_image {
-    height: 515.5px;
-    width: 515.5px;
+    height: 300.5px;
+    width: 300.5px;
 }
 
 .spot_preview_image_at_listing {

@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import SpotBrowser from "./components/Spot/SpotsBrowser";
 import SpotDetail from "./components/Spot/SpotDetail";
 import SpotDetailByUser from "./components/Spot/SpotByUser";
+import ReviewDetailByUser from "./components/Review/ReviewByUser"
 import { getSpots } from "./store/spot";
 import CreateSpotForm from "./components/Spot/CreateSpotForm";
 import EditSpotForm from './components/Spot/EditSpotForm'
@@ -55,6 +56,9 @@ const spot = spots[spotId]
           </Route>
           <Route exact path={`/spots/:id`}>
             <SpotDetail />
+          </Route>
+          <Route exact path={'/reviews/current'}>
+            <ReviewDetailByUser />
           </Route>
           {/* <Route>404 Page Not Found</Route> */}
         </Switch>

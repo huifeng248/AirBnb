@@ -121,7 +121,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     })
     if (!spots.length) return res.send('The current user does not have a listing property.')
 
-    res.json({ spots })
+    res.json( spots )
 })
 
 //Get details of a Spot from an id
@@ -276,6 +276,7 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
         const err = new Error();
         err.message = "Forbidden"
         err.status = 403;
+        err.errors=["Forbidden"]
         return next(err);
     }
 
@@ -304,6 +305,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
         const err = new Error();
         err.message = "Forbidden"
         err.status = 403;
+        err.errors=["Forbidden"]
         return next(err);
     }
 
@@ -314,7 +316,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
 //Get all Reviews by a Spot's id
 //need lazy loading?
 
-router.get('/:id/reviews',requireAuth, async (req, res, next) => {
+router.get('/:id/reviews', async (req, res, next) => {
     const spotId = req.params.id
     const reviews = await Review.findAll({
         where: {
@@ -341,9 +343,15 @@ router.get('/:id/reviews',requireAuth, async (req, res, next) => {
         return next(err);
     }
 
-    if (!reviews.length) return res.send('The spot does not have a review yet.')
+    if (!reviews.length) 
+    // return res.send('The spot does not have a review yet.')
+    return res.json(
+        {
+            "message": "The current user does not have a review yet"
+        }
+    )
 
-    res.json({ reviews })
+    res.json( reviews )
 
 })
 
@@ -373,6 +381,7 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res, next) 
         const err = new Error('User already has a review for this spot');
         err.message = "User already has a review for this spot"
         err.status = 403;
+        err.errors=["Forbidden"]
         return next(err);
     }
 
@@ -578,6 +587,7 @@ router.post('/:id/images', requireAuth, imageValidate, async(req, res, next)=>{
         const err = new Error();
         err.message = "Forbidden"
         err.status = 403;
+        err.errors=["Forbidden"]
         return next(err);
     }
 })

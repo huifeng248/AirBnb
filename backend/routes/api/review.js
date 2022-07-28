@@ -33,9 +33,15 @@ router.get('/current', requireAuth, async(req, res)=> {
         attributes: ['id', 'userId', 'spotId', 'review', 'stars']
     })
 
-    if (!reviews.length) return res.send('The current user does not have a review yet.')
+    if (!reviews.length) 
+    return res.json(
+        {
+            "message": "The current user does not have a review yet"
+          }
+    )
+    // return res.send('The current user does not have a review yet.')
 
-    res.json({reviews})
+    res.json(reviews)
 })
 
 
@@ -61,6 +67,7 @@ router.put('/:id', requireAuth, validateReview, async(req, res, next) => {
     const err = new Error();
     err.message = "Forbidden"
     err.status = 403;
+    err.errors = ["Forbidden"]
     return next(err);
   }
 })
@@ -88,6 +95,7 @@ router.delete('/:id', requireAuth, async(req, res, next)=> {
         const err = new Error();
         err.message = "Forbidden"
         err.status = 403;
+        err.errors=["Forbidden"]
         return next(err);
       }
     
@@ -139,6 +147,7 @@ router.post('/:id/images', requireAuth, imageValidate, async(req, res,next)=>{
         const err = new Error();
         err.message = "Forbidden"
         err.status = 403;
+        err.errors=["Forbidden"]
         return next(err);
     }
 })

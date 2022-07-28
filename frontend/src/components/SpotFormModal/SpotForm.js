@@ -9,7 +9,7 @@ const SpotForm = ({action, spotId, onClose}) => {
     console.log("!!!!!", spotId)
     const spots = useSelector(state => state.spots)
     const spot = spots[spotId]
-    console.log("spots!!", spot)
+    // console.log("spots!!", spot)
     const dispatch = useDispatch();
     const history = useHistory()
     const [address, setAddress] = useState(spot? spot.address : "")
@@ -39,7 +39,7 @@ const SpotForm = ({action, spotId, onClose}) => {
             description,
             price,
         }
-        console.log("action", action)
+        // console.log("action", action)
         
         if (action ==='Edit') {
 
