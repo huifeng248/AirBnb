@@ -1,0 +1,25 @@
+.logo {
+    height: 30px;
+    width: 30px;
+}
+
+.navigation_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+.left_navigation_container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.home_page_name{
+    color: red;
+}
+
+a{
+    text-decoration: none;
+}
+

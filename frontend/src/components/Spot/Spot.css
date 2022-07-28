@@ -1,0 +1,26 @@
+.images_at_list_page {
+    height: 306px;
+    width: 291px;
+}
+
+.list_container_at_list_page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.spot_list_item {
+    padding: 10px;
+}
+
+.spot_prevew_image {
+    height: 300.5px;
+    width: 300.5px;
+}
+
+.spot_preview_image_at_listing {
+    max-width: 10%;
+    height: auto;
+    /* height: 200 px; */
+    /* width: 200 px; */
+}
