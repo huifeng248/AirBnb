@@ -13,13 +13,14 @@ function SpotDetail (){
     const dispatch = useDispatch()
     const [isLoaded, setIsloaded] = useState(false)
     const spots = useSelector((state) => state.spots)
+    const reviews = useSelector((state) => state.reviews)
     const spot = spots[+id]
     const user = useSelector(state=> state.session.user)
 
     useEffect(()=> {
         dispatch(getOneSpot(id))
             .then(()=>setIsloaded(true))
-    },[dispatch, id])
+    },[dispatch, id, reviews])
 
     return (
         isLoaded&&<div>

@@ -22,20 +22,20 @@ function LoginForm() {
     );
   };
 
-  const handleDemo = (e) => {
-    // e.preventDefault();
-    setErrors([]);
-    setCredential('Demo-lition')
-    setPassword('password')
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-        // if (data ) setErrors([data.message]);
+  // const handleDemo = (e) => {
+  //   // e.preventDefault();
+  //   setErrors([]);
+  //   setCredential('Demo-lition')
+  //   setPassword('password')
+  //   return dispatch(sessionActions.login({ credential, password })).catch(
+  //     async (res) => {
+  //       const data = await res.json();
+  //       if (data && data.errors) setErrors(data.errors);
+  //       // if (data ) setErrors([data.message]);
 
-      }
-    );
-  };
+  //     }
+  //   );
+  // };
 
 
   return (
@@ -66,7 +66,7 @@ function LoginForm() {
         </label>
         <button type="submit">Log In</button>
       </form>
-      <button onClick={handleDemo}> demo</button>
+      <button onClick={()=> {setCredential('Demo-lition');setPassword('password')}}> demo</button>
     </div>
   );
 }

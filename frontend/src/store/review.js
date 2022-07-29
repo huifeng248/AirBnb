@@ -112,7 +112,11 @@ const reviewReducer = (state = initialState, action) => {
             return newState
         }
         case Get_Review_Spot : {
-            const newState = {...state}
+            let newState = {...state}
+            if (!action.reviews.length) {
+                newState = {}
+                return newState
+            }
             action.reviews.map (review => {
                 return newState[review.id] = review
             })
@@ -120,12 +124,14 @@ const reviewReducer = (state = initialState, action) => {
         }
         case CREATE_REVIEW : {
             const newState = {...state}
-            newState[action.review.id] = action.review
+            newState[action.review.id] = {...newState[action.review.id], ...action.review}
             return newState
         }
         case UPDATE_REVIEW : {
             const newState = {...state}
-            newState[action.review.id] = action.review
+            console.log("!!!!", newState[action.review.id])
+            console.log("@@@@", action.review)
+            newState[action.review.id] = {...newState[action.review.id],...action.review}
             return newState
         }
         case DELETE_REVIEW : {
