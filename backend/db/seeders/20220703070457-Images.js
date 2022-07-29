@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         previewImage: false,
-        url: 'https://www.airbnb.com/rooms/39752700?adults=1&category_tag=Tag%3A8522&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-11-01&check_out=2022-11-08&federated_search_id=bc22a139-5ff5-453a-896a-bfd5e312858a&source_impression_id=p3_1658952578_CGNkz%2BdGB9334BK4&modal=PHOTO_TOUR_SCROLLABLE',
+        url: 'https://a0.muscache.com/im/pictures/619ab404-7a6c-4425-a79c-9459b1c00b1b.jpg?im_w=1200',
         spotId: 1,
         userId: 1,
         reviewId: null,
@@ -22,7 +22,7 @@ module.exports = {
        },
        {
         previewImage: false,
-        url: 'https://www.airbnb.com/rooms/39752700?adults=1&category_tag=Tag%3A8522&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-11-01&check_out=2022-11-08&federated_search_id=bc22a139-5ff5-453a-896a-bfd5e312858a&source_impression_id=p3_1658952578_CGNkz%2BdGB9334BK4&modal=PHOTO_TOUR_SCROLLABLE&modalItem=900218227',
+        url: 'https://a0.muscache.com/im/pictures/619ab404-7a6c-4425-a79c-9459b1c00b1b.jpg?im_w=1200',
         spotId: 1,
         userId: 1,
         reviewId: null,
@@ -30,7 +30,7 @@ module.exports = {
        },
        {
         previewImage: false,
-        url: 'https://www.airbnb.com/rooms/39752700?adults=1&category_tag=Tag%3A8522&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-11-01&check_out=2022-11-08&federated_search_id=bc22a139-5ff5-453a-896a-bfd5e312858a&source_impression_id=p3_1658952578_CGNkz%2BdGB9334BK4&modal=PHOTO_TOUR_SCROLLABLE&modalItem=900218243',
+        url: 'https://a0.muscache.com/im/pictures/619ab404-7a6c-4425-a79c-9459b1c00b1b.jpg?im_w=1200',
         spotId: 1,
         userId: 1,
         reviewId: null,
@@ -38,8 +38,8 @@ module.exports = {
        },
        {
         previewImage: false,
-        url: 'https://www.airbnb.com/rooms/39752700?adults=1&category_tag=Tag%3A8522&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-11-01&check_out=2022-11-08&federated_search_id=bc22a139-5ff5-453a-896a-bfd5e312858a&source_impression_id=p3_1658952578_CGNkz%2BdGB9334BK4&modal=PHOTO_TOUR_SCROLLABLE&modalItem=900218351',
-        spotId: 1,
+        url: 'https://a0.muscache.com/im/pictures/619ab404-7a6c-4425-a79c-9459b1c00b1b.jpg?im_w=1200',
+        spotId: 3,
         userId: 1,
         reviewId: null,
         imageableType: "Spot",
