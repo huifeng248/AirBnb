@@ -18,7 +18,7 @@ function ReviewBySpot () {
     useEffect(()=>{
         dispatch(GetReviewBySpot(id))
             .then(()=>setIsLoaded(true))
-    },[dispatch, reviews.length, id])
+    },[dispatch, reviews.length])
 
 
     return (
