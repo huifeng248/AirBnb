@@ -47,7 +47,7 @@ export const GetReviewBySpot = (id) => async(dispatch) => {
     const response = await csrfFetch (`/api/spots/${id}/reviews`)
     if (response.ok) {
         const reviews = await response.json()
-        // console.log("action thunk run", reviews)
+        console.log("action thunk run", reviews)
         dispatch(GetReviewBySpotAction(reviews))
     }
 }

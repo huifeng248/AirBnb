@@ -4,6 +4,7 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 import SpotDetail from './SpotDetail.js'
 import { useHistory } from 'react-router-dom';
 import {getSpots} from '../../store/spot.js'
+import AvgRating from '../AvgRating.js';
 
 function SpotBrowser () {
     const history = useHistory()
@@ -38,9 +39,12 @@ function SpotBrowser () {
                                 <div>
                                     <div>
                                         <div>{spot.city} {spot.state}</div>
-                                        <div>{spot.price} night</div>
+                                        <div>{spot.avgStatRating}rating</div>
+                                        <div>
+                                            <AvgRating spotId={spot.id}/>
+                                        </div>
                                     </div>
-                                    <div>{spot.avgStatRating}rating</div>
+                                        <div>${spot.price} night</div>
                                 </div>
                         </div>
                     </div>

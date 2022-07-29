@@ -6,13 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ReviewFormModal ({action,reviewId}) {
     const [showModal, setShowModal] = useState(false)
-    // const user = useSelector(state =>state.session.user)
-    
-    // console.log("userrrrrr", user)
-    // const userId = user.id
-    
-
-
 
     return (
         <div>
