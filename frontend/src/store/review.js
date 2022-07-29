@@ -34,7 +34,6 @@ const deleteReviewAction = (id) => ({
 //get review by user
 export const getReviewByUser = () => async (dispatch) => {
     const response = await csrfFetch('/api/reviews/current')
-    // console.log("action thunk run", response)
     if (response.ok) {
         const reviews = await response.json()
         dispatch(GetReviewByUserAction(reviews))
@@ -43,11 +42,9 @@ export const getReviewByUser = () => async (dispatch) => {
 
 //get review by spot
 export const GetReviewBySpot = (id) => async(dispatch) => {
-    console.log("before fetch id", id)
     const response = await csrfFetch (`/api/spots/${id}/reviews`)
     if (response.ok) {
         const reviews = await response.json()
-        console.log("action thunk run", reviews)
         dispatch(GetReviewBySpotAction(reviews))
     }
 }
@@ -104,7 +101,11 @@ const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case Get_Review_User : {
-            const newState = {...state}
+            let newState = {...state}
+            if (!action.reviews.length) {
+                newState = {}
+                return newState
+            }
             action.reviews.map (review => {
                 return newState[review.id]=review
             })

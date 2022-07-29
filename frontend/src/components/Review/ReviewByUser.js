@@ -12,21 +12,20 @@ function ReviewDetailByUser () {
     const reviews = useSelector(state => {
         return Object.values(state.reviews)
     })
-    console.log("edit revviewssss", reviews)
+    const user = useSelector((state)=> state.session.user)
+    const filteredReviews = Object.values(reviews).filter(review=> review.User?.id===user?.id)
     useEffect(() => {
-       
-        dispatch(getReviewByUser(reviews))
+        dispatch(getReviewByUser(filteredReviews))
             .then(() => setIsloaded(true))
     },[dispatch])
     
-    // console.log("get review", reviews)
     return (
         isLoaded&&<div>
             <h1>review by current user</h1>
             {/* <ReviewFormModal action='Add Review'/> */}
             {
                 
-                reviews&&reviews.map(review => (
+                filteredReviews&&filteredReviews.map(review => (
                     <div key={review.id}>
                         <div>{review.id}</div>
                         <div>{review.ownerId}</div>

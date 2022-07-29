@@ -10,7 +10,7 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory()
-
+ 
   
   const openMenu = () => {
     if (showMenu) return;
@@ -37,29 +37,30 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          {/* <li>{user.username}</li> */}
-          <li>{user.firstName} {user.lastName}</li>
-          <li>{user.email}</li>
-          {/* <li onClick={(e)=> {return (<Redirect to ='/spots/new'/>)}}> */}
-          {/* <li onClick={(e)=> {history.push('/spots/new')}}>
-            Manage Listings
-          </li> */}
-          <li>
-            <Link to={'/spots/current'}> Manage Listings</Link>
-          </li>
-          <li>
-            <Link to={'/reviews/current'}> Manage Reviews</Link>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
+      <div className="profile-dropdown-container">
+        <button onClick={openMenu}>
+          <i className="fas fa-user-circle" />
+        </button>
+        {showMenu && (
+          <div>
+            <ul className="profile-dropdown">
+              {/* <li>{user.username}</li> */}
+              <li>{user.firstName} {user.lastName}</li>
+              <li>{user.email}</li>
+              <li>
+                <Link to={'/spots/current'}> Manage Listings</Link>
+              </li>
+              <li>
+                <Link to={'/reviews/current'}> Manage Reviews</Link>
+              </li>
+              <li>
+                <button onClick={logout}>Log Out</button>
+              </li>
+            </ul>
+          </div>
+        )}
+
+      </div>
     </>
   );
 }

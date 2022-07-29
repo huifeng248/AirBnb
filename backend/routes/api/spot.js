@@ -99,11 +99,29 @@ router.get('/', queryParamValidate, async (req, res, next) => {
 
 
     const spots = await Spot.findAll({
+        include: Review,
         where,
         ...pagination
     })
     res.status(200)
     res.json({ spots })
+
+
+    // Model.User.findOne({
+    //     where: { id: 7 },
+    //     attributes: [
+    //       [Sequelize.fn('AVG', Sequelize.col('seller_rating.stars')), 'avgRating'],
+    //     ],
+    //     include: [
+    //       {
+    //         model: Model.Rating,
+    //         as: 'seller_rating',
+    //         attributes: [],
+    //       },
+    //     ],
+    //     raw: true,
+    //     group: ['User.id'],
+    //   }).then((res) => console.log(res));
 })
 
 
@@ -119,7 +137,9 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
         },
 
     })
-    if (!spots.length) return res.send('The current user does not have a listing property.')
+    if (!spots.length) 
+    return res.json({ message: "The current user does not have a listing property."})
+    // return res.send('The current user does not have a listing property.')
 
     res.json( spots )
 })
@@ -222,7 +242,7 @@ router.get('/:id', async (req, res, next) => {
 
 //Create a Spot
 router.post('/', restoreUser, requireAuth, validateSpotPost, async (req, res, next) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
 
     const ownerId = req.user.id
 
@@ -236,7 +256,8 @@ router.post('/', restoreUser, requireAuth, validateSpotPost, async (req, res, ne
         lng,
         name,
         description,
-        price
+        price,
+        previewImage
     })
 
     res.status(201)

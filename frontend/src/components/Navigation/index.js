@@ -26,7 +26,7 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <div>
+    <div className='Banner'>
     <div className='navigation_container'>
         <div>
           {/* <NavLink exact to="/">Home</NavLink> */}
