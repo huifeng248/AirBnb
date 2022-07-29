@@ -43,7 +43,7 @@ module.exports = {
       name: 'Demo',
       review:'So hard to rate a house like this when you absolutely loved ! It’s a memorable home to stay I don’t have a word to write a review over 10+ stars ',
       stars: 5,
-      spotId: 5,
+      spotId: 6,
       userId: 1,
     },
     {

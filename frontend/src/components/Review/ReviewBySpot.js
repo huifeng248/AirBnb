@@ -13,6 +13,7 @@ function ReviewBySpot () {
     const reviews = useSelector(state => {
         return Object.values(state.reviews)
     })
+    
     console.log("reviewId!!!!", id)
     useEffect(()=>{
         console.log(" review thunk run")

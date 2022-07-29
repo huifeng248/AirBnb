@@ -22,6 +22,14 @@ function SpotBrowser () {
             .then(()=>setIsloaded(true))
     }, [dispatch])
 
+    const avgReviewCal = (reviewarr) => {
+        let total = 0 
+        reviewarr.forEach(reviewObj => {
+            total+= reviewObj.stars
+        });
+        let avg = total/reviewarr.length
+        return avg
+    }
    
     return (
         isLoaded && <div>
@@ -40,6 +48,11 @@ function SpotBrowser () {
                                     <div>
                                         <div>{spot.city} {spot.state}</div>
                                         <div>{spot.avgStatRating}rating</div>
+                                        <div>
+                                            {
+                                                avgReviewCal(spot.Reviews)
+                                            }
+                                        </div>
                                         <div>
                                             <AvgRating spotId={spot.id}/>
                                         </div>
