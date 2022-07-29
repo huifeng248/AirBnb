@@ -29,7 +29,7 @@ function SpotDetailByUser () {
                 {/* <button onClick={()=>history.push('/spots/new')}>Create New Listing</button> */}
                 <SpotFormModal action='Create a List' />
                 {
-                    filteredSpots.map(spot => (
+                    filteredSpots&&filteredSpots.map(spot => (
                         <div key={spot.id}>
                             <span>{spot.avgStatRating}</span>
                             <span>{spot.numReviews}</span>

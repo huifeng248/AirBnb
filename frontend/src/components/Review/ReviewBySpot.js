@@ -13,8 +13,10 @@ function ReviewBySpot () {
     const reviews = useSelector(state => {
         return Object.values(state.reviews)
     })
-    
-    console.log("reviewId!!!!", id)
+    console.log("########", reviews)
+    const filteredReviews = reviews.filter(review => review?.spotId ===+id)
+
+    console.log("reviewId!!!!", id, filteredReviews)
     useEffect(()=>{
         console.log(" review thunk run")
         dispatch(GetReviewBySpot(id))
@@ -27,17 +29,18 @@ function ReviewBySpot () {
         <div>
             <h1>review by spot id</h1>
             {
-                reviews.map(review =>  { return (
-                    <div key={review.id}>
-
-                    <div>dfdfd{review.spotId}</div>
-                    <div>{review.review}</div>
-                    <div>{`stars: ${review.stars}`}</div>
+                filteredReviews&&filteredReviews.map(review => (
+                    <div>
+                        <div>
+                            {review.review}
+                        </div>
+                        <div>hellow</div>
+                        <div>
+                            {review.stars}
+                        </div>
                     </div>
-                    )
-                }
-                
-                )
+                ))
+            
             }
         </div>
     )
