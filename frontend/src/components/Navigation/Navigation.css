@@ -25,9 +25,8 @@ a{
 
 .Banner{
     width: 100%;
-    /* position: fix; */
     border-bottom: solid 1px lightgrey;
-    position: fixed;
+    /* position: fixed; */
     background-color: white;
     
 }
