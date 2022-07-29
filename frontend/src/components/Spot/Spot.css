@@ -4,13 +4,23 @@
     border-radius: 15px;
 }
 
-.list_container_at_list_page{
+
+/* .list_container_at_list_page{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 80px;
     width: 85%;
+    margin: auto;
+} */
+.list_container_at_list_page {
+    display: flex;
+    max-width: 70%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 80px;
     margin: auto;
 }
 

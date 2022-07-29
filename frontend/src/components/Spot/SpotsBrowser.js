@@ -35,7 +35,7 @@ function SpotBrowser () {
    
     return (
         isLoaded && <div>
-            <div></div>
+            
             <div className='list_container_at_list_page'>
 
             {spots.map((spot)=> {
