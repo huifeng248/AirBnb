@@ -1,13 +1,16 @@
 .logo {
     height: 30px;
     width: 30px;
+    
 }
 
 .navigation_container {
     display: flex;
     justify-content: space-between;
+    width: 85%;
     margin-top: 20px;
     margin-left: 150px;
+    margin-bottom: 20px;
 }
 
 .left_navigation_container{

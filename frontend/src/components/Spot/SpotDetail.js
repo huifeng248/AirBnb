@@ -27,11 +27,11 @@ function SpotDetail (){
             <div className='spot_detail_page_container'>
                 <div key={`spot-details- ${spot.id}`}>
                     <h1 className='spot_detail_title'>{spot.name}</h1>
-                    <div className='spot_reviews'>
-                        <i className="fa-solid fa-star"></i>
-                        <div>{` ${spot.avgStatRating}`}</div>
-                        <div className='numbers_review'>{spot.numReviews}</div>
-                        <div className='numbers_review'>reviews</div>
+                    <div className='spot_reviews spot_reviews_item'>
+                        <i className="fa-solid fa-star spot_reviews_item"></i>
+                        <div className='spot_reviews_item'>{` ${spot.avgStatRating}`}</div>
+                        <div className='numbers_review spot_reviews_item'>{spot.numReviews}</div>
+                        <div className='numbers_review spot_reviews_item'>reviews</div>
                         <div>{`${spot.city},${spot.state},${spot.country}`}</div>
                     </div>
 

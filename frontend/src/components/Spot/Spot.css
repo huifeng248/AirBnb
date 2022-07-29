@@ -4,12 +4,24 @@
     border-radius: 15px;
 }
 
-.list_container_at_list_page{
+
+/* .list_container_at_list_page{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 80px;
+    width: 85%;
+    margin: auto;
+} */
+.list_container_at_list_page {
+    display: flex;
+    max-width: 70%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 80px;
+    margin: auto;
 }
 
 .spot_list_item {
@@ -41,7 +53,9 @@
 }
 
 .spot_detail_page_container{
-    padding-top: 60px;
+    padding-top: 4em;
+    width: 100%;
+    margin: auto;
 }
 
 .spot_detail_title{
@@ -50,6 +64,7 @@
 
 .spot_reviews{
     display: flex;
+    padding-bottom: 1em;
 
 }
 
@@ -78,4 +93,8 @@
 .spot_detail_page_container{
     width: 85%;
     margin: auto;
+}
+
+.spot_reviews_item {
+    padding-right: 0.2em;
 }

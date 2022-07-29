@@ -153,6 +153,7 @@ router.get('/:id', async (req, res, next) => {
     if (!spot.id) {
         const err = new Error('Invalid credentials');
         err.message = "Spot couldn't be found'"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
@@ -276,6 +277,7 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
     if (!spot) {
         const err = new Error('Spot couldn\'t be found');
         err.message = "Spot couldn't be found'"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
@@ -311,6 +313,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     if (!spot) {
         const err = new Error('Spot couldn\'t be found');
         err.message = "Spot couldn't be found'"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
@@ -360,6 +363,7 @@ router.get('/:id/reviews', async (req, res, next) => {
     if (!spot) {
         const err = new Error('Spot couldn\'t be found');
         err.message = "Spot couldn't be found'"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
@@ -387,6 +391,7 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res, next) 
     if (!spot) {
         const err = new Error('Spot couldn\'t be found');
         err.message = "Spot couldn't be found"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
@@ -438,6 +443,7 @@ router.get('/:id/bookings', requireAuth, async(req, res, next) => {
         const err = new Error('');
         err.message = "Spot couldn't be found"
         err.status = 404;
+        err.errors = ["The requested resource couldn't be found."];
         return next(err);
     }
 
@@ -469,6 +475,7 @@ const spotValidaton = async (req, res, next) => {
         const err = new Error('');
         err.message = "Spot couldn't be found"
         err.status = 404;
+        err.errors = ["The requested resource couldn't be found."];
         return next(err);
     }
     next()
