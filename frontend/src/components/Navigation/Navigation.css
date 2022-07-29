@@ -26,6 +26,13 @@ a{
 .Banner{
     width: 100%;
     /* position: fix; */
-    border-bottom: solid 1px lightgrey
+    border-bottom: solid 1px lightgrey;
+    position: fixed;
+    background-color: white;
     
+}
+
+.profile-dropdown-container {
+  
+    margin-right: 150px;
 }

@@ -22,12 +22,12 @@ function SpotBrowser () {
             .then(()=>setIsloaded(true))
     }, [dispatch])
 
-    const avgReviewCal = (reviewarr) => {
+    const avgReviewCal = (reviewArr) => {
         let total = 0 
-        reviewarr.forEach(reviewObj => {
+        reviewArr.forEach(reviewObj => {
             total+= reviewObj.stars
         });
-        let avg = total/reviewarr.length
+        let avg = total/reviewArr.length
         return avg
     }
 

@@ -23,42 +23,51 @@ function SpotDetail (){
 
     return (
         isLoaded&&<div>
-            <div key={`spot-details- ${spot.id}`}>
-                <h1>{spot.name}</h1>
-                <div>
-                    <span>{spot.avgStatRating}</span>
-                    <span>{spot.numReviews}</span>
-                    <span>{`${spot.city},${spot.state},${spot.country}`}</span>
-                    <div>
+            <div className='spot_detail_page_container'>
+                <div key={`spot-details- ${spot.id}`}>
+                    <h1 className='spot_detail_title'>{spot.name}</h1>
+                    <div className='spot_reviews'>
+                        <i className="fa-solid fa-star"></i>
+                        <div>{` ${spot.avgStatRating}`}</div>
+                        <div className='numbers_review'>{spot.numReviews}</div>
+                        <div className='numbers_review'>reviews</div>
+                        <div>{`${spot.city},${spot.state},${spot.country}`}</div>
+                    </div>
+
                         <div className='spot_image_container'>
-                            <img className='spot_prevew_image' src={spot.previewImage}></img>
-                        </div> 
+                            <div className='spot_prevew_image_container'>
+                                <img className='spot_prevew_image' src={spot.previewImage}></img>
+                            </div> 
+                            <div className='spot_small_image_container'>
+                                {
+                                    spot.images.length&&
+                                    spot.images.map( image => (
+                                        <div key={image.url}>
+                                            <img className='spot_small_image' src={image.url}></img>    
+                                        </div>
+                                        )
+                                    )
+
+                                }
+                            </div>
+                        </div>
+
                         <div>
-                        place holder for images array
-                        need to map through each
+                            {spot.description}
                         </div>
                     </div>
-                    <div>
-                        {spot.description}
-                    </div>
-                </div>
-                {/* <button onClick={()=> {
-                    //my delete is working for data base but not for update the new state
-                    dispatch(DeleteSpot(spot.id))
-                        .then(()=>history.push('/'))}}>Delete</button>
-                <button>Edit</button> */}
 
-                <div>
-                    {user&&
-                    <ReviewFormModal action='Add Review'/>
-                    }
-                </div>
-                <div>
-                    <h2>
-                    review by Spot
-                    </h2>
                     <div>
-                    <ReviewBySpot />
+                        {user&&
+                        <ReviewFormModal action='Add Review'/>
+                    }
+                    </div>
+                    <div>
+                        <h2>
+                        review by Spot
+                        </h2>
+                        <div>
+                        <ReviewBySpot />
                     </div>
                 </div>
             </div>
