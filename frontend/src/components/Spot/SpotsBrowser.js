@@ -39,7 +39,7 @@ function SpotBrowser () {
             <div className='list_container_at_list_page'>
 
             {spots.map((spot)=> {
-                let review = "NEW";
+                let review = "New";
                 if (spot.Reviews && spot.Reviews.length > 0) {
                     review = avgReviewCal(spot.Reviews).toFixed(2).toString()
                 }

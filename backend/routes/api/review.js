@@ -55,6 +55,7 @@ router.put('/:id', requireAuth, validateReview, async(req, res, next) => {
         const err = new Error();
         err.message = "Review couldn't be found"
         err.status = 404;
+        err.errors = ["The requested resource couldn't be found."];
         return next(err);
     }
 
@@ -82,6 +83,7 @@ router.delete('/:id', requireAuth, async(req, res, next)=> {
     if (!reviewExited) {
         const err = new Error();
         err.message = "Review couldn't be found"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
@@ -112,6 +114,7 @@ router.post('/:id/images', requireAuth, imageValidate, async(req, res,next)=>{
     if (!review) {
         const err = new Error('');
         err.message = "Review couldn't be found"
+        err.errors = ["The requested resource couldn't be found."];
         err.status = 404;
         return next(err);
     }
