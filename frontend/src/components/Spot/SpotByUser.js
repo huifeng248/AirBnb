@@ -25,7 +25,7 @@ function SpotDetailByUser () {
 
     return (
         isLoaded&&<div>
-            <div>
+            <div className='spot_form_container'>
                 {/* <button onClick={()=>history.push('/spots/new')}>Create New Listing</button> */}
                 <SpotFormModal action='Create a List' />
                 {

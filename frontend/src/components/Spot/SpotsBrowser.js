@@ -67,9 +67,6 @@ function SpotBrowser () {
                 )
             })} 
         </div>
-            
-           
-
         </div>
     )
 
