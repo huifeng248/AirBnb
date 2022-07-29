@@ -16,6 +16,7 @@ const CreateSpotForm = () => {
     const [name, setName] = useState()
     const [description, setDescription] = useState()
     const [price, setPrice] = useState()
+    const [previewImage, setPreviewImage] = useState()
     const [isLoaded, setIsloaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -32,6 +33,7 @@ const CreateSpotForm = () => {
             name,
             description,
             price,
+            previewImage
         }
         
         dispatch(CreateSpot(payload))
@@ -164,6 +166,16 @@ const CreateSpotForm = () => {
                         placeholder='Price'
                         // required
                         type='number'
+                        />
+                    </label>
+                    <label>
+                        Preview Image
+                        <input
+                        value={previewImage}
+                        onChange={e => setPreviewImage(e.target.value)}
+                        placeholder='Image Url'
+                        // required
+                        type='url'
                         />
                     </label>
                 <button

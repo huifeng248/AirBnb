@@ -40,7 +40,6 @@ function SpotDetailByUser () {
                                 </div> 
                                 <div>
                                 {/* <button>Edit</button> */}
-                                {console.log("spotID at detail page", spot.id)}
                                 <SpotFormModal action="Edit" spotId={spot.id}/>
                                 <button onClick={()=> dispatch(DeleteSpot(spot.id))}>Delete</button>
                                 </div>

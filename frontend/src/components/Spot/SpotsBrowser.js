@@ -30,14 +30,19 @@ function SpotBrowser () {
         let avg = total/reviewarr.length
         return avg
     }
+
+
    
     return (
         isLoaded && <div>
             <div></div>
-            <h2>all spots</h2>
             <div className='list_container_at_list_page'>
 
             {spots.map((spot)=> {
+                let review = "NEW";
+                if (spot.Reviews && spot.Reviews.length > 0) {
+                    review = avgReviewCal(spot.Reviews).toFixed(2).toString()
+                }
                 return (
                     <div key={spot.id} className='spot_list_item' >
                         <div key={spot.id}>
@@ -47,15 +52,13 @@ function SpotBrowser () {
                                 <div>
                                     <div>
                                         <div>{spot.city} {spot.state}</div>
-                                        <div>{spot.avgStatRating}rating</div>
+                                        <i className="fa-solid fa-star"></i>
                                         <div>
-                                            {
-                                                avgReviewCal(spot.Reviews)
-                                            }
+                                            {review}
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <AvgRating spotId={spot.id}/>
-                                        </div>
+                                        </div> */}
                                     </div>
                                         <div>${spot.price} night</div>
                                 </div>

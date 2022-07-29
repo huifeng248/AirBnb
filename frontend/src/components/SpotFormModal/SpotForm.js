@@ -6,10 +6,8 @@ import {CreateSpot, UpdateSpot} from '../../store/spot'
 
 
 const SpotForm = ({action, spotId, onClose}) => {
-    console.log("!!!!!", spotId)
     const spots = useSelector(state => state.spots)
     const spot = spots[spotId]
-    // console.log("spots!!", spot)
     const dispatch = useDispatch();
     const history = useHistory()
     const [address, setAddress] = useState(spot? spot.address : "")
@@ -21,6 +19,7 @@ const SpotForm = ({action, spotId, onClose}) => {
     const [name, setName] = useState(spot? spot.name : "")
     const [description, setDescription] = useState(spot? spot.description : "")
     const [price, setPrice] = useState(spot? spot.price: "")
+    const [previewImage, setPreviewImage] = useState()
     const [isLoaded, setIsloaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -38,8 +37,8 @@ const SpotForm = ({action, spotId, onClose}) => {
             name,
             description,
             price,
+            previewImage
         }
-        // console.log("action", action)
         
         if (action ==='Edit') {
 
@@ -167,6 +166,16 @@ const SpotForm = ({action, spotId, onClose}) => {
                         placeholder='Price'
                         // required
                         type='number'
+                        />
+                    </label>
+                    <label>
+                        Preview Image
+                        <input
+                        value={previewImage}
+                        onChange={e => setPreviewImage(e.target.value)}
+                        placeholder='Preview image url'
+                        // required
+                        type='url'
                         />
                     </label>
                 <button

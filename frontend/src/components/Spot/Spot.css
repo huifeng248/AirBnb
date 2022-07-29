@@ -1,16 +1,20 @@
 .images_at_list_page {
     height: 306px;
     width: 291px;
+    border-radius: 15px;
 }
 
 .list_container_at_list_page{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .spot_list_item {
+    display: flex;
     padding: 10px;
+  
 }
 
 .spot_prevew_image {
@@ -23,4 +27,8 @@
     height: auto;
     /* height: 200 px; */
     /* width: 200 px; */
+}
+
+.Spot_card {
+    border-radius: 30px;
 }

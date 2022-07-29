@@ -9,20 +9,13 @@ function AvgRating({spotId}) {
     const reviews = useSelector(state => {
         return Object.values(state.reviews)
     })
-    console.log("reviewstate", reviews)
-    // if (reviews) console.log("reviewstate", reviews)
     const review = reviews.filter(review => review.spotId === spotId)
 
     
     useEffect(()=>{
-        console.log(" review thunk run")
         dispatch(GetReviewBySpot(spotId))
         .then(()=>setIsLoaded(true))
     },[dispatch])
-
-    console.log("~~~~~~!!!", reviews)
-    
-    console.log("~~~~~~~~~", reviews)
 
     return (
         <div>

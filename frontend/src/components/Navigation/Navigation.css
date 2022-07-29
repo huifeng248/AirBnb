@@ -23,3 +23,9 @@ a{
     text-decoration: none;
 }
 
+.Banner{
+    width: 100%;
+    /* position: fix; */
+    border-bottom: solid 1px lightgrey
+    
+}

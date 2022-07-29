@@ -14,13 +14,11 @@ function ReviewDetailByUser () {
     })
     const user = useSelector((state)=> state.session.user)
     const filteredReviews = Object.values(reviews).filter(review=> review.User?.id===user?.id)
-    console.log("edit revviewssss", reviews)
     useEffect(() => {
         dispatch(getReviewByUser(filteredReviews))
             .then(() => setIsloaded(true))
     },[dispatch])
     
-    console.log("Abby get review", filteredReviews)
     return (
         isLoaded&&<div>
             <h1>review by current user</h1>
