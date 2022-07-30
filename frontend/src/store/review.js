@@ -101,7 +101,7 @@ const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case Get_Review_User : {
-            let newState = {...state}
+            let newState = {}
             if (!action.reviews.length) {
                 newState = {}
                 return newState
