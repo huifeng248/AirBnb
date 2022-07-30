@@ -17,7 +17,7 @@ function ReviewDetailByUser () {
     useEffect(() => {
         dispatch(getReviewByUser(filteredReviews))
             .then(() => setIsloaded(true))
-    },[dispatch, reviews.length])
+    },[dispatch, user])
     
     return (
         isLoaded&&<div>
