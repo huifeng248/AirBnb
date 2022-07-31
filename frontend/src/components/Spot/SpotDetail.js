@@ -22,19 +22,27 @@ function SpotDetail (){
             .then(()=>setIsloaded(true))
     },[dispatch, id, reviews])
 
+    
+
     // let reviewRating = "New"
-    // if (spot.avgStatRating) {
-    //     reviewRating = (spot.avgStatRating).toFix(2).toString()
+    // console.log("hello", spot)
+    // if (spot.avgStatRating !== null && spot.avgStatRating !== undefined) {
+    //     reviewRating = spot.avgStatRating.toFix(2).toString()
+    // } else {
+    //     reviewRating = "NEW"
     // }
 
     return (
         isLoaded&&<div>
+            {/* {
+
+            } */}
             <div className='spot_detail_page_container'>
                 <div key={`spot-details- ${spot.id}`}>
                     <h3 className='spot_detail_title'>{spot.name}</h3>
                     <div className='spot_reviews spot_reviews_item'>
                         <i className="fa-solid fa-star spot_reviews_item"></i>
-                        <div>{` ${spot.avgStatRating}`}</div>
+                        <div>{spot.avgStatRating? (` ${spot.avgStatRating.toFixed(2)}`):"New"}</div>
                         {/* <div>{reviewRating}</div> */}
                         <div className='numbers_review spot_reviews_item'>{spot.numReviews}</div>
                         <div>reviews</div>
@@ -51,7 +59,7 @@ function SpotDetail (){
                                 {
                                     spot.images.length&&
                                     spot.images.map( image => (
-                                        <div className='image_div' key={image.url}>
+                                        <div className='image_div' key={image.id}>
                                             <img className='spot_small_image' src={image.url}></img>    
                                         </div>
                                         )

@@ -173,6 +173,7 @@ const SpotForm = ({action, spotId, onClose}) => {
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                             placeholder='Description'
+                            maxLength="255"
                             // required
                             type='text'
                         />
@@ -187,6 +188,7 @@ const SpotForm = ({action, spotId, onClose}) => {
                             placeholder='Price'
                             // required
                             type='number'
+                            min="1"
                         />
                     </div>
                     <div className='spot_details'>
