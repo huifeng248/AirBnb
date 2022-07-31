@@ -45,7 +45,7 @@
 .review_button_container{
     /* background-color: blue; */
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -60,7 +60,18 @@
 
 .review_stars{
     display: flex;
-    background-color: red;
+    /* background-color: red; */
     justify-content: flex-start;
+    margin-left: 10px;
 
+}
+
+.Review_by_spots_title{
+    margin-left: 10px;
+}
+
+.review_discription{
+    width: 98%;
+    margin-left: 10px;
+    margin-right: 10px;
 }

@@ -31,7 +31,7 @@ function SpotDetail (){
         isLoaded&&<div>
             <div className='spot_detail_page_container'>
                 <div key={`spot-details- ${spot.id}`}>
-                    <h1 className='spot_detail_title'>{spot.name}</h1>
+                    <h3 className='spot_detail_title'>{spot.name}</h3>
                     <div className='spot_reviews spot_reviews_item'>
                         <i className="fa-solid fa-star spot_reviews_item"></i>
                         <div>{` ${spot.avgStatRating}`}</div>
@@ -41,6 +41,8 @@ function SpotDetail (){
                         <div className='spot_reviews_item'>{`${spot.city},${spot.state},${spot.country}`}</div>
                     </div>
 
+                    <div className='main_body'>
+                
                         <div className='spot_image_container'>
                             <div className='spot_prevew_image_container'>
                                 <img className='spot_prevew_image' src={spot.previewImage}></img>
@@ -49,7 +51,7 @@ function SpotDetail (){
                                 {
                                     spot.images.length&&
                                     spot.images.map( image => (
-                                        <div key={image.url}>
+                                        <div className='image_div' key={image.url}>
                                             <img className='spot_small_image' src={image.url}></img>    
                                         </div>
                                         )
@@ -60,8 +62,9 @@ function SpotDetail (){
                         </div>
 
                         <div className='spot_description'>
-                        Description: {spot.description}
+                            Description: {spot.description}
                         </div>
+                    </div>
                     </div>
 
                     <div>
@@ -70,7 +73,7 @@ function SpotDetail (){
                     }
                     </div>
                     <div>
-                        <div>
+                        <div className='review_section_container'>
                         <ReviewBySpot />
                     </div>
                 </div>

@@ -23,7 +23,7 @@ function ReviewBySpot () {
 
     return (
         <div>
-            <h3>Reviews</h3>
+            <h3 className='Review_by_spots_title'>Reviews</h3>
             {
                 filteredReviews&&filteredReviews.map(review => (
                     <div key={review.id}>
@@ -35,7 +35,7 @@ function ReviewBySpot () {
                                 {review.stars}
                             </div>
                         </div>
-                        <div>
+                        <div className='review_discription'>
                             {review.review}
                         </div>
                     </div>
