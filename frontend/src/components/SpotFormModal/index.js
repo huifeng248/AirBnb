@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Modal} from '../../context/Modal'
 import SpotForm from './SpotForm'
+import './SpotForm.css'
 
 function SpotFormModal({action, spotId}) {
     const [showModal, setShowModal] = useState(false)
@@ -8,7 +9,7 @@ function SpotFormModal({action, spotId}) {
     return (
         <div>
             {/* the outside button */}
-            <button onClick={()=>setShowModal(true)}>  
+            <button className="create_a_spot_button" onClick={()=>setShowModal(true)}>  
                 {action} 
             </button>
             {showModal && (

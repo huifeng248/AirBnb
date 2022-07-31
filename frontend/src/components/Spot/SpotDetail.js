@@ -22,6 +22,11 @@ function SpotDetail (){
             .then(()=>setIsloaded(true))
     },[dispatch, id, reviews])
 
+    // let reviewRating = "New"
+    // if (spot.avgStatRating) {
+    //     reviewRating = (spot.avgStatRating).toFix(2).toString()
+    // }
+
     return (
         isLoaded&&<div>
             <div className='spot_detail_page_container'>
@@ -29,10 +34,11 @@ function SpotDetail (){
                     <h1 className='spot_detail_title'>{spot.name}</h1>
                     <div className='spot_reviews spot_reviews_item'>
                         <i className="fa-solid fa-star spot_reviews_item"></i>
-                        <div className='spot_reviews_item'>{` ${spot.avgStatRating}`}</div>
+                        <div>{` ${spot.avgStatRating}`}</div>
+                        {/* <div>{reviewRating}</div> */}
                         <div className='numbers_review spot_reviews_item'>{spot.numReviews}</div>
-                        <div className='numbers_review spot_reviews_item'>reviews</div>
-                        <div>{`${spot.city},${spot.state},${spot.country}`}</div>
+                        <div>reviews</div>
+                        <div className='spot_reviews_item'>{`${spot.city},${spot.state},${spot.country}`}</div>
                     </div>
 
                         <div className='spot_image_container'>
@@ -53,8 +59,8 @@ function SpotDetail (){
                             </div>
                         </div>
 
-                        <div>
-                            {spot.description}
+                        <div className='spot_description'>
+                        Description: {spot.description}
                         </div>
                     </div>
 
@@ -64,9 +70,6 @@ function SpotDetail (){
                     }
                     </div>
                     <div>
-                        <h2>
-                        review by Spot
-                        </h2>
                         <div>
                         <ReviewBySpot />
                     </div>

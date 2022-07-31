@@ -23,16 +23,20 @@ function ReviewBySpot () {
 
     return (
         <div>
-            <h1>review by spot id</h1>
+            <h3>Reviews</h3>
             {
                 filteredReviews&&filteredReviews.map(review => (
                     <div key={review.id}>
+                        <div className='review_stars'>
+                            <div>
+                                <i className="fa-solid fa-star"></i>
+                            </div>
+                            <div>
+                                {review.stars}
+                            </div>
+                        </div>
                         <div>
                             {review.review}
-                        </div>
-                        <div>hellow</div>
-                        <div>
-                            {review.stars}
                         </div>
                     </div>
                 ))

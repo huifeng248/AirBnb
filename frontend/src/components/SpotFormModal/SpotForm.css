@@ -1,0 +1,36 @@
+.Spot_form_container{
+    height: 500px;
+    width: 500px;
+    /* margin: auto; */
+}
+
+.spot_details{
+    display: flex;
+    flex-direction: column;
+    /* background-color: rosybrown; */
+    width: 90%;
+    margin: auto;
+}
+
+.spot_details_input{
+    border-radius: 5px;
+
+}
+
+.submit_create_button{
+    margin-top: 10px;
+    width: 100%;
+    /* margin: auto; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    background-color: red;
+    border-radius: 5px;
+    border: gray;
+    color: white;
+}
+
+.create_form_title{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}

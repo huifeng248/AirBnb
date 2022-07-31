@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {CreateSpot, UpdateSpot} from '../../store/spot'
+import './SpotForm.css'
 
 
 
@@ -19,7 +20,7 @@ const SpotForm = ({action, spotId, onClose}) => {
     const [name, setName] = useState(spot? spot.name : "")
     const [description, setDescription] = useState(spot? spot.description : "")
     const [price, setPrice] = useState(spot? spot.price: "")
-    const [previewImage, setPreviewImage] = useState()
+    const [previewImage, setPreviewImage] = useState(spot? spot.previewImage : "")
     const [isLoaded, setIsloaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -64,125 +65,151 @@ const SpotForm = ({action, spotId, onClose}) => {
 
     return (
         <section>
-            <h2>{action}</h2>
-            <form
+            <h3 className='create_form_title'>{action}</h3>
+            <form 
                 onSubmit={handleSubmit}>
+                <div className='Spot_form_container'>
                     <ul>
                         {errors.map((error, index)=>(
                             <li key={index}>{error}</li>
                         ))}
                     </ul>
-                    <label>
-                        Address
-                        <input 
-                        value = {address}
-                        onChange={(e)=>setAddress(e.target.value)}
-                        placeholder='Address'
-                        // required
-                        type='text' 
+                    <div className='spot_details'>
+                        <label>
+                            Address
+                        </label>
+                        <input className='spot_details_input'
+                            value = {address}
+                            onChange={(e)=>setAddress(e.target.value)}
+                            placeholder='Address'
+                            // required
+                            type='text' 
                         />
-                    </label>
-                    <label>
-                        City
-                        <input
-                        value={city}
-                        onChange={e => setCity(e.target.value)}
-                        placeholder='City'
-                        // required
-                        type='text'
+                    </div>
+                    <div className='spot_details'>
+                        <label>
+                            City
+                        </label>
+                        <input className='spot_details_input'
+                            value={city}
+                            onChange={e => setCity(e.target.value)}
+                            placeholder='City'
+                            // required
+                            type='text'
                         />
-                    </label>
-                    <label>
-                        State
-                        <input
-                        value={state}
-                        onChange={e => setState(e.target.value)}
-                        placeholder='State'
-                        // required
-                        type='text'
+                    </div>
+                    <div className='spot_details'>
+
+                        <label>
+                            State
+                        </label>
+                        <input className='spot_details_input'
+                            value={state}
+                            onChange={e => setState(e.target.value)}
+                            placeholder='State'
+                            // required
+                            type='text'
                         />
-                    </label>
-                    <label>
-                        Country
-                        <input
-                        value={country}
-                        onChange={e => setCountry(e.target.value)}
-                        placeholder='Country'
-                        // required
-                        type='text'
+                    </div>
+                    <div className='spot_details'>
+                        <label>
+                            Country
+                        </label>
+                        <input className='spot_details_input'
+                            value={country}
+                            onChange={e => setCountry(e.target.value)}
+                            placeholder='Country'
+                            // required
+                            type='text'
                         />
-                    </label>
-                    <label>
-                        Latitude
-                        <input
-                        value={lat}
-                        onChange={e => setLat(e.target.value)}
-                        placeholder='Latitude'
-                        // required
-                        type='number'
-                        min='-90'
-                        max='90'
-                        step='0.000001'
+                    </div>
+                    <div className='spot_details'>
+                        <label>
+                            Latitude
+                        </label>
+                        <input className='spot_details_input'
+                            value={lat}
+                            onChange={e => setLat(e.target.value)}
+                            placeholder='Latitude'
+                            // required
+                            type='number'
+                            min='-90'
+                            max='90'
+                            step='0.000001'
                         />
-                    </label>
-                    <label>
-                        Longitude
-                        <input
-                        value={lng}
-                        onChange={e => setLng(e.target.value)}
-                        placeholder='Longitude'
-                        // required
-                        type='number'
-                        min='-180'
-                        step='0.000001'
-                        max='180'
+                    </div>  
+                    <div className='spot_details'>
+                        <label>
+                            Longitude
+                        </label>
+                        <input className='spot_details_input'
+                            value={lng}
+                            onChange={e => setLng(e.target.value)}
+                            placeholder='Longitude'
+                            // required
+                            type='number'
+                            min='-180'
+                            step='0.000001'
+                            max='180'
                         />
-                    </label>
-                    <label>
-                        Name
-                        <input
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        placeholder='Name'
-                        // required
-                        type='text'
+                    </div>
+                    <div className='spot_details'>
+                        <label>
+                            Name
+                        </label>
+                        <input className='spot_details_input'
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                            placeholder='Name'
+                            // required
+                            type='text'
                         />
-                    </label>
-                    <label>
-                        Description
-                        <input
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                        placeholder='Description'
-                        // required
-                        type='text'
+                    </div>
+                    <div className='spot_details'>
+                        <label>
+                            Description
+                        </label>
+                        <input className='spot_details_input'
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                            placeholder='Description'
+                            // required
+                            type='text'
                         />
-                    </label>
-                    <label>
-                        Price
-                        <input
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}
-                        placeholder='Price'
-                        // required
-                        type='number'
+                    </div>  
+                    <div className='spot_details'>
+                        <label>
+                            Price
+                        </label>
+                        <input className='spot_details_input'
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}
+                            placeholder='Price'
+                            // required
+                            type='number'
                         />
-                    </label>
-                    <label>
-                        Preview Image
-                        <input
-                        value={previewImage}
-                        onChange={e => setPreviewImage(e.target.value)}
-                        placeholder='Preview image url'
-                        // required
-                        type='url'
+                    </div>
+                    <div className='spot_details'>
+                        <label>
+                            Preview Image
+                        </label>
+                        <input className='spot_details_input'
+                            value={previewImage}
+                            onChange={e => setPreviewImage(e.target.value)}
+                            placeholder='Preview image url'
+                            // required
+                            type='url'
                         />
-                    </label>
-                <button
-                    type="submit"
-                >
-                {action}
-              </button>
+                    </div>
+                    <div className='spot_details'>
+
+                    <button className='submit_create_button'
+                        type="submit"
+                        >
+                    {action}
+                    </button>
+                    </div>
+              </div>
             </form>
         </section>
     )

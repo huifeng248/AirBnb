@@ -17,6 +17,8 @@
     /* background-color: green; */
 }
 
+
+
 .spot_list_item {
     display: flex;
     padding: 10px;
@@ -35,10 +37,10 @@
 }
 
 .spot_preview_image_at_listing {
-    max-width: 10%;
-    height: auto;
-    /* height: 200 px; */
-    /* width: 200 px; */
+    height: 200px; 
+    width: 200px;
+    border-radius: 5px;
+    
 }
 
 .Spot_card {
@@ -47,8 +49,9 @@
 
 .spot_detail_page_container{
     padding-top: 4em;
-    width: 100%;
+    width: 70%;
     margin: auto;
+    background-color: aqua;
 }
 
 .spot_detail_title{
@@ -65,10 +68,10 @@
     border-bottom: solid black 1px;
 } */
 
-.spot_image_container{
+/* .spot_image_container{
     display: flex;
     height: 400px;
-}
+} */
 
 .spot_small_image{
     object-fit: cover;
@@ -125,3 +128,41 @@
     display: flex;
     justify-content: end;
 }
+
+.spot_by_user_container{
+    background-color: bisque;
+    width: 70%;
+    margin: auto;
+}
+
+.create_a_spot_button {
+    margin-top: 20px;
+    background-color: red;
+    border-radius: 5px;
+    width: 100px;
+    color: white;
+    border: gray;
+}
+
+.spot_reviews_item{
+    margin-left: 8px;
+}
+
+.spot_description{
+    margin-top: 10em;
+}
+
+.one_spot_container{
+    display: flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aqua;
+    margin-top: 30px;
+}
+
+.spot_detail_container{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+

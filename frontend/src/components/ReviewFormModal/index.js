@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Modal} from '../../context/Modal'
 import ReviewForm from './ReviewForm'
 import { useDispatch, useSelector } from 'react-redux';
-
+import './ReviewForm.css'
 
 function ReviewFormModal ({action,reviewId}) {
     const [showModal, setShowModal] = useState(false)
@@ -10,7 +10,7 @@ function ReviewFormModal ({action,reviewId}) {
     return (
         <div>
             {/* the outside button */}
-            <button onClick={()=>setShowModal(true)}>  
+            <button className="edit_outside_button" onClick={()=>setShowModal(true)}>  
                 {action} 
             </button>
             {showModal && 

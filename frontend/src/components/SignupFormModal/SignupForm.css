@@ -27,6 +27,10 @@
 	outline: inherit;
 } 
 
+.home_page_sign_up_button:hover{
+	color: red;
+}
+
 .Sign_up_form_container{
 	/* background-color: red; */
 	height: 500px;
@@ -53,12 +57,12 @@
 	border-radius: 5px;
 	background-color: red;
 	color: white;
-	border: 2px solid grey;
+	border:  grey;
 }
 
 .sign_up_input_field{
 	width: 100%;
 	border-radius: 5px;
   	box-sizing: border-box;
-	border: 2px solid grey;
+	border: 1px solid grey;
 }

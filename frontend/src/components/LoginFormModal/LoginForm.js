@@ -42,6 +42,7 @@ function LoginForm() {
   return (
     <div className="Login_form_container">
       <form onSubmit={handleSubmit}>
+        <h3 className="Log_in_title">Log In</h3>
         <div className="log_in_form_content">
           <div>
             <ul>

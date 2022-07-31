@@ -33,6 +33,7 @@ function SignupForm() {
   
   return (
       <div className= 'Sign_up_form_container'>
+        <h3> Welcome to AbbyBnb</h3>
         <form onSubmit={handleSubmit}>
             <div>
               <ul>

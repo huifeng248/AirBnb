@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateReview, createReview } from '../../store/review';
 import { useParams } from 'react-router-dom';
-
+import './ReviewForm.css'
 
 function ReviewForm ({action, reviewId, onClose}) {
     const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function ReviewForm ({action, reviewId, onClose}) {
             stars,
             review: reviewContent
         }
-        console.log("action", action)
+        // console.log("action", action)
         
         if (action === 'Edit') {
             dispatch(updateReview(editPayload))
@@ -55,33 +55,43 @@ function ReviewForm ({action, reviewId, onClose}) {
     }
 
     return (
-        <section>
-            <h2>{action}</h2>
-            <form
+        <section className='edit_section_container'>
+            <h3 className='edit_title'>{action} a review</h3>
+            <form className='edit_form_container'
                 onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error,index) => (
                             <li key={index}>{error}</li>
                         ))}
                     </ul>
-                    <label>
-                        Review
-                        <input
-                            value={reviewContent}
-                            onChange={(e)=>setReviewContent(e.target.value)}
-                            placeholder='review'
-                            type='text'
-                            />
-                    </label>
-                    <label>
-                        starts
-                        <input value={stars}
-                        onChange={(e)=>setStars(e.target.value)}
-                        type='number'
-                        placeholder='place a rating'
+                    <div className='edit_form_info_container'>
+                        <div>
+                            <label>
+                                Review
+                            </label>
+                                <input className='edit_input_field'
+                                    value={reviewContent}
+                                    onChange={(e)=>setReviewContent(e.target.value)}
+                                    placeholder='review'
+                                    type='text'
+                                />
+                        </div>
+                        <div>
+
+                        <label>
+                            starts
+                        </label>
+                        <input  className='edit_input_field'
+                            value={stars}
+                            onChange={(e)=>setStars(e.target.value)}
+                            type='number'
+                            placeholder='place a rating'
                         />
-                    </label>
-                    <button type='submit'>{action}</button>
+                        <div>
+                            <button className="edit_button" type='submit'>{action}</button>
+                        </div>
+                        </div>
+                    </div>
             </form>
         </section>
     )

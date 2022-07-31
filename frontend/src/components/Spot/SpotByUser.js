@@ -25,27 +25,28 @@ function SpotDetailByUser () {
 
     return (
         isLoaded&&<div>
-            <div className='spot_form_container'>
-                {/* <button onClick={()=>history.push('/spots/new')}>Create New Listing</button> */}
+            <div className='spot_by_user_container'>
                 <SpotFormModal action='Create a List' />
                 {
                     filteredSpots&&filteredSpots.map(spot => (
-                        <div key={spot.id}>
-                            <span>{spot.avgStatRating}</span>
-                            <span>{spot.numReviews}</span>
-                            <span>{`${spot.city},${spot.state},${spot.country}`}</span>
-                            <div>
-                                <div className='spot_image_container'>
-                                    <img className='spot_preview_image_at_listing' src={spot.previewImage}></img>
-                                </div> 
+                        <div key={spot.id} className="one_spot_container">
+                            <div className='spot_image_container'>
+                                <img className='spot_preview_image_at_listing' src={spot.previewImage}></img>
+                            </div>
+                            <div className='spot_detail_container'>
+                                <div>Name: {spot.name}</div>
+                                <div>Address: {spot.address},{spot.city},{spot.state},{spot.country}</div>
                                 <div>
-                                {/* <button>Edit</button> */}
-                                <SpotFormModal action="Edit" spotId={spot.id}/>
-                                <button onClick={()=> dispatch(DeleteSpot(spot.id))}>Delete</button>
+                                    Description: {spot.description}
                                 </div>
+                                <div>
+                                    Price: ${spot.price}
+                                </div> 
                             </div>
                             <div>
-                                {spot.description}
+                                <SpotFormModal action="Edit" spotId={spot.id}/>
+                                <button className="create_a_spot_button" onClick={()=> dispatch(DeleteSpot(spot.id))}>Delete</button>
+                                
                             </div>
                         </div>
                     ))
