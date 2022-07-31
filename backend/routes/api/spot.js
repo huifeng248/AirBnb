@@ -271,7 +271,7 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
     const spotId = req.params.id
     const ownerId = req.user.id
 
-    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
     const spot = await Spot.findByPk(spotId)
 
     if (!spot) {
@@ -292,7 +292,8 @@ router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
             spot.lng = lng,
             spot.name = name,
             spot.description = description,
-            spot.price = price
+            spot.price = price,
+            spot.previewImage = previewImage
             await spot.save()
         return res.json(spot)
     } else {
