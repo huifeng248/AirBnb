@@ -17,8 +17,9 @@ function ReviewDetailByUser () {
     useEffect(() => {
         dispatch(getReviewByUser(filteredReviews))
             .then(() => setIsloaded(true))
-    },[dispatch, user])
+    },[dispatch])
     
+    // if (!user) history.push('/') //adding this will cause warming
     return (
         isLoaded&&<div>
             <h1>review by current user</h1>

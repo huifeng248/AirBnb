@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { Redirect, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import './Navigation.css'
 
 
 function ProfileButton({ user }) {
@@ -38,7 +39,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="profile-dropdown-container">
-        <button onClick={openMenu}>
+        <button  onClick={openMenu}>
           <i className="fas fa-user-circle" />
         </button>
         {showMenu && (
@@ -54,7 +55,7 @@ function ProfileButton({ user }) {
                 <Link to={'/reviews/current'}> Manage Reviews</Link>
               </li>
               <li>
-                <button onClick={logout}>Log Out</button>
+                <button className='log_out_button' onClick={logout}>Log Out</button>
               </li>
             </ul>
           </div>

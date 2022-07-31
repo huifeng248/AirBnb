@@ -5,6 +5,7 @@ import SpotDetail from './SpotDetail.js'
 import { useHistory } from 'react-router-dom';
 import {getSpots} from '../../store/spot.js'
 import AvgRating from '../AvgRating.js';
+import './Spot.css'
 
 function SpotBrowser () {
     const history = useHistory()
@@ -38,35 +39,37 @@ function SpotBrowser () {
             
             <div className='list_container_at_list_page'>
 
-            {spots.map((spot)=> {
-                let review = "New";
-                if (spot.Reviews && spot.Reviews.length > 0) {
-                    review = avgReviewCal(spot.Reviews).toFixed(2).toString()
-                }
-                return (
-                    <div key={spot.id} className='spot_list_item' >
-                        <div key={spot.id}>
-                            <NavLink to={`/spots/${spot.id}`}>
-                                <img className='images_at_list_page' src={spot.previewImage}/>
-                            </NavLink>
-                                <div>
-                                    <div>
-                                        <div>{spot.city} {spot.state}</div>
-                                        <i className="fa-solid fa-star"></i>
-                                        <div>
-                                            {review}
+                {spots.map((spot)=> {
+                    let review = "New";
+                    if (spot.Reviews && spot.Reviews.length > 0) {
+                        review = avgReviewCal(spot.Reviews).toFixed(2).toString()
+                    }
+                    return (
+                        <div key={spot.id} className='spot_list_item' >
+                            <div key={spot.id}>
+                                <NavLink to={`/spots/${spot.id}`}>
+                                    <img className='images_at_list_page' src={spot.previewImage}/>
+                                </NavLink>
+                                    <div className='spot_browser_details_container'>
+                                        <div className='spot_browser_details'>
+                                            <div className='spot_browser_city_state'>{spot.city}，{spot.state}</div>
+                                            <div className='spot_browser_review'>
+                                                <i className="fa-solid fa-star"></i>
+                                                <div>{review}</div>
+                                            </div>
+                                        
                                         </div>
-                                        {/* <div>
-                                            <AvgRating spotId={spot.id}/>
-                                        </div> */}
                                     </div>
-                                        <div>${spot.price} night</div>
-                                </div>
+                                            
+                                    <div className='price_per_night_container'>
+                                        <div className='price_per_night'>${spot.price} </div>
+                                        <div>night</div>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
-                )
-            })} 
-        </div>
+                    )
+                })} 
+            </div>
         </div>
     )
 

@@ -35,7 +35,7 @@ function Navigation({ isLoaded }){
             <div className='home_page_name'>abbybnb</div>
           </NavLink>
         </div>
-      <div>
+      <div className='session_link'>
         {isLoaded && sessionLinks}
       </div>
     </div>

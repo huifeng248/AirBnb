@@ -5,23 +5,16 @@
 }
 
 
-/* .list_container_at_list_page{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 80px;
-    width: 85%;
-    margin: auto;
-} */
+
 .list_container_at_list_page {
     display: flex;
-    max-width: 70%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 80px;
     margin: auto;
+    max-width: 70%;
+    padding-top: 80px;
+    /* background-color: green; */
 }
 
 .spot_list_item {
@@ -97,4 +90,38 @@
 
 .spot_reviews_item {
     padding-right: 0.2em;
+}
+
+.spot_browser_review{
+    display: flex;
+    flex-direction: row;
+    /* flex-direction: end; */
+}
+
+.spot_browser_city_state{
+    font-weight: bold;
+}
+
+.spot_browser_details {
+    display: flex;
+    /* justify-content: space-between; */
+} 
+.spot_browser_details_container{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.price_per_night{
+    font-weight: bolder;
+    padding-right: 5px;
+}
+
+.price_per_night_container{
+    display: flex;
+
+}
+
+.spot_browser_review{
+    display: flex;
+    justify-content: end;
 }

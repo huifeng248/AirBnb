@@ -21,7 +21,7 @@ function SpotDetailByUser () {
         .then(()=> setIsLoaded(true))
     },[dispatch])
 
-    if (!user) return history.push('/'); //this is a bug, it's not redirect to home page
+    // if (!user) return history.push('/'); //adding this will cause warming
 
     return (
         isLoaded&&<div>

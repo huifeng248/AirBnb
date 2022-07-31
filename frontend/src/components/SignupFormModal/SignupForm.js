@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-// import './SignupForm.css'
+import './SignupForm.css'
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -34,67 +34,88 @@ function SignupForm() {
   return (
       <div className= 'Sign_up_form_container'>
         <form onSubmit={handleSubmit}>
-        <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-            Email
-            <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            />
-        </label>
-        <label>
-            Username
-            <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            />
-        </label>
+            <div>
+              <ul>
+                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+              </ul>
+            </div>
+          <div className="sign_up_form_content_container">
+            <div className="sign_up_detail">
+              <label>
+                  Email
+              </label>
+              <input
+                  className="sign_up_input_field"
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+              />
+            </div>
+            <div className="sign_up_detail">
+              <label>
+                  Username
+              </label>
+              <input
+                  className="sign_up_input_field"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  />
+            </div>
+            <div className="sign_up_detail">
+              <label>
+                  First Name
+              </label>
+              <input
+                className="sign_up_input_field"
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="sign_up_detail">
+              <label>
+                  Last Name
+              </label>
+              <input
+              className="sign_up_input_field"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              />
+            </div>
+            <div>
 
-        <label>
-            First Name
-            <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-            />
-        </label>
-        <label>
-            Last Name
-            <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-            />
-        </label>
-
-
-        <label>
-            Password
-            <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            />
-        </label>
-        <label>
-            Confirm Password
-            <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            />
-        </label>
-        <button type="submit">Sign Up</button>
+              <label className="sign_up_detail">
+                  Password
+              </label>
+              <input
+                className="sign_up_input_field"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label className="sign_up_detail">
+                Confirm Password
+              </label>
+              <input
+                className="sign_up_input_field"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+              
+            <button className="submit_buton" type="submit">Sign Up</button>
+            </div>
         </form>
     </div>
   );
