@@ -15,9 +15,9 @@ const validateSpotPost = [
     check('city')
         .exists({ checkFalsy: true })
         .withMessage("City is require"),
-    // check('city')
-    // .isAlpha()
-    // .withMessage('city must be letters'),
+    check('city')
+    .isLength({ min: 2 })
+    .withMessage('city must be at least 2 characters or more'),
     check('state')
         .exists({ checkFalsy: true })
         .withMessage("State is required"),
@@ -30,9 +30,9 @@ const validateSpotPost = [
     check('country')
         .exists({ checkFalsy: true })
         .withMessage('Country is required'),
-    // check('country')
-    // .isAlpha()
-    // .withMessage('country must be letters'),
+    check('country')
+    .isLength({ min: 2 })
+    .withMessage('Country must be at least 2 characters or more'),
     check('lat')
         .isDecimal()
         .withMessage('Latitude is not valid'),
