@@ -414,7 +414,7 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res, next) 
         const err = new Error('User already has a review for this spot');
         err.message = "User already has a review for this spot"
         err.status = 403;
-        err.errors=["Forbidden"]
+        err.errors=["User already has a review for this spot"]
         return next(err);
     }
 
