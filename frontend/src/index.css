@@ -4,3 +4,8 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+button:hover {
+    animation-name: background-color;
+    animation-duration: 500ms;
+}

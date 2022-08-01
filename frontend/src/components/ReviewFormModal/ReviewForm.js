@@ -74,6 +74,7 @@ function ReviewForm ({action, reviewId, onClose}) {
                                     onChange={(e)=>setReviewContent(e.target.value)}
                                     placeholder='review'
                                     type='text'
+                                    maxLength="255"
                                 />
                         </div>
                         <div>

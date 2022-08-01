@@ -38,7 +38,8 @@ function SpotDetail (){
 
             } */}
             <div className='spot_detail_page_container'>
-                <div key={`spot-details- ${spot.id}`}>
+                {/* <div key={`spot-details- ${spot.id}`}> */}
+                    <div>
                     <h3 className='spot_detail_title'>{spot.name}</h3>
                     <div className='spot_reviews spot_reviews_item'>
                         <i className="fa-solid fa-star spot_reviews_item"></i>
@@ -58,8 +59,8 @@ function SpotDetail (){
                             <div className='spot_small_image_container'>
                                 {
                                     spot.images.length&&
-                                    spot.images.map( image => (
-                                        <div className='image_div' key={image.id}>
+                                    spot.images.map( (image, index) => (
+                                        <div  key={index} className='image_div'>
                                             <img className='spot_small_image' src={image.url}></img>    
                                         </div>
                                         )

@@ -82,6 +82,7 @@ const SpotForm = ({action, spotId, onClose}) => {
                             value = {address}
                             onChange={(e)=>setAddress(e.target.value)}
                             placeholder='Address'
+                            maxLength="255"
                             // required
                             type='text' 
                         />

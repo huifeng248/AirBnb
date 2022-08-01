@@ -32,6 +32,7 @@ function Navigation({ isLoaded }){
           {/* <NavLink exact to="/">Home</NavLink> */}
           <NavLink className='left_navigation_container' exact to="/">
             <img className='logo' src='https://logosarchive.com/wp-content/uploads/2021/08/Airbnb-icon.svg' alt='airbnb logo'></img>
+            {/* <img className='logo' src="/Users/huifeng/Documents/App_Academy/Projects/AirBnb/frontend/public/Fav2/android-chrome-192x192.png" ></img> */}
             <div className='home_page_name'>abbybnb</div>
           </NavLink>
         </div>

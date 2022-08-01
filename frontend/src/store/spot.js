@@ -115,6 +115,7 @@ export const getSpotByUser = () => async dispatch =>  {
     if (response.ok) {
         const spots = await response.json()
         dispatch(getSpotByCurrentUser(spots))
+        return spots
     }
 }
 
