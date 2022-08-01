@@ -32,6 +32,9 @@ const validateReview = [
   check('review')
       .exists({checkFalsy: true})
       .withMessage('Review text is required'),
+  check('review')
+      .isLength({ min: 3 })
+      .withMessage('Please provide a review with at least 3 characters.'),
   check('stars')
       .exists({checkFalsy:true})
       .withMessage('Stars rating is required'),
