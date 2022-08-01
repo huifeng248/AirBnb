@@ -165,7 +165,7 @@
     border-radius: 5px;
     width: 100px;
     color: white;
-    border: gray;
+    border: 2px solid gray;
 }
 
 .spot_reviews_item{
