@@ -15,7 +15,7 @@ function SpotDetailByUser () {
     const spots = useSelector((state) => state.spots)
     const user = useSelector((state)=> state.session.user)
     const filteredSpots = Object.values(spots).filter(spot => spot?.ownerId === user?.id)
-    console.log("filtered spots", filteredSpots)
+    // console.log("filtered spots", filteredSpots)
     useEffect(()=> {
         dispatch(getSpotByUser())
         // .then(()=>) //optional chaining in line 18 where you key into user... might be an easy way to do it as well
