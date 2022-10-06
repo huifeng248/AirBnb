@@ -63,7 +63,7 @@
     padding-left: 8rem;
     padding-right: 8rem;
     margin: auto;
-    background-color: aqua;
+    /* background-color: aqua; */
     box-sizing: border-box;
 }
 
@@ -71,7 +71,7 @@
     font-size: 2em;
     font-weight: 500;
     width: 100%;
-    background-color: beige;
+    /* background-color: beige; */
 }
 .spot_reviews{
     margin-left: 40px;
