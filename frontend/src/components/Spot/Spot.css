@@ -122,9 +122,7 @@
 }
 
 
-.spot_reviews_item {
-    padding-right: 0.2em;
-}
+
 
 .spot_browser_review{
     display: flex;
@@ -185,8 +183,28 @@
     border: 2px solid gray;
 }
 
-.spot_reviews_item{
-    margin-left: 8px;
+.review_char{
+    font-weight: bold;
+    
+}
+.dot_div{
+    font-weight: bolder;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.span_div{
+    display: flex;
+    /* padding-left: 15px; */
+    box-sizing: border-box;
+}
+
+.spot_reviews_item_container{
+    display: flex;
+    gap:4px;
+    align-items: center;
+    padding-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .spot_description{
