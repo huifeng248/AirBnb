@@ -45,8 +45,8 @@ function SpotDetail() {
                     </div>
                     <div className='dot_div'> · </div>
                     <div className='span_div'>
-                        <div className='review_char'>{spot.numReviews}</div>
-                        <div className='review_char'>reviews</div>
+                        <div className='review_char'>{spot.numReviews} Reviews</div>
+                        {/* <div className='review_char'>{` Reviews`}</div> */}
                     </div>
                     <div className='dot_div'> · </div>
                     <div className='span_div'>
