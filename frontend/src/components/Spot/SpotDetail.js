@@ -33,14 +33,11 @@ function SpotDetail (){
     // }
 
     return (
-        isLoaded&&<div>
-            {/* {
-
-            } */}
+        isLoaded&&
             <div className='spot_detail_page_container'>
                 {/* <div key={`spot-details- ${spot.id}`}> */}
                     <div>
-                    <h3 className='spot_detail_title'>{spot.name}</h3>
+                    <h1 className='spot_detail_title'>{spot.name}</h1>
                     <div className='spot_reviews spot_reviews_item'>
                         <i className="fa-solid fa-star spot_reviews_item"></i>
                         <div>{spot.avgStatRating? (` ${spot.avgStatRating.toFixed(2)}`):"New"}</div>
@@ -87,7 +84,7 @@ function SpotDetail (){
                     </div>
                 </div>
             </div>
-        </div>
+
     )
 
 }

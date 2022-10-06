@@ -35,7 +35,7 @@ function SpotBrowser () {
 
    
     return (
-        isLoaded && <div>
+        isLoaded && 
             
             <div className='list_container_at_list_page'>
 
@@ -46,31 +46,30 @@ function SpotBrowser () {
                     }
                     return (
                         <div key={spot.id} className='spot_list_item' >
-                            <div key={spot.id}>
+                            <div key={spot.id} className="spot_card">
                                 <NavLink to={`/spots/${spot.id}`}>
                                     <img className='images_at_list_page' src={spot.previewImage}/>
                                 </NavLink>
                                     <div className='spot_browser_details_container'>
-                                        <div className='spot_browser_details'>
+                                        {/* <div className='spot_browser_details'> */}
                                             <div className='spot_browser_city_state'>{spot.city}，{spot.state}</div>
                                             <div className='spot_browser_review'>
                                                 <i className="fa-solid fa-star"></i>
-                                                <div>{review}</div>
+                                                <div className='review_at_homepage'>{review}</div>
                                             </div>
                                         
-                                        </div>
+                                        {/* </div> */}
                                     </div>
                                             
                                     <div className='price_per_night_container'>
                                         <div className='price_per_night'>${spot.price} </div>
-                                        <div>night</div>
+                                        <div className='night_char'>night</div>
                                     </div>
                             </div>
                         </div>
                     )
                 })} 
             </div>
-        </div>
     )
 
 }

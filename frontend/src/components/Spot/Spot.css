@@ -1,6 +1,8 @@
 .images_at_list_page {
-    height: 306px;
-    width: 291px;
+    height: 20rem;
+    width: 23rem;
+    /* height: 250px;
+    width: 260px; */
     border-radius: 15px;
 }
 
@@ -11,17 +13,21 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: auto;
-    max-width: 70%;
-    padding-top: 80px;
+    /* margin: auto; */
+    margin-top: 2.5rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+    box-sizing: border-box;
     /* background-color: green; */
+    /* gap:1.5rem; */
+    gap: 30px;
 }
 
 
 
 .spot_list_item {
     display: flex;
-    padding: 10px;
+    /* padding: 10px; */
   
 }
 
@@ -52,16 +58,20 @@
 }
 
 .spot_detail_page_container{
-    padding-top: 4em;
-    width: 70%;
+    padding-top: 2rem;
+    /* width: 70%; */
+    padding-left: 8rem;
+    padding-right: 8rem;
     margin: auto;
-    /* background-color: aqua; */
+    background-color: aqua;
+    box-sizing: border-box;
 }
 
 .spot_detail_title {
-    /* font-size: 20px; */
-    margin-left: 20px;
-    /* background-color: beige; */
+    font-size: 2em;
+    font-weight: 500;
+    width: 100%;
+    background-color: beige;
 }
 .spot_reviews{
     margin-left: 40px;
@@ -110,10 +120,6 @@
     /* background-color: rgb(56, 42, 165); */
 }
 
-.spot_detail_page_container{
-    width: 70%;
-    margin: auto;
-}
 
 .spot_reviews_item {
     padding-right: 0.2em;
@@ -122,7 +128,17 @@
 .spot_browser_review{
     display: flex;
     flex-direction: row;
-    /* flex-direction: end; */
+    align-items: center;
+    /* background-color: rebeccapurple; */
+ 
+}
+
+.fa-star{
+    display: flex;
+    padding: 2px;
+    box-sizing: border-box;
+    /* color: red; */
+    align-items: center;
 }
 
 .spot_browser_city_state{
@@ -135,23 +151,23 @@
 } 
 .spot_browser_details_container{
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    /* background-color: antiquewhite; */
 }
 
 .price_per_night{
-    font-weight: bolder;
-    padding-right: 5px;
+    font-weight:700;
+    padding-right: 6px;
 }
 
 .price_per_night_container{
     display: flex;
+    align-items: center;
 
 }
 
-.spot_browser_review{
-    display: flex;
-    justify-content: flex-end;
-}
 
 .spot_by_user_container{
     /* background-color: bisque; */
@@ -199,6 +215,15 @@
     flex-direction: column;
 }
 
+.night_char{
+    color: #222222;
+}
+
+.spot_card{
+    /* background-color: antiquewhite; */
+    box-sizing: border-box;
+    padding-top: 30px;
+}
 /* .review_container{
     width: 95%;
     background-color: antiquewhite;
