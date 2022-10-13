@@ -62,16 +62,53 @@
     display: flex;
     /* background-color: red; */
     justify-content: flex-start;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 
 }
 
 .Review_by_spots_title{
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    /* background-color: rebeccapurple; */
+    display: flex;
+
 }
 
 .review_discription{
-    width: 98%;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100%;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+}
+
+.review_buffer_left{
+    box-sizing: border-box;
+    padding-right: 5px;
+    font-size: 20px;
+}
+
+.review_buffer_right{
+    box-sizing: border-box;
+    padding-left: 5px;
+    font-size: 20px;
+}
+.review_info_at_spot_detail_page{
+    display: flex;
+}
+
+.review_at_spot_detail_page{
+    display: flex;
+    flex-direction: row;
+    /* background-color: antiquewhite; */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.add_review_button{
+    background: white;
+    border: 2px solid #DDDDDD;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 50px;
+
 }

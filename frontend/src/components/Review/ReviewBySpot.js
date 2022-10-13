@@ -2,30 +2,58 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
-import {GetReviewBySpot} from '../../store/review'
+import { GetReviewBySpot } from '../../store/review'
+import { getOneSpot, DeleteSpot } from '../../store/spot'
+import ReviewFormModal from '../ReviewFormModal'
 
 
-function ReviewBySpot () {
-    const {id} = useParams()
+
+function ReviewBySpot() {
+    const { id } = useParams()
     const history = useHistory()
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const reviews = useSelector(state => {
         return Object.values(state.reviews)
     })
-    const filteredReviews = reviews.filter(review => review?.spotId ===+id)
+    const spots = useSelector(state => state.spots)
+    const user = useSelector(state => state.session.user)
+    const spot = spots[id]
+    const filteredReviews = reviews.filter(review => review?.spotId === +id)
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(GetReviewBySpot(id))
-            .then(()=>setIsLoaded(true))
-    },[dispatch, reviews.length])
+            .then(() => setIsLoaded(true))
+    }, [dispatch, reviews.length])
+
 
 
     return (
         <div>
-            <h3 className='Review_by_spots_title'>Reviews</h3>
+            <div className='Review_by_spots_title'>
+                <div className='review_at_spot_detail_page'>
+                    <div className='review_info_at_spot_detail_page'>
+                    <i className="fa-solid fa-star spot_reviews_item"></i>
+                    {spot.avgStatRating ? <h3 className='review_buffer_left'> {spot.avgStatRating}</h3>
+                        : <h3 className='review_buffer_left'>0.00</h3>
+                    }
+
+                    <h3>·</h3>
+
+                    {spot.numReviews ? <h3 className='review_buffer_right'>{spot.numReviews} Reviews</h3>
+                        : <h3 className='review_buffer_right'>New</h3>
+                    }
+                    </div>
+                    {/* {user &&<div>
+                        <button className='add_review_button'>Add Review</button>
+                    </div>} */}
+                         {user &&
+                        <ReviewFormModal action='Add Review' />
+                    }
+                </div>
+            </div>
             {
-                filteredReviews&&filteredReviews.map(review => (
+                filteredReviews && filteredReviews.map(review => (
                     <div key={review.id}>
                         <div className='review_stars'>
                             <div>
@@ -40,7 +68,7 @@ function ReviewBySpot () {
                         </div>
                     </div>
                 ))
-            
+
             }
         </div>
     )

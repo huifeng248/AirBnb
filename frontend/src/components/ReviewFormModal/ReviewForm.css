@@ -55,12 +55,12 @@
 
 .edit_outside_button{
     background-color: red;
-    border-radius: 5px;
-    width: 100px;
-    margin-left: 10px;
+    border-radius: 10px;
+    height: 36px;
     color: white;
-    border: gray;
-    border: 2px solid gray;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
 
 }
 

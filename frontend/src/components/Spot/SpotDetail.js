@@ -77,23 +77,39 @@ function SpotDetail() {
                             }
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className='wrapping_booking_container'>
 
-                    <div className='spot_description'>
-                        Description: {spot.description}
+                <div className='spot_left_container' >
+                    <div className='detail_discription_container'>
+                        <h2>Entire home hosted by {spot.owner.firstName}</h2>
+                        <div className='spot_description'>
+                            {spot.description}
+                        </div>
+                    </div>
+                    <div>
+                        <div className='review_section_container'>
+                            <ReviewBySpot />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                {user &&
-                    <ReviewFormModal action='Add Review' />
-                }
-            </div>
-            <div>
-                <div className='review_section_container'>
-                    <ReviewBySpot />
+                <div className='booking_container'>
+                    <div className='price_info_container'>
+                        <div className='price_info'>${spot.price}</div>
+                        <div className='price_info_night'>night</div>
+                    </div>
+                    <form className='Booking_form'>
+                        
+                    </form>
+
                 </div>
             </div>
+
+
+
+
         </div >
 
     )

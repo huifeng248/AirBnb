@@ -43,7 +43,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 .spot_preview_image_at_listing {
@@ -109,7 +109,7 @@
     padding-bottom: 5px;
     /* padding-bottom: 10px; */
     box-sizing: border-box;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     /* margin: 20px; */
 }
 
@@ -205,10 +205,15 @@
 }
 
 .spot_description{
-    margin-top: 2em;
-    width: 98%;
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-top: 2em; */
+    width: 100%;
+    border-top: 1.5px solid #DDDDDD;
+    border-bottom: 1.5px solid #DDDDDD;
+    box-sizing: border-box;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    /* margin-left: 10px;
+    margin-right: 10px; */
 
 }
 
@@ -221,10 +226,6 @@
     margin-top: 30px;
 }
 
-.spot_detail_container{
-    margin-left: 1em;
-    margin-right: 1em;
-}
 
 .main_body{
     display: flex;
@@ -240,7 +241,56 @@
     box-sizing: border-box;
     padding-top: 30px;
 }
-/* .review_container{
-    width: 95%;
-    background-color: antiquewhite;
-} */
+.spot_detail_container{
+    width: 100%;
+    /* background-color: antiquewhite; */
+    box-sizing: border-box;
+}
+
+.wrapping_booking_container{
+    width: 100%;
+    display: flex;
+}
+
+.detail_discription_container{
+    padding-top: 2rem;
+    /* padding-bottom: 3rem; */
+    box-sizing: border-box;
+}
+
+.spot_left_container{
+    width: 67%;
+    box-sizing: border-box;
+    margin-right: 4rem;
+}
+
+.booking_container{
+    width: 33%;
+    /* background-color: antiquewhite; */
+    box-sizing: border-box;
+    /* padding: 24px; */
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    box-sizing: border-box;
+    margin-top: 4rem;
+    margin-left: 4rem;
+    /* width: 370px; */
+    height: 500px;
+}
+
+.price_info_container{
+    display: flex;
+    align-items: center;
+}
+.price_info{
+    font-size: 30px;
+    font-weight:600;
+    padding-right: 6px;
+    box-sizing: border-box;
+}
+
+.price_info_night{
+    font-size: 32px;
+}
