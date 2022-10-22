@@ -25,23 +25,13 @@ function SpotDetail() {
             .then(() => setIsloaded(true))
     }, [dispatch, id, reviews])
 
-    Date.prototype.addDays = function(num_days) {
+    Date.prototype.addDays = function (num_days) {
         let date = new Date(this.valueOf());
         date.setDate(date.getDate() + num_days);
         return date;
     }
-    
-    // var date = new Date();
-    
-    // console.log(date.addDays(5));
 
-    // let reviewRating = "New"
-    // console.log("hello", spot)
-    // if (spot.avgStatRating !== null && spot.avgStatRating !== undefined) {
-    //     reviewRating = spot.avgStatRating.toFix(2).toString()
-    // } else {
-    //     reviewRating = "NEW"
-    // }
+
 
     return (
         isLoaded &&
@@ -131,22 +121,32 @@ function SpotDetail() {
                         <div>
                             <label>CHECK-OUT</label>
                             <input
-                            type="date"
-                            // min={new Date(startDate)+1}
-                            min={new Date(startDate).addDays(2).toLocaleDateString('en-ca')}
-                            onChange={(e) =>{
-                                // console.log("Minnnnnnn", new Date(startDate).addDays(10))
-                                setEndDate(e.target.value)
-                            }}>
-
+                                type="date"
+                                // min={new Date(startDate)+1}
+                                min={new Date(startDate).addDays(2).toLocaleDateString('en-ca')}
+                                onChange={(e) => {
+                                    // console.log("Minnnnnnn", new Date(startDate).addDays(10))
+                                    setEndDate(e.target.value)
+                                }}
+                                value={endDate}>
                             </input>
-                            
                         </div>
-
-
-
+                        <div>
+                            <button type="submit" className='reserve_button'>Reserve</button>
+                        </div>
                     </form>
 
+                    <div>You won't be charged yet</div>
+
+                    <div>
+                        {/* {startDate && endDate && <div>{`$ ${spot.price}x ${endDate.toLocaleDateString('en-ca')} - ${startDate.toLocaleDateString('en-ca')} nights`} </div>} */}
+                        <div> Cleaning fee</div>
+                        <div>Service fee</div>
+                    </div>
+                    
+                    <div>
+
+                    </div>
                 </div>
             </div>
 

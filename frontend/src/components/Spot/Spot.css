@@ -294,3 +294,7 @@
 .price_info_night{
     font-size: 32px;
 }
+
+.reserve_button{
+    background-color: red;
+}
