@@ -8,7 +8,7 @@ import ReviewBySpot from '../Review/ReviewBySpot'
 import ReviewFormModal from '../ReviewFormModal'
 import { CreateBooking } from '../../store/booking'
 import LoginForm from '../LoginFormModal/LoginForm';
-import {Modal} from "../../context/Modal"
+import { Modal } from "../../context/Modal"
 
 function SpotDetail() {
     const { id } = useParams()
@@ -28,7 +28,10 @@ function SpotDetail() {
 
     useEffect(() => {
         dispatch(getOneSpot(id))
-            .then(() => setIsloaded(true))
+            .then(() => {
+                setIsloaded(true)
+                setErrors([])
+            })
     }, [dispatch, id, reviews, user])
 
     Date.prototype.addDays = function (num_days) {
@@ -43,10 +46,10 @@ function SpotDetail() {
         let errors_arr = []
 
         if (!startDate) {
-            errors_arr.push("Please pich a check-in Date")
+            errors_arr.push("Please pick a check-in Date")
         }
         if (!endDate) {
-            errors_arr.push("Please pich a check-out Date")
+            errors_arr.push("Please pick a check-out Date")
         }
 
         if (!user) {
@@ -147,7 +150,7 @@ function SpotDetail() {
 
                     {showModal && (
                         <Modal onClose={() => setShowModal(false)}>
-                            <LoginForm onClose={() => setShowModal(false)}/>
+                            <LoginForm onClose={() => setShowModal(false)} />
                         </Modal>
                     )}
 

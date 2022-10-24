@@ -4,7 +4,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css"
 
-function LoginForm({onClose}) {
+function LoginForm({ onClose }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -14,15 +14,15 @@ function LoginForm({onClose}) {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-      .then(()=>onClose())
+      .then(() => onClose())
       .catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-        // if (data ) setErrors([data.message]);
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+          // if (data ) setErrors([data.message]);
 
-      }
-    );
+        }
+      );
   };
 
   // const handleDemo = (e) => {
@@ -50,23 +50,23 @@ function LoginForm({onClose}) {
             <ul>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
-                ))}
+              ))}
             </ul>
           </div>
           <div className="Log_in_info_container">
             <div className="usename_email">
               <div>
 
-              <label>
-                Username or Email
-              </label>
+                <label>
+                  Username or Email
+                </label>
               </div>
               <input
-                  className="modal_input_field"
-                  type="text"
-                  value={credential}
-                  onChange={(e) => setCredential(e.target.value)}
-                  required
+                className="modal_input_field"
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
               />
             </div>
             <div className="password">
@@ -86,8 +86,8 @@ function LoginForm({onClose}) {
           <button className='log_in_button' type="submit">Log In</button>
         </div>
       </form>
-      <button className='demo_button' 
-        onClick={()=> {setCredential('Demo-lition');setPassword('password')}}
+      <button className='demo_button'
+        onClick={() => { setCredential('Demo-lition'); setPassword('password') }}
       > demo</button>
     </div>
   );
