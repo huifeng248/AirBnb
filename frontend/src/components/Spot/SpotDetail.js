@@ -6,6 +6,7 @@ import { getOneSpot, DeleteSpot } from '../../store/spot'
 import { useHistory } from 'react-router-dom';
 import ReviewBySpot from '../Review/ReviewBySpot'
 import ReviewFormModal from '../ReviewFormModal'
+import { CreateBooking } from '../../store/booking'
 
 function SpotDetail() {
     const { id } = useParams()
@@ -19,12 +20,12 @@ function SpotDetail() {
     const current_date = new Date().toLocaleDateString('en-ca')
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         dispatch(getOneSpot(id))
             .then(() => setIsloaded(true))
-    }, [dispatch, id, reviews])
+    }, [dispatch, id, reviews, user])
 
     Date.prototype.addDays = function (num_days) {
         let date = new Date(this.valueOf());
@@ -32,7 +33,7 @@ function SpotDetail() {
         return date;
     }
 
-    const handleSubmit = async (e) => {
+    const SubmitBooking = async (e) => {
         e.preventDefault()
 
         let errors_arr = []
@@ -51,10 +52,21 @@ function SpotDetail() {
             return setErrors(errors_arr)
         }
 
-        dispatch()
+        const new_booking_payload = {
+            startDate,
+            endDate
+        }
 
+        dispatch(CreateBooking(spot.id, new_booking_payload))
+            .catch(async (data) => {
+                // console.log("DDDDDDDD", data)
+                const result = await data.json()
+                console.log("DDDDDDDD", result)
 
-
+                if (result && result.errors) {
+                    setErrors(Object.values(result.errors))
+                }
+            })
 
     }
 
@@ -127,17 +139,24 @@ function SpotDetail() {
                         <div className='price_info'>${spot.price}</div>
                         <div className='price_info_night'>night</div>
                     </div>
-                    <form className='Booking_form'>
-                        <div>
 
+                    {errors.length > 0 && <div className='error_message_container'>
+                        {errors.map((error, index) => (
+                            <div key={index}>{error}</div>
+                        ))}
+                    </div>}
+                    <form className='Booking_form'
+                        onSubmit={SubmitBooking}>
+                        <div>
                             <label>CHECK-IN</label>
                             <input
                                 type="date"
-                                min={current_date}
+                                min={new Date().addDays(1).toLocaleDateString('en-ca')}
                                 onChange={(e) => {
                                     console.log("************", e.target.value)
                                     // console.log("minnnnnnn", current_date)
                                     setStartDate(e.target.value)
+                                    setErrors([])
                                 }}
                                 value={startDate}
                             >
@@ -153,12 +172,14 @@ function SpotDetail() {
                                 onChange={(e) => {
                                     // console.log("Minnnnnnn", new Date(startDate).addDays(10))
                                     setEndDate(e.target.value)
+                                    setErrors([])
                                 }}
                                 value={endDate}>
                             </input>
                         </div>
                         <div>
-                            <button type="submit" className='reserve_button'>Reserve</button>
+                            <button type="submit"
+                                className='reserve_button'>Reserve</button>
                         </div>
                     </form>
 
@@ -169,16 +190,12 @@ function SpotDetail() {
                         <div> Cleaning fee</div>
                         <div>Service fee</div>
                     </div>
-                    
+
                     <div>
 
                     </div>
                 </div>
             </div>
-
-
-
-
         </div >
 
     )

@@ -298,3 +298,9 @@
 .reserve_button{
     background-color: red;
 }
+
+.error_message_container{
+    color: red;
+    display: flex;
+    flex-direction: column;
+}
