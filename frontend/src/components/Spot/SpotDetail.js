@@ -165,7 +165,7 @@ function SpotDetail() {
                             <label>CHECK-IN</label>
                             <input
                                 type="date"
-                                min={new Date().addDays(1).toLocaleDateString('en-ca')}
+                                min={new Date().toLocaleDateString('en-ca')}
                                 onChange={(e) => {
                                     console.log("************", e.target.value)
                                     // console.log("minnnnnnn", current_date)
