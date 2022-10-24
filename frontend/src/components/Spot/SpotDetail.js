@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom';
 import ReviewBySpot from '../Review/ReviewBySpot'
 import ReviewFormModal from '../ReviewFormModal'
 import { CreateBooking } from '../../store/booking'
+import LoginForm from '../LoginFormModal/LoginForm';
+import {Modal} from "../../context/Modal"
 
 function SpotDetail() {
     const { id } = useParams()
@@ -21,6 +23,8 @@ function SpotDetail() {
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
     const [errors, setErrors] = useState([])
+    const [showModal, setShowModal] = useState(false)
+
 
     useEffect(() => {
         dispatch(getOneSpot(id))
@@ -46,7 +50,8 @@ function SpotDetail() {
         }
 
         if (!user) {
-            errors_arr.push("Please log in to make a reservation")
+            setShowModal(true)
+            // errors_arr.push("Please log in to make a reservation")
         }
         if (errors_arr.length > 0) {
             return setErrors(errors_arr)
@@ -139,6 +144,12 @@ function SpotDetail() {
                         <div className='price_info'>${spot.price}</div>
                         <div className='price_info_night'>night</div>
                     </div>
+
+                    {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <LoginForm onClose={() => setShowModal(false)}/>
+                        </Modal>
+                    )}
 
                     {errors.length > 0 && <div className='error_message_container'>
                         {errors.map((error, index) => (
