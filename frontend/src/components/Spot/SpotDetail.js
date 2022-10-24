@@ -19,6 +19,7 @@ function SpotDetail() {
     const current_date = new Date().toLocaleDateString('en-ca')
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
+    const [errors, setErrors] = useState()
 
     useEffect(() => {
         dispatch(getOneSpot(id))
@@ -31,6 +32,31 @@ function SpotDetail() {
         return date;
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        let errors_arr = []
+
+        if (!startDate) {
+            errors_arr.push("Please pich a check-in Date")
+        }
+        if (!endDate) {
+            errors_arr.push("Please pich a check-out Date")
+        }
+
+        if (!user) {
+            errors_arr.push("Please log in to make a reservation")
+        }
+        if (errors_arr.length > 0) {
+            return setErrors(errors_arr)
+        }
+
+        dispatch()
+
+
+
+
+    }
 
 
     return (

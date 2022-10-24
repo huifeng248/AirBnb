@@ -1,154 +1,125 @@
-// api/spots/:id/bookings
-
 import { csrfFetch } from './csrf';
 
-const Create_Bookings = "CREATE_BOOKINGS"
-const Edit_Bookings = "Edit_BOOKINGS"
-const Delete_Bookings = "DELETE_BOOKINGS"
-const GET_USER_Bookings = "GET_USER_BOOKINGS"
-
-const Create_Booking_Action = (booking) => ({
-    type: Create_Bookings,
-    booking
-})
-
-const Edit_Booking_Action = (booking) => ({
-    type: Edit_Bookings,
-    booking
-})
-
-const Delete_Booking_Action = (id) => ({
-    type: Delete_Bookings,
-    id
-})
+const CREATE_Bookings = "CREATE_BOOKINGS"
+const EDIT_Bookings = "Edit_BOOKINGS"
+const DELETE_Bookings = "DELETE_BOOKINGS"
+const LOAD_Bookings = "LOAD_BOOKINGS"
 
 const Get_Booking_Action = (bookings) => ({
-    type: GET_USER_Bookings,
+    type: LOAD_Bookings,
     bookings
 
 })
 
-// get booking by spots 
-export const GetSpotBooking = () => async (dispatch) => {
-    const response = await csrfFetch('api/bookings/current')
+const Create_Booking_Action = (booking) => ({
+    type: CREATE_Bookings,
+    booking
+})
+
+const Edit_Booking_Action = (bookingId, booking) => ({
+    type: EDIT_Bookings,
+    bookingId, 
+    booking
+})
+
+const Delete_Booking_Action = (id) => ({
+    type: DELETE_Bookings,
+    id
+})
+
+
+// get bookings by current user
+export const GetUserBooking = () => async (dispatch) => {
+    const response = await csrfFetch('/api/bookings/current')
     if (response.ok) {
         const bookings = await response.json()
-        dispatch(GET_USER_Bookings(bookings))
+        dispatch(Get_Booking_Action(bookings))
     }
 }
 
 
-
-//get review by user
-export const getReviewByUser = () => async (dispatch) => {
-    const response = await csrfFetch('/api/reviews/current')
+// get bookings by spot
+export const GetSpotBooking = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
     if (response.ok) {
-        const reviews = await response.json()
-        dispatch(GetReviewByUserAction(reviews))
-    }
-} 
-
-//get review by spot
-export const GetReviewBySpot = (id) => async(dispatch) => {
-    const response = await csrfFetch (`/api/spots/${id}/reviews`)
-    if (response.ok) {
-        const reviews = await response.json()
-        dispatch(GetReviewBySpotAction(reviews))
+        const result = await response.json()
+        dispatch(Get_Booking_Action(result.bookings))
     }
 }
 
-//create review
-export const createReview = (review) => async (dispatch) => {
-    const response = await csrfFetch (`/api/spots/${review.spotId}/reviews`, {
+//create a new booking
+export const CreateBooking = (spotId, booking) => async (dispatch) => {
+    const response = await csrfFetch(`api/spots/${spotId}/bookings`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(review)
+        body: JSON.stringify(booking)
     })
 
     if (response.ok) {
-        const review = await response.json()
-        dispatch(createReviewAction(review))
+        const newBooking = await response.json()
+        dispatch(Create_Booking_Action(newBooking))
     }
-} 
+}
 
-// update review
-export const updateReview = (review) => async(dispatch) => {
-    const response = await csrfFetch (`/api/reviews/${review.id}`, {
+//edit a booking 
+export const EditBooking = (bookingId, booking) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(review)
+        body: JSON.stringify(booking)
     })
+
     if (response.ok) {
-        const review = await response.json()
-        dispatch(updateReviewAction(review))
+        const booking = await response.json()
+        dispatch(Edit_Booking_Action(bookingId, booking))
     }
 }
 
-//delete review 
-export const deleteReview = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews/${id}`, {
-        method: "DELETE",
-        headers: {
-            'Content-Type': 'application/json'
-        }
+//delete a booking 
+export const DeleteBooking = (bookingId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: "DELETE"
     })
     if (response.ok) {
-        const review = await response.json()
-        dispatch(deleteReviewAction(id))
-    }
+        dispatch(Delete_Booking_Action(bookingId))
 
+    }
 }
 
 const initialState = {}
 
-const reviewReducer = (state = initialState, action) => {
+const bookingReducer = (state = initialState, action) => {
+    let newState ={}
     switch (action.type) {
-
-        case Get_Review_User : {
-            let newState = {}
-            if (!action.reviews.length) {
-                newState = {}
-                return newState
-            }
-            action.reviews.map (review => {
-                return newState[review.id]=review
-            })
+        case LOAD_Bookings:{
+            action.bookings.forEach(booking => {
+                newState[booking.id] = booking
+            });
             return newState
         }
-        case Get_Review_Spot : {
-            let newState = {...state}
-            if (!action.reviews.length) {
-                newState = {}
-                return newState
-            }
-            action.reviews.map (review => {
-                return newState[review.id] = review
-            })
+        case CREATE_Bookings: {
+            newState = { ...state }
+            newState[action.booking.id] = action.booking
             return newState
         }
-        case CREATE_REVIEW : {
-            const newState = {...state}
-            newState[action.review.id] = {...newState[action.review.id], ...action.review}
+        case EDIT_Bookings: {
+            newState = {...state}
+            newState[action.bookingId] = action.booking
             return newState
         }
-        case UPDATE_REVIEW : {
-            const newState = {...state}
-            newState[action.review.id] = {...newState[action.review.id],...action.review}
-            return newState
-        }
-        case DELETE_REVIEW : {
-            const newState = {...state}
+        case DELETE_Bookings: {
+            newState = {...state}
             delete newState[action.id]
             return newState
         }
-            
-        default: 
+
+        default:
             return state
     }
-} 
+}
 
-export default reviewReducer
+export default bookingReducer
