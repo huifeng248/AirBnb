@@ -56,6 +56,9 @@ function ProfileButton({ user }) {
                 <Link to={'/reviews/current'}> Manage Reviews</Link>
               </li>
               <li>
+                <Link to={'/bookings/current'}> Manage Bookings</Link>
+              </li>
+              <li>
                 <button className='log_out_button' onClick={logout}>Log Out</button>
               </li>
             </ul>

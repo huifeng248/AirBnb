@@ -75,15 +75,14 @@ function SpotDetail() {
         }
 
         dispatch(CreateBooking(spot.id, new_booking_payload))
+            .then(()=> history.push('/boookings/current'))
             .catch(async (data) => {
-                // console.log("DDDDDDDD", data)
                 const result = await data.json()
 
                 if (result && result.errors) {
                     setErrors(Object.values(result.errors))
                 }
             })
-
     }
 
 
@@ -241,9 +240,9 @@ function SpotDetail() {
                         <div className='fee_sub_container'>
                             <div>Service fee</div>
                             {startDate && endDate && totalStay(startDate, endDate) ?
-                                <div> ${spot.price * totalStay(startDate, endDate) * 0.15} </div> :
+                                <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 0.15} </div> :
                                 <div> $ 0</div>
-}
+                            }
                         </div>
                     </div>
 
