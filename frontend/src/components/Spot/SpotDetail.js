@@ -75,7 +75,7 @@ function SpotDetail() {
         }
 
         dispatch(CreateBooking(spot.id, new_booking_payload))
-            .then(()=> history.push('/boookings/current'))
+            .then(()=> history.push('/bookings/current'))
             .catch(async (data) => {
                 const result = await data.json()
 

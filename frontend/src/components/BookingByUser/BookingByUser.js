@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal } from '../../context/Modal'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetUserBooking } from '../../store/booking'
+import { GetUserBooking, DeleteBooking, EditBooking } from '../../store/booking'
 import {getSpots} from '../../store/spot'
 import './BookingByUser.css'
 
@@ -14,6 +14,10 @@ function BookingByUser() {
         dispatch(GetUserBooking())
         dispatch(getSpots())
     }, [])
+
+    function SubmitDeleteBooking (id) {
+        dispatch(DeleteBooking(id))
+    }
 
     return (
         <div>
@@ -30,7 +34,7 @@ function BookingByUser() {
 
                         <div className='booking_button_container'>
                             <button> Edit </button>
-                            <button> Delete</button>
+                            <button onClick={()=>dispatch(DeleteBooking((booking.id)))}> Delete</button>
                         </div>
                     </div>
                 }) :
