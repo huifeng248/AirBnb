@@ -25,6 +25,14 @@ function SpotDetail() {
     const [errors, setErrors] = useState([])
     const [showModal, setShowModal] = useState(false)
 
+    function totalStay(start, end) {
+        let start_date = new Date(start);
+        let end_date = new Date(end);
+        let diff = end_date.getTime() - start_date.getTime();
+        let totalDays = Math.ceil(diff / (1000 * 3600 * 24));
+        return totalDays;
+    }
+
 
     useEffect(() => {
         dispatch(getOneSpot(id))
@@ -205,10 +213,10 @@ function SpotDetail() {
                                 }}
                                 value={endDate}>
                             </input>
-             
+
                             <button type="submit"
                                 className='reserve_button'>Reserve</button>
-                          
+
                         </div>
                     </form>
 
@@ -216,11 +224,20 @@ function SpotDetail() {
 
                     <div className='fee_container'>
                         <div className='fee_sub_container'>
-                            {startDate && endDate? 
+                            {startDate && endDate && totalStay(startDate, endDate)?
 
-                            <div> {spot.price} x  night </div> :
-                          
-                            <div> $ 0</div>}
+                                <div> {spot.price} x  ${totalStay(startDate, endDate)} night </div>
+                                :
+
+                                <div> {spot.price} x 0 night</div>
+                            }
+
+                            {startDate && endDate ?
+                                <div> {spot.price *  totalStay(startDate, endDate)}</div> :
+                            
+                                <div> $ 0 </div>
+                            }
+
                         </div>
                         {/* {startDate && endDate && <div>{`$ ${spot.price}x ${endDate.toLocaleDateString('en-ca')} - ${startDate.toLocaleDateString('en-ca')} nights`} </div>} */}
                         <div className='fee_sub_container'>
