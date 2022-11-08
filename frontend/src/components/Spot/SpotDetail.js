@@ -29,6 +29,7 @@ function SpotDetail() {
         let start_date = new Date(start);
         let end_date = new Date(end);
         let diff = end_date.getTime() - start_date.getTime();
+        // get time is in mili second, convert this into days
         let totalDays = Math.ceil(diff / (1000 * 3600 * 24));
         return totalDays;
     }
@@ -239,7 +240,6 @@ function SpotDetail() {
                             }
 
                         </div>
-                        {/* {startDate && endDate && <div>{`$ ${spot.price}x ${endDate.toLocaleDateString('en-ca')} - ${startDate.toLocaleDateString('en-ca')} nights`} </div>} */}
                         <div className='fee_sub_container'>
                             <div> Cleaning fee</div>
                             <div> $200</div>
