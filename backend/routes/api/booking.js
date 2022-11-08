@@ -35,7 +35,8 @@ router.put('/:id',requireAuth, validateBooking, async(req, res, next) => {
     const bookingId = req.params.id
     const booking = await Booking.findByPk(bookingId)
     const today = new Date()
- 
+    
+    console.log("$$$$$$$", req.body)
 
     if (!booking) {
         const err = new Error('');
@@ -115,7 +116,8 @@ router.delete('/:id', requireAuth, async(req, res, next) => {
     //check if the booking exist
     if (!booking) {
         const err = new Error('');
-        err.message = "Booking couldn't be found"
+        err.message = "Booking couldn't be found";
+        err.errors = {Booking: "Booking couldn't be found"};
         err.status = 404;
         return next(err);
     }
@@ -123,6 +125,8 @@ router.delete('/:id', requireAuth, async(req, res, next) => {
     if (new Date(booking.startDate)< today) {
         const err = new Error('');
         err.message = "Bookings that have been started can/'t be deleted"
+        err.errors = {Booking: "Bookings that have been started can/'t be deleted"};
+
         err.status = 400;
         return next(err);
     }
@@ -139,6 +143,8 @@ router.delete('/:id', requireAuth, async(req, res, next) => {
     } else {
         const err = new Error();
         err.message = "Forbidden"
+        err.errors = {Booking: "Forbidden"};
+        
         err.status = 403;
         return next(err);
     }

@@ -54,35 +54,37 @@ function SpotDetail() {
 
         let errors_arr = []
 
-        if (!startDate) {
-            errors_arr.push("Please pick a check-in Date")
-        }
-        if (!endDate) {
-            errors_arr.push("Please pick a check-out Date")
-        }
-
         if (!user) {
             setShowModal(true)
             // errors_arr.push("Please log in to make a reservation")
-        }
-        if (errors_arr.length > 0) {
-            return setErrors(errors_arr)
-        }
+        } else {
 
-        const new_booking_payload = {
-            startDate,
-            endDate
-        }
-
-        dispatch(CreateBooking(spot.id, new_booking_payload))
+            if (!startDate) {
+                errors_arr.push("Please pick a check-in Date")
+            }
+            if (!endDate) {
+                errors_arr.push("Please pick a check-out Date")
+            }
+            
+            if (errors_arr.length > 0) {
+                return setErrors(errors_arr)
+            }
+            
+            const new_booking_payload = {
+                startDate,
+                endDate
+            }
+            
+            dispatch(CreateBooking(spot.id, new_booking_payload))
             .then(()=> history.push('/bookings/current'))
             .catch(async (data) => {
                 const result = await data.json()
-
+                
                 if (result && result.errors) {
                     setErrors(Object.values(result.errors))
                 }
             })
+        }
     }
 
 
