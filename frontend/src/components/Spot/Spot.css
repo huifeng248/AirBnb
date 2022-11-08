@@ -257,6 +257,8 @@
     padding-top: 2rem;
     /* padding-bottom: 3rem; */
     box-sizing: border-box;
+    /* background-color: red; */
+    min-width: 400px;
 }
 
 .spot_left_container{
@@ -314,7 +316,7 @@
     width: 100%;
     justify-content: end;
     font-size: 14px;
-    /* background-color: black; */
+    /* background-color: red; */
 }
 
 .price_and_review_container{
@@ -328,6 +330,7 @@
 
 .booking_container{
     width: 33%;
+    min-width: 320px;
     background-color: antiquewhite;
     box-sizing: border-box;
     /* padding: 24px; */

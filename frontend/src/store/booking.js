@@ -50,7 +50,6 @@ export const GetSpotBooking = (spotId) => async (dispatch) => {
 //create a new booking
 export const CreateBooking = (spotId, booking) => async (dispatch) => {
 
-    console.log("come here")
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
         method: "POST",
         headers: {
@@ -63,7 +62,6 @@ export const CreateBooking = (spotId, booking) => async (dispatch) => {
         const newBooking = await response.json()
         dispatch(Create_Booking_Action(newBooking))
     }
-    console.log("!!!!!!ressssssssss", response)
 }
 
 //edit a booking 

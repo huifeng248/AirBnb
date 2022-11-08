@@ -25,20 +25,22 @@ function LoginForm({ onClose }) {
       );
   };
 
-  // const handleDemo = (e) => {
-  //   // e.preventDefault();
-  //   setErrors([]);
-  //   setCredential('Demo-lition')
-  //   setPassword('password')
-  //   return dispatch(sessionActions.login({ credential, password })).catch(
-  //     async (res) => {
-  //       const data = await res.json();
-  //       if (data && data.errors) setErrors(data.errors);
-  //       // if (data ) setErrors([data.message]);
+  const handleDemo = () => {
+    // e.preventDefault();
+    setErrors([]);
+    setCredential('Demo-lition')
+    setPassword('password')
+    dispatch(sessionActions.login({ credential, password }))
+      .then(() => onClose())
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+          // if (data ) setErrors([data.message]);
 
-  //     }
-  //   );
-  // };
+        }
+      );
+  };
 
 
   return (
@@ -84,11 +86,16 @@ function LoginForm({ onClose }) {
 
           </div>
           <button className='log_in_button' type="submit">Log In</button>
+        <button className='demo_button'
+          onClick={() => {
+            // setCredential('Demo-lition')
+            // setPassword('password')
+            handleDemo()
+          }
+        }
+        > demo</button>
         </div>
       </form>
-      <button className='demo_button'
-        onClick={() => { setCredential('Demo-lition'); setPassword('password') }}
-      > demo</button>
     </div>
   );
 }

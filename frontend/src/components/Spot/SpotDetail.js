@@ -78,7 +78,6 @@ function SpotDetail() {
             .catch(async (data) => {
                 // console.log("DDDDDDDD", data)
                 const result = await data.json()
-                console.log("DDDDDDDD", result)
 
                 if (result && result.errors) {
                     setErrors(Object.values(result.errors))
@@ -190,10 +189,8 @@ function SpotDetail() {
                                 className='date_input'
                                 min={new Date().toLocaleDateString('en-ca')}
                                 onChange={(e) => {
-                                    console.log("************", e.target.value)
                                     setStartDate(e.target.value)
                                     setErrors([])
-                                    console.log("startttttt", startDate)
                                 }}
                                 value={startDate}
                             >
@@ -203,13 +200,10 @@ function SpotDetail() {
                             <input
                                 type="date"
                                 className='date_input'
-                                // min={new Date(startDate)+1}
                                 min={new Date(startDate).addDays(2).toLocaleDateString('en-ca')}
                                 onChange={(e) => {
-                                    // console.log("Minnnnnnn", new Date(startDate).addDays(10))
                                     setEndDate(e.target.value)
                                     setErrors([])
-                                    console.log("end date", endDate)
 
                                 }}
                                 value={endDate}>
@@ -225,17 +219,17 @@ function SpotDetail() {
 
                     <div className='fee_container'>
                         <div className='fee_sub_container'>
-                            {startDate && endDate && totalStay(startDate, endDate)?
+                            {startDate && endDate && totalStay(startDate, endDate) ?
 
-                                <div> {spot.price} x  ${totalStay(startDate, endDate)} night </div>
+                                <div> {spot.price} x  $ {totalStay(startDate, endDate)} night </div>
                                 :
 
                                 <div> {spot.price} x 0 night</div>
                             }
 
                             {startDate && endDate ?
-                                <div> {spot.price *  totalStay(startDate, endDate)}</div> :
-                            
+                                <div> {spot.price * totalStay(startDate, endDate)}</div> :
+
                                 <div> $ 0 </div>
                             }
 
@@ -246,7 +240,10 @@ function SpotDetail() {
                         </div>
                         <div className='fee_sub_container'>
                             <div>Service fee</div>
-                            <div> $ 0</div>
+                            {startDate && endDate && totalStay(startDate, endDate) ?
+                                <div> ${spot.price * totalStay(startDate, endDate) * 0.15} </div> :
+                                <div> $ 0</div>
+}
                         </div>
                     </div>
 
