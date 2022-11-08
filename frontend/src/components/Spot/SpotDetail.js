@@ -143,9 +143,20 @@ function SpotDetail() {
                 </div>
 
                 <div className='booking_container'>
-                    <div className='price_info_container'>
-                        <div className='price_info'>${spot.price}</div>
-                        <div className='price_info_night'>night</div>
+
+                    <div className='price_and_review_container'>
+
+                        <div className='price_info_container'>
+                            <div className='price_info'>${spot.price}</div>
+                            <div className='price_info_night'>night</div>
+                        </div>
+
+                        <div className='review_block_container'>
+                            <i className="fa-solid fa-star spot_reviews_item"></i>
+                            <div className='review_char'>{spot.avgStatRating ? (` ${spot.avgStatRating.toFixed(2)}`) : "New"}</div>
+                            <div className='dot_div'> · </div>
+                            <div className='review_char_form'>{spot.numReviews} Reviews</div>
+                        </div>
                     </div>
 
                     {showModal && (
@@ -161,48 +172,65 @@ function SpotDetail() {
                     </div>}
                     <form className='Booking_form'
                         onSubmit={SubmitBooking}>
-                        <div>
-                            <label>CHECK-IN</label>
+                        <div className='booking_form_container'>
+
+
+                            <label className='check_in_and_out'>CHECK-IN</label>
                             <input
                                 type="date"
+                                className='date_input'
                                 min={new Date().toLocaleDateString('en-ca')}
                                 onChange={(e) => {
                                     console.log("************", e.target.value)
-                                    // console.log("minnnnnnn", current_date)
                                     setStartDate(e.target.value)
                                     setErrors([])
+                                    console.log("startttttt", startDate)
                                 }}
                                 value={startDate}
                             >
                             </input>
-                        </div>
 
-                        <div>
-                            <label>CHECK-OUT</label>
+                            <label className='check_in_and_out'>CHECK-OUT</label>
                             <input
                                 type="date"
+                                className='date_input'
                                 // min={new Date(startDate)+1}
                                 min={new Date(startDate).addDays(2).toLocaleDateString('en-ca')}
                                 onChange={(e) => {
                                     // console.log("Minnnnnnn", new Date(startDate).addDays(10))
                                     setEndDate(e.target.value)
                                     setErrors([])
+                                    console.log("end date", endDate)
+
                                 }}
                                 value={endDate}>
                             </input>
-                        </div>
-                        <div>
+             
                             <button type="submit"
                                 className='reserve_button'>Reserve</button>
+                          
                         </div>
                     </form>
 
-                    <div>You won't be charged yet</div>
+                    <div className='no_charge'>You won't be charged yet</div>
 
-                    <div>
+                    <div className='fee_container'>
+                        <div className='fee_sub_container'>
+                            {startDate && endDate? 
+
+                            <div> {spot.price} x  night </div> :
+                          
+                            <div> $ 0</div>}
+                        </div>
                         {/* {startDate && endDate && <div>{`$ ${spot.price}x ${endDate.toLocaleDateString('en-ca')} - ${startDate.toLocaleDateString('en-ca')} nights`} </div>} */}
-                        <div> Cleaning fee</div>
-                        <div>Service fee</div>
+                        <div className='fee_sub_container'>
+                            <div> Cleaning fee</div>
+                            <div> $200</div>
+                        </div>
+                        <div className='fee_sub_container'>
+                            <div>Service fee</div>
+                            <div> $ 0</div>
+                        </div>
                     </div>
 
                     <div>
