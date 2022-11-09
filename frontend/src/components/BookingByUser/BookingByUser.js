@@ -43,20 +43,23 @@ function BookingByUser() {
                     bookings.map((booking, index) => {
                         return <div className='booking_detail_holder'
                             key={index}>
-                            <div className='image_holder'>
-                                <img src={spots[booking.spotId].previewImage}
-                                    alt="spot_preview_image"
-                                    className='spot_preview_image'>
-                                </img>
-                                {/* <div> {spots[booking.spotId].previewImage}, {spots[booking.spotId].city}, {spots[booking.spotId].state} </div> */}
-                            </div>
-                            <div className='booking_detail_left_container'>
+                            <div className='booking_detail_holder_left'>
 
-                                <div className='booking_address'> {spots[booking.spotId].name} </div>
-                                <div> Price per night: ${spots[booking.spotId].price} nightly </div>
-                                <div> Travel Date: From {booking.startDate.split("T")[0]} to {booking.endDate.split("T")[0]}</div>
-                                {/* <div> {booking.spotId}</div> */}
-                                <div> Address: {spots[booking.spotId].address}, {spots[booking.spotId].city}, {spots[booking.spotId].state}
+                                <div className='image_holder'>
+                                    <img src={spots[booking.spotId].previewImage}
+                                        alt="spot_preview_image"
+                                        className='spot_preview_image'>
+                                    </img>
+                                    {/* <div> {spots[booking.spotId].previewImage}, {spots[booking.spotId].city}, {spots[booking.spotId].state} </div> */}
+                                </div>
+                                <div className='booking_detail_left_container'>
+
+                                    <div className='booking_address'> {spots[booking.spotId].name} </div>
+                                    <div> Price: ${spots[booking.spotId].price} nightly </div>
+                                    <div> From {booking.startDate.split("T")[0]} To {booking.endDate.split("T")[0]}</div>
+                                    {/* <div> {booking.spotId}</div> */}
+                                    <div> Address: {spots[booking.spotId].address}, {spots[booking.spotId].city}, {spots[booking.spotId].state}
+                                    </div>
                                 </div>
                             </div>
 
@@ -68,7 +71,9 @@ function BookingByUser() {
 
                             {new Date(booking.startDate) > today &&
                                 <div className='booking_button_container'>
-                                    <button onClick={() => setShowModal(true)}> Edit </button>
+                                    <button 
+                                        className='booking_buttons reserve_button'
+                                        onClick={() => setShowModal(true)}> Edit </button>
                                     {
                                         showModal &&
                                         <Modal onClose={() => setShowModal(false)}>
@@ -77,7 +82,9 @@ function BookingByUser() {
 
 
                                     }
-                                    <button onClick={() => SubmitDeleteBooking(booking.id)}>Delete</button>
+                                    <button 
+                                        className='booking_buttons reserve_button'
+                                        onClick={() => SubmitDeleteBooking(booking.id)}>Delete</button>
                                 </div>
                             }
                         </div>

@@ -85,8 +85,16 @@ function BookingModal({ booking, spot, onClose }) {
                 ))}
             </div>}
 
-            <form className='Booking_form'
+            <form className='Modal_Booking_form'
                 onSubmit={editBooking}>
+                
+                <div className='Modal_title_container'>
+                    <div className='Modal_title'> Edit Reservation</div>
+                    <i 
+                        onClick={()=> onClose()}
+                        className="fa-solid fa-x"></i>
+                </div>
+
                 <div className='booking_form_container'>
 
 
@@ -144,13 +152,22 @@ function BookingModal({ booking, spot, onClose }) {
                     <div> Cleaning fee</div>
                     <div> $200</div>
                 </div>
-                <div className='fee_sub_container'>
+                <div className='fee_sub_container above_sum'>
                     <div>Service fee</div>
                     {startDate && endDate && totalStay(startDate, endDate) ?
                         <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 0.15} </div> :
                         <div> $ 0</div>
                     }
                 </div>
+
+                <div className='fee_sub_container total_spend'>
+                    <div>Total Spend</div>
+                    {startDate && endDate && totalStay(startDate, endDate) ?
+                        <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 1.15 } </div> :
+                        <div> $ 0</div>
+                    }
+                </div>
+                
             </div>
         </div>
     )
