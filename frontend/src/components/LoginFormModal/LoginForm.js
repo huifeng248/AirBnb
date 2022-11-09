@@ -55,7 +55,7 @@ function LoginForm({ onClose }) {
         </div>
         <div className="log_in_form_content">
           <div>
-            <ul>
+            <ul className="sign_up_error_message">
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
