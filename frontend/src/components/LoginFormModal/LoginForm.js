@@ -44,9 +44,15 @@ function LoginForm({ onClose }) {
 
 
   return (
-    <div className="Login_form_container">
+    <div className="Modal_Booking_form">
       <form onSubmit={handleSubmit}>
-        <h3 className="Log_in_title">Log In</h3>
+        {/* <h3 className="Log_in_title">Log In</h3> */}
+        <div className='Modal_title_container'>
+          <div className='Modal_title'> Log In</div>
+          <i
+            onClick={() => onClose()}
+            className="fa-solid fa-x"></i>
+        </div>
         <div className="log_in_form_content">
           <div>
             <ul>
@@ -55,45 +61,30 @@ function LoginForm({ onClose }) {
               ))}
             </ul>
           </div>
-          <div className="Log_in_info_container">
-            <div className="usename_email">
-              <div>
+          <div className="booking_form_container">
+            <label className='check_in_and_out'>Username or Email</label>
+            <input
+              className='date_input'
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
 
-                <label>
-                  Username or Email
-                </label>
-              </div>
-              <input
-                className="modal_input_field"
-                type="text"
-                value={credential}
-                onChange={(e) => setCredential(e.target.value)}
-                required
-              />
-            </div>
-            <div className="password">
-              <label>
-                Password
-              </label>
-              <input
-                className="modal_input_field"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+            <label className='check_in_and_out'>Password</label>
+            <input
+              className='date_input'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
+            <button className='log_in_button' type="submit">Log In</button>
+            <button className='demo_button'
+              onClick={() => { handleDemo() }
+              }> demo</button>
           </div>
-          <button className='log_in_button' type="submit">Log In</button>
-        <button className='demo_button'
-          onClick={() => {
-            // setCredential('Demo-lition')
-            // setPassword('password')
-            handleDemo()
-          }
-        }
-        > demo</button>
         </div>
       </form>
     </div>
