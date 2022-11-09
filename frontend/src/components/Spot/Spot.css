@@ -135,7 +135,7 @@
 
 .fa-star{
     display: flex;
-    padding: 2px;
+    padding-right: 5px;
     box-sizing: border-box;
     /* color: red; */
     align-items: center;
@@ -203,6 +203,8 @@
     align-items: center;
     padding-bottom: 20px;
     box-sizing: border-box;
+    /* min-width: 400px;
+    background-color: #AAAAAA; */
 }
 
 .spot_description{
@@ -332,7 +334,7 @@
 .booking_container{
     width: 33%;
     min-width: 320px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     box-sizing: border-box;
     /* padding: 24px; */
     border: 1px solid rgb(221, 221, 221);
