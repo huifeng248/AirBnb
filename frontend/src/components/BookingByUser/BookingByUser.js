@@ -33,42 +33,59 @@ function BookingByUser() {
     }
 
     return (
-        <div>
-            {bookings.length ?
-                bookings.map((booking, index) => {
-                    return <div key={index}>
-                        <div> {spots[booking.spotId].name} </div>
-                        <div> {spots[booking.spotId].price} </div>
-                        <div> {booking.startDate} </div>
-                        <div> {booking.endDate} </div>
-                        <div> {booking.spotId}</div>
-                        <div> {spots[booking.spotId].address}, {spots[booking.spotId].city}, {spots[booking.spotId].state}
-                        </div>
+        <div className='managing_bookings_container'>
+            <div className='booking_title'>Manage your bookings</div>
+            <div className='booking_sub_title'>All bookings</div>
 
-                        {/* {errors.length > 0 && <div className='booking_error_message_container'>
+            <div className='all_booking_wrapper'>
+
+                {bookings.length ?
+                    bookings.map((booking, index) => {
+                        return <div className='booking_detail_holder'
+                            key={index}>
+                            <div className='image_holder'>
+                                <img src={spots[booking.spotId].previewImage}
+                                    alt="spot_preview_image"
+                                    className='spot_preview_image'>
+                                </img>
+                                {/* <div> {spots[booking.spotId].previewImage}, {spots[booking.spotId].city}, {spots[booking.spotId].state} </div> */}
+                            </div>
+                            <div className='booking_detail_left_container'>
+
+                                <div className='booking_address'> {spots[booking.spotId].name} </div>
+                                <div> Price per night: ${spots[booking.spotId].price} nightly </div>
+                                <div> Travel Date: From {booking.startDate.split("T")[0]} to {booking.endDate.split("T")[0]}</div>
+                                {/* <div> {booking.spotId}</div> */}
+                                <div> Address: {spots[booking.spotId].address}, {spots[booking.spotId].city}, {spots[booking.spotId].state}
+                                </div>
+                            </div>
+
+                            {/* {errors.length > 0 && <div className='booking_error_message_container'>
                             {errors.map((error, index) => (
                                 <div key={index}>{error}</div>
                             ))}
                         </div>} */}
 
-                        {new Date(booking.startDate) > today &&
-                            <div className='booking_button_container'>
-                                <button onClick={()=> setShowModal(true)}> Edit </button>
-                                {
-                                    showModal && 
-                                    <Modal onClose={()=> setShowModal(false)}>
-                                        <BookingModal onClose={()=> setShowModal(false)} booking={booking} spot={spots[booking.spotId]}/>
-                                    </Modal>
+                            {new Date(booking.startDate) > today &&
+                                <div className='booking_button_container'>
+                                    <button onClick={() => setShowModal(true)}> Edit </button>
+                                    {
+                                        showModal &&
+                                        <Modal onClose={() => setShowModal(false)}>
+                                            <BookingModal onClose={() => setShowModal(false)} booking={booking} spot={spots[booking.spotId]} />
+                                        </Modal>
 
-                                    
-                                }
-                                <button onClick={() => SubmitDeleteBooking(booking.id)}>Delete</button>
-                            </div>
-                        }
-                    </div>
-                }) :
-                <div> There is no booking yet</div>
-            }
+
+                                    }
+                                    <button onClick={() => SubmitDeleteBooking(booking.id)}>Delete</button>
+                                </div>
+                            }
+                        </div>
+                    }) :
+                    <div> There is no booking yet</div>
+                }
+
+            </div>
 
         </div>
     )
