@@ -65,25 +65,25 @@ function SpotDetail() {
             if (!endDate) {
                 errors_arr.push("Please pick a check-out Date")
             }
-            
+
             if (errors_arr.length > 0) {
                 return setErrors(errors_arr)
             }
-            
+
             const new_booking_payload = {
                 startDate,
                 endDate
             }
-            
+
             dispatch(CreateBooking(spot.id, new_booking_payload))
-            .then(()=> history.push('/bookings/current'))
-            .catch(async (data) => {
-                const result = await data.json()
-                
-                if (result && result.errors) {
-                    setErrors(Object.values(result.errors))
-                }
-            })
+                .then(() => history.push('/bookings/current'))
+                .catch(async (data) => {
+                    const result = await data.json()
+
+                    if (result && result.errors) {
+                        setErrors(Object.values(result.errors))
+                    }
+                })
         }
     }
 
@@ -239,10 +239,18 @@ function SpotDetail() {
                             <div> Cleaning fee</div>
                             <div> $200</div>
                         </div>
-                        <div className='fee_sub_container'>
+                        <div className='fee_sub_container above_sum'>
                             <div>Service fee</div>
                             {startDate && endDate && totalStay(startDate, endDate) ?
                                 <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 0.15} </div> :
+                                <div> $ 0</div>
+                            }
+                        </div>
+
+                        <div className='fee_sub_container total_spend'>
+                            <div>Total Spend</div>
+                            {startDate && endDate && totalStay(startDate, endDate) ?
+                                <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 1.15} </div> :
                                 <div> $ 0</div>
                             }
                         </div>
