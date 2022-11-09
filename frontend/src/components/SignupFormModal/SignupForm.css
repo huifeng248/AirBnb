@@ -8,11 +8,18 @@
 	width: 500px;
 } */
 
+.Modal_Booking_form{
+	max-height: 750px;
+}
 .sign_up_form_content_container{
 	width: 450px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.sign_up_error_message{
+	color: red;
 }
 
 .home_page_sign_up_button{
@@ -45,8 +52,26 @@
 .sign_up_detail{
 	display: flex;
 	flex-direction: column;
+	/* justify-content: space-between; */
 	/* background-color: greenyellow; */
 	
+}
+
+
+.booking_form_container{
+    /* background-color: rebeccapurple; */
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* gap: 10px; */
+    box-sizing: border-box;
+}
+.sign_up_label {
+    margin-left: 5px;
+    /* margin-top: 20px; */
+    font-size: 18px;
 }
 
 .submit_buton{

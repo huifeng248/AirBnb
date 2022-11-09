@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css'
 
-function SignupForm() {
+function SignupForm({ onClose }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -30,94 +30,113 @@ function SignupForm() {
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
-  
+
   return (
-      <div className= 'Sign_up_form_container'>
-        <h3> Welcome to AbbyBnb</h3>
-        <form onSubmit={handleSubmit}>
-            <div>
-              <ul>
-                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-              </ul>
-            </div>
-          <div className="sign_up_form_content_container">
+    <div className='Modal_Booking_form'>
+      <form onSubmit={handleSubmit}>
+
+        <div className='Modal_title_container'>
+          <div className='Modal_title'>Welcome to AbbyBnb</div>
+          <i
+            onClick={() => onClose()}
+            className="fa-solid fa-x"></i>
+        </div>
+        <div className="log_in_form_content">
+          <div>
+            <ul className="sign_up_error_message">
+              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+          </div>
+
+          <div className="booking_form_container">
             <div className="sign_up_detail">
-              <label>
-                  Email
+              <label className='sign_up_label'>
+                Email
               </label>
               <input
-                  className="sign_up_input_field"
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
+                className='date_input'
+                type="text"
+                value={email}
+                onChange={(e) => {setEmail(e.target.value)
+                  setErrors([])}}
+                required
+              />
+            </div>
+
+            <div className="sign_up_detail">
+              <label className='sign_up_label'>
+                Username
+              </label>
+              <input
+                className='date_input'
+                type="text"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value)
+                  setErrors([])  
+                }}
+                required
               />
             </div>
             <div className="sign_up_detail">
-              <label>
-                  Username
+              <label className='sign_up_label'>
+                First Name
               </label>
               <input
-                  className="sign_up_input_field"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  />
-            </div>
-            <div className="sign_up_detail">
-              <label>
-                  First Name
-              </label>
-              <input
-                className="sign_up_input_field"
+                className='date_input'
                 type="text"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => {
+                  setErrors([])
+                  setFirstName(e.target.value)}}
                 required
               />
             </div>
             <div className="sign_up_detail">
-              <label>
-                  Last Name
+              <label className='sign_up_label'>
+                Last Name
               </label>
               <input
-              className="sign_up_input_field"
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-              />
-            </div>
-            <div>
-
-              <label className="sign_up_detail">
-                  Password
-              </label>
-              <input
-                className="sign_up_input_field"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                className='date_input'
+                type="text"
+                value={lastName}
+                onChange={(e) => {setLastName(e.target.value)
+                  setErrors([])
+                }}
                 required
               />
             </div>
-            <div>
-              <label className="sign_up_detail">
+            <div className="sign_up_detail">
+              <label className='sign_up_label'>
+                Password
+              </label>
+              <input
+                className='date_input'
+                type="password"
+                value={password}
+                onChange={(e) => {setPassword(e.target.value)
+                  setErrors([])}}
+                required
+              />
+            </div>
+            <div className="sign_up_detail">
+              <label className='sign_up_label'>
                 Confirm Password
               </label>
               <input
-                className="sign_up_input_field"
+                className='date_input'
                 type="password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => {setConfirmPassword(e.target.value)
+                  setErrors([])}}
                 required
               />
             </div>
-              
-            <button className="submit_buton" type="submit">Sign Up</button>
-            </div>
-        </form>
+
+            <button className="log_in_button" type="submit">Sign Up</button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }

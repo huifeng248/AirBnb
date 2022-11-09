@@ -1,0 +1,128 @@
+.booking_error_message_container{
+    display: flex;
+    color: red;
+}
+
+.managing_bookings_container{
+    display: flex;
+    /* background-color: aqua; */
+    flex-direction: column;
+    box-sizing: border-box;
+    /* margin-left: 120px;
+    margin-right: 120px;
+    margin-bottom: 120px;
+    margin-top: 50px; */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.booking_title{
+    font-size: 30px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+.booking_sub_title{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-family: Poppins,sans-serif; 
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+    color: #4B4B4B;
+    background-color: #EFF2F2;
+    border-top: 2px #D5D9D9 solid;
+    border-left: 2px #D5D9D9 solid;
+    border-right: 2px #D5D9D9 solid;
+
+    
+}
+
+.all_booking_wrapper{
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px #D5D9D9 solid;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+
+}
+
+.spot_preview_image{
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    /* padding: 20px; */
+
+}
+
+.booking_detail_holder{
+    display: flex;
+    border-radius: 5px;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.booking_detail_holder_left{
+    display: flex;
+}
+
+.booking_detail_left_container{
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-top: 10px;
+    flex-direction: column;
+    font-size: 18px;
+
+}
+
+.booking_address{
+    font-weight: bold;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.booking_button_container{
+    /* background-color: aliceblue; */
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+    box-sizing: border-box;
+    padding: 20px;
+    /* gap: 10px; */
+    justify-content: center;
+
+}
+
+.booking_buttons{
+    /* text-decoration: none; */
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.reserve_button{
+    /* background-color: red; */
+    background: linear-gradient(275deg,#d70a65,#fe3838,#d70a65);
+    /* background-size: 200%; */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 40px;
+    /* outline: none; */
+    /* transition: 1s; */
+    width: 100%; 
+    box-sizing: border-box;
+    /* margin-top: 20px; */
+}

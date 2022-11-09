@@ -13,9 +13,9 @@
 	/* justify-content: center; */
 }
 
-.modal-content{
+/* .modal-content{
     height: 500px;
-} 
+}  */
 
 
 
@@ -74,27 +74,31 @@
 	border: 1px solid grey;
 }
 
-.log_in_button {
+.log_in_button{
 	/* margin-top: 30px; */
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 5px;
+	width: 100%;
 	background-color: red;
-	margin-top: 10px;
 	color: white;
-	border: grey;
+	border-radius: 10px;
+	height: 40px;
+	border: none;
+	box-sizing: border-box;
+	font-size: 20px;
+	margin-top: 40px;
+	/* margin-bottom: 20px; */
 }
 
 .demo_button{
-	width: 90%;
-	margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 5px;
+	width: 100%;
 	background-color: red;
 	color: white;
-	border: grey;
+	border-radius: 10px;
+	height: 40px;
+	border: none;
+	box-sizing: border-box;
+	font-size: 20px;
+	margin-top: 20px;
+	/* margin-bottom: 20px; */
 }
 
 .Log_in_title{

@@ -14,6 +14,7 @@ import ReviewDetailByUser from "./components/Review/ReviewByUser"
 import { getSpots } from "./store/spot";
 import CreateSpotForm from "./components/Spot/CreateSpotForm";
 import EditSpotForm from './components/Spot/EditSpotForm'
+import BookingByUser from './components/BookingByUser/BookingByUser'
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,9 @@ const spot = spots[spotId]
           </Route>
           <Route exact path={'/reviews/current'}>
             <ReviewDetailByUser />
+          </Route>
+          <Route exact path={'/bookings/current'}>
+            <BookingByUser />
           </Route>
           {/* <Route>404 Page Not Found</Route> */}
         </Switch>

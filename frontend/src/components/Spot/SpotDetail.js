@@ -6,6 +6,9 @@ import { getOneSpot, DeleteSpot } from '../../store/spot'
 import { useHistory } from 'react-router-dom';
 import ReviewBySpot from '../Review/ReviewBySpot'
 import ReviewFormModal from '../ReviewFormModal'
+import { CreateBooking } from '../../store/booking'
+import LoginForm from '../LoginFormModal/LoginForm';
+import { Modal } from "../../context/Modal"
 
 function SpotDetail() {
     const { id } = useParams()
@@ -19,29 +22,71 @@ function SpotDetail() {
     const current_date = new Date().toLocaleDateString('en-ca')
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
+    const [errors, setErrors] = useState([])
+    const [showModal, setShowModal] = useState(false)
+
+    function totalStay(start, end) {
+        let start_date = new Date(start);
+        let end_date = new Date(end);
+        let diff = end_date.getTime() - start_date.getTime();
+        // get time is in mili second, convert this into days
+        let totalDays = Math.ceil(diff / (1000 * 3600 * 24));
+        return totalDays;
+    }
+
 
     useEffect(() => {
         dispatch(getOneSpot(id))
-            .then(() => setIsloaded(true))
-    }, [dispatch, id, reviews])
+            .then(() => {
+                setIsloaded(true)
+                setErrors([])
+            })
+    }, [dispatch, id, reviews, user])
 
-    Date.prototype.addDays = function(num_days) {
+    Date.prototype.addDays = function (num_days) {
         let date = new Date(this.valueOf());
         date.setDate(date.getDate() + num_days);
         return date;
     }
-    
-    // var date = new Date();
-    
-    // console.log(date.addDays(5));
 
-    // let reviewRating = "New"
-    // console.log("hello", spot)
-    // if (spot.avgStatRating !== null && spot.avgStatRating !== undefined) {
-    //     reviewRating = spot.avgStatRating.toFix(2).toString()
-    // } else {
-    //     reviewRating = "NEW"
-    // }
+    const SubmitBooking = async (e) => {
+        e.preventDefault()
+
+        let errors_arr = []
+
+        if (!user) {
+            setShowModal(true)
+            // errors_arr.push("Please log in to make a reservation")
+        } else {
+
+            if (!startDate) {
+                errors_arr.push("Please pick a check-in Date")
+            }
+            if (!endDate) {
+                errors_arr.push("Please pick a check-out Date")
+            }
+
+            if (errors_arr.length > 0) {
+                return setErrors(errors_arr)
+            }
+
+            const new_booking_payload = {
+                startDate,
+                endDate
+            }
+
+            dispatch(CreateBooking(spot.id, new_booking_payload))
+                .then(() => history.push('/bookings/current'))
+                .catch(async (data) => {
+                    const result = await data.json()
+
+                    if (result && result.errors) {
+                        setErrors(Object.values(result.errors))
+                    }
+                })
+        }
+    }
+
 
     return (
         isLoaded &&
@@ -107,52 +152,115 @@ function SpotDetail() {
                 </div>
 
                 <div className='booking_container'>
-                    <div className='price_info_container'>
-                        <div className='price_info'>${spot.price}</div>
-                        <div className='price_info_night'>night</div>
-                    </div>
-                    <form className='Booking_form'>
-                        <div>
 
-                            <label>CHECK-IN</label>
+                    <div className='price_and_review_container'>
+
+                        <div className='price_info_container'>
+                            <div className='price_info'>${spot.price}</div>
+                            <div className='price_info_night'>night</div>
+                        </div>
+
+                        <div className='review_block_container'>
+                            <i className="fa-solid fa-star spot_reviews_item"></i>
+                            <div className='review_char'>{spot.avgStatRating ? (` ${spot.avgStatRating.toFixed(2)}`) : "New"}</div>
+                            <div className='dot_div'> · </div>
+                            <div className='review_char_form'>{spot.numReviews} Reviews</div>
+                        </div>
+                    </div>
+
+                    {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <LoginForm onClose={() => setShowModal(false)} />
+                        </Modal>
+                    )}
+
+                    {errors.length > 0 && <div className='error_message_container'>
+                        {errors.map((error, index) => (
+                            <div key={index}>{error}</div>
+                        ))}
+                    </div>}
+                    <form className='Booking_form'
+                        onSubmit={SubmitBooking}>
+                        <div className='booking_form_container'>
+
+
+                            <label className='check_in_and_out'>CHECK-IN</label>
                             <input
                                 type="date"
-                                min={current_date}
+                                className='date_input'
+                                min={new Date().toLocaleDateString('en-ca')}
                                 onChange={(e) => {
-                                    console.log("************", e.target.value)
-                                    // console.log("minnnnnnn", current_date)
                                     setStartDate(e.target.value)
+                                    setErrors([])
                                 }}
                                 value={startDate}
                             >
                             </input>
-                        </div>
 
-                        <div>
-                            <label>CHECK-OUT</label>
+                            <label className='check_in_and_out'>CHECK-OUT</label>
                             <input
-                            type="date"
-                            // min={new Date(startDate)+1}
-                            min={new Date(startDate).addDays(2).toLocaleDateString('en-ca')}
-                            onChange={(e) =>{
-                                // console.log("Minnnnnnn", new Date(startDate).addDays(10))
-                                setEndDate(e.target.value)
-                            }}>
+                                type="date"
+                                className='date_input'
+                                min={new Date(startDate).addDays(2).toLocaleDateString('en-ca')}
+                                onChange={(e) => {
+                                    setEndDate(e.target.value)
+                                    setErrors([])
 
+                                }}
+                                value={endDate}>
                             </input>
-                            
+
+                            <button type="submit"
+                                className='reserve_button'>Reserve</button>
+
                         </div>
-
-
-
                     </form>
 
+                    <div className='no_charge'>You won't be charged yet</div>
+
+                    <div className='fee_container'>
+                        <div className='fee_sub_container'>
+                            {startDate && endDate && totalStay(startDate, endDate) ?
+
+                                <div> {spot.price} x  $ {totalStay(startDate, endDate)} night </div>
+                                :
+
+                                <div> {spot.price} x 0 night</div>
+                            }
+
+                            {startDate && endDate ?
+                                <div> {spot.price * totalStay(startDate, endDate)}</div> :
+
+                                <div> $ 0 </div>
+                            }
+
+                        </div>
+                        <div className='fee_sub_container'>
+                            <div> Cleaning fee</div>
+                            <div> $200</div>
+                        </div>
+                        <div className='fee_sub_container above_sum'>
+                            <div>Service fee</div>
+                            {startDate && endDate && totalStay(startDate, endDate) ?
+                                <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 0.15} </div> :
+                                <div> $ 0</div>
+                            }
+                        </div>
+
+                        <div className='fee_sub_container total_spend'>
+                            <div>Total Spend</div>
+                            {startDate && endDate && totalStay(startDate, endDate) ?
+                                <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 1.15} </div> :
+                                <div> $ 0</div>
+                            }
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
                 </div>
             </div>
-
-
-
-
         </div >
 
     )

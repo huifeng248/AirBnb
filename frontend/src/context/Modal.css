@@ -23,6 +23,8 @@
     position: absolute;
     background-color:white;
     border-radius: 10px;
-    height: fit-content;
+    height: auto;
     overflow: scroll;
+    box-sizing: border-box;
+    padding: 20px;
   }

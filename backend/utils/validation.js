@@ -65,14 +65,17 @@ const validateBooking = [
     }
     return true;
   }),
-  check('startDate')
-  .custom((value, { req }) => {
-    const today =new Date()
-    if(new Date(value) <= today) {
-      throw new Error ('Start Date must be greater than today')
-    }
-    return true;
-  }),
+  // check('startDate')
+  // .custom((value, { req }) => {
+  //   const today =new Date()
+  //   if(new Date(value) <= today) {
+  //     console.log("&&&&&&&&&&&&&", value)
+  //     console.log("&&&&&&&&&&&&&&&&", today)
+  //     console.log(2022-10-24 > 2022-10-23)
+  //     throw new Error ('Start Date must be greater than today')
+  //   }
+  //   return true;
+  // }),
   handleValidationErrors
 ];
 

@@ -45,20 +45,23 @@ function ProfileButton({ user }) {
         </div>
         {showMenu && (
           <div>
-            <ul className="profile-dropdown">
+            <div className="profile-dropdown">
               {/* <li>{user.username}</li> */}
-              <li>{user.firstName} {user.lastName}</li>
-              <li>{user.email}</li>
-              <li>
-                <Link to={'/spots/current'}> Manage Listings</Link>
-              </li>
-              <li>
-                <Link to={'/reviews/current'}> Manage Reviews</Link>
-              </li>
-              <li>
-                <button className='log_out_button' onClick={logout}>Log Out</button>
-              </li>
-            </ul>
+              <div>{user.firstName} {user.lastName}</div>
+              <div>{user.email}</div>
+              <div className="drop_down_items" >
+                <Link to={'/spots/current'} style={{ textDecoration:'none' }}> Manage Listings</Link>
+              </div>
+              <div className="drop_down_items">
+                <Link  to={'/reviews/current'}> Manage Reviews</Link>
+              </div>
+              <div className="drop_down_items">
+                <Link  to={'/bookings/current'}> Manage Bookings</Link>
+              </div>
+              {/* <div className='drop_down_items' > */}
+                <div className="log_out_button drop_down_items" onClick={logout}>Log Out</div>
+              {/* </div> */}
+            </div>
           </div>
         )}
 

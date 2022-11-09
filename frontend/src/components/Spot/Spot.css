@@ -59,6 +59,7 @@
 
 .spot_detail_page_container{
     padding-top: 2rem;
+    padding-bottom: 8rem;
     /* width: 70%; */
     padding-left: 8rem;
     padding-right: 8rem;
@@ -134,7 +135,7 @@
 
 .fa-star{
     display: flex;
-    padding: 2px;
+    padding-right: 5px;
     box-sizing: border-box;
     /* color: red; */
     align-items: center;
@@ -202,6 +203,8 @@
     align-items: center;
     padding-bottom: 20px;
     box-sizing: border-box;
+    /* min-width: 400px;
+    background-color: #AAAAAA; */
 }
 
 .spot_description{
@@ -250,12 +253,15 @@
 .wrapping_booking_container{
     width: 100%;
     display: flex;
+
 }
 
 .detail_discription_container{
     padding-top: 2rem;
     /* padding-bottom: 3rem; */
     box-sizing: border-box;
+    /* background-color: red; */
+    min-width: 400px;
 }
 
 .spot_left_container{
@@ -264,33 +270,168 @@
     margin-right: 4rem;
 }
 
+
+
+.price_info_container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.price_info{
+    font-size: 22px;
+    font-weight:600;
+    /* padding-right: 6px; */
+    box-sizing: border-box;
+}
+
+.price_info_night{
+    font-size: 16px;
+    color: #4C4C4C;
+    padding-left: 3px;
+    box-sizing: border-box;
+}
+
+.reserve_button{
+    /* background-color: red; */
+    background: linear-gradient(275deg,#d70a65,#fe3838,#d70a65);
+    /* background-size: 200%; */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    height: 40px;
+    /* outline: none; */
+    /* transition: 1s; */
+    width: 100%; 
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.error_message_container{
+    color: red;
+    display: flex;
+    flex-direction: column;
+}
+
+.review_block_container{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    font-size: 14px;
+    /* background-color: red; */
+}
+
+.price_and_review_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    /* background-color: aqua; */
+    /* padding: 0px; */
+}
+
 .booking_container{
     width: 33%;
+    min-width: 320px;
     /* background-color: antiquewhite; */
     box-sizing: border-box;
     /* padding: 24px; */
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     box-sizing: border-box;
     margin-top: 4rem;
     margin-left: 4rem;
     /* width: 370px; */
-    height: 500px;
+    height: auto
+    
+/*     
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+
 }
 
-.price_info_container{
-    display: flex;
-    align-items: center;
+.price_and_review_container{
+    width: 100%;
+    /* background-color: blue; */
 }
-.price_info{
-    font-size: 30px;
-    font-weight:600;
-    padding-right: 6px;
+
+.review_char_form{
+    color: #717171;
+}
+
+.booking_form_container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.booking_form_container{
+    /* background-color: rebeccapurple; */
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
     box-sizing: border-box;
 }
 
-.price_info_night{
-    font-size: 32px;
+.date_input{
+    height: 48px;
+    /* background-color: #717171; */
+    border-radius: 10px;
+    border: #AAAAAA;
+    padding: 10px;
+    box-sizing: border-box;
+    font: 16px sans-serif;
+}
+
+.check_in_and_out{
+    margin-left: 5px;
+    margin-top: 20px;
+    font-size: 18px;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+
+.booking_form_container input[type="date"]{
+    width: 100%;
+
+}
+
+.no_charge{
+    display: flex;
+    justify-content: center;
+    color: #434343;
+}
+
+.fee_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    /* background-color: #AAAAAA; */
+    gap: 10px;
+    font-size: 16px;
+
+}
+
+.fee_sub_container{
+    display: flex;
+    justify-content: space-between;
 }
