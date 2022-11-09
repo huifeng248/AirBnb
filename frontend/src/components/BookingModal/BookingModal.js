@@ -74,10 +74,6 @@ function BookingModal({ booking, spot, onClose }) {
 
     return (
         <div >
-            {/* 
-            <div>{booking.startDate}</div>
-            <div>{booking.endDate}</div> */}
-
 
             {errors.length > 0 && <div className='error_message_container'>
                 {errors.map((error, index) => (
