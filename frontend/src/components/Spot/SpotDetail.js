@@ -115,8 +115,8 @@ function SpotDetail() {
                 </div>
 
                 <div className='main_body'>
-
-                    <div className='spot_image_container'>
+                
+                    {/* <div className='spot_big_image_container'> */}
                         <div className='spot_prevew_image_container'>
                             <img className='spot_prevew_image' src={spot.previewImage}></img>
                         </div>
@@ -124,15 +124,15 @@ function SpotDetail() {
                             {
                                 spot.images &&
                                 spot.images.map((image, index) => (
-                                    <div key={index} className='image_div'>
-                                        <img className='spot_small_image' src={image.url}></img>
-                                    </div>
+                                    // <div key={index} className='image_div'>
+                                        <img key={index} className='spot_small_image' src={image.url}></img>
+                                    // </div>
                                 )
                                 )
-
+                                
                             }
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
             <div className='wrapping_booking_container'>

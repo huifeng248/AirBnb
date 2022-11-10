@@ -4,9 +4,10 @@
   "description": "## Database Schema Design![Untitled (1)](https://user-images.githubusercontent.com/91226395/176801889-89d89b22-fbfb-4a58-9ca3-8890bd684bbc.png)",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.1252.0",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.7.3"
   },
-  "devDependencies": {},
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",

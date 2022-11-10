@@ -50,7 +50,7 @@ function SpotDetailByUser() {
                                     <div> Price: ${spot.price} </div>
 
 
-                                    <div className='small_images_container'>  
+                                    <div className='small_detail_images_container'>  
                                         <img
                                             className='spot_detail_small_image'
                                             src="https://a0.muscache.com/im/pictures/dc09ee21-27e9-4dcd-9b59-7ba7ade0563f.jpg" alt='spot_image'>

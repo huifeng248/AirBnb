@@ -4,6 +4,8 @@ const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth')
 const { check } = require('express-validator');
 const { handleValidationErrors, validateReview, validateBooking,imageValidate, queryParamValidate } = require('../../utils/validation');
 const { Op } = require("sequelize");
+const {multiplePublicFileUpload, singleMulterUpload } = require('../../awsS3')
+
 
 
 const router = express.Router();
@@ -588,11 +590,16 @@ router.post('/:id/bookings', requireAuth, validateBooking, spotValidaton, bookin
 
 
 //Add an Image to a Spot based on the Spot's id
-router.post('/:id/images', requireAuth, imageValidate, async(req, res, next)=>{
+router.post('/:id/images', requireAuth, imageValidate, 
+    singleMulterUpload("url"), 
+    
+    async(req, res, next)=>{
+
     const userId = req.user.id
     const spotId = req.params.id
     const spot = await Spot.findByPk(spotId)
-    const {url} = req.body
+    // const {url} = req.body
+    const url = await singlePublicFileUpload(req.file)
 
     if (!spot) {
         const err = new Error('');
