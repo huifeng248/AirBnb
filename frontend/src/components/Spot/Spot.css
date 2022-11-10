@@ -1,6 +1,7 @@
 .images_at_list_page {
-    height: 20rem;
+    height: 23rem;
     width: 23rem;
+    object-fit: cover;
     /* height: 250px;
     width: 260px; */
     border-radius: 15px;
@@ -14,13 +15,14 @@
     flex-wrap: wrap;
     justify-content: center;
     /* margin: auto; */
-    margin-top: 2.5rem;
-    padding-right: 4rem;
-    padding-left: 4rem;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding-right: 30px;
+    padding-left: 30px;
     box-sizing: border-box;
     /* background-color: green; */
     /* gap:1.5rem; */
-    gap: 30px;
+    gap: 20px;
 }
 
 
