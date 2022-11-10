@@ -593,7 +593,6 @@ router.post('/:id/images', requireAuth, imageValidate, async(req, res, next)=>{
     const spotId = req.params.id
     const spot = await Spot.findByPk(spotId)
     const {url} = req.body
-   
 
     if (!spot) {
         const err = new Error('');
