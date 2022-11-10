@@ -9,7 +9,7 @@ function SpotFormModal({action, spotId}) {
     return (
         <div>
             {/* the outside button */}
-            <button className="create_a_spot_button" onClick={()=>setShowModal(true)}>  
+            <button className="reserve_button" onClick={()=>setShowModal(true)}>  
                 {action} 
             </button>
             {showModal && (

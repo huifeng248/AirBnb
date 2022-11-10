@@ -30,27 +30,54 @@ function SpotDetailByUser() {
             <div className='booking_sub_title'>All listings</div>
 
             <div className='all_booking_wrapper'>
+                <div className='create_button_wrapper_div'>
                 <SpotFormModal action='Create a List' />
+                </div>
                 {
                     filteredSpots && filteredSpots.map(spot => (
                         <div key={spot.id} className="one_spot_container">
+
                             <div className='spot_image_container'>
                                 <img className='spot_preview_image_at_listing' src={spot.previewImage}></img>
                             </div>
-                            <div className='spot_detail_container'>
-                                <div>Name: {spot.name}</div>
-                                <div>Address: {spot.address},{spot.city},{spot.state},{spot.country}</div>
-                                <div>
-                                    Description: {spot.description}
-                                </div>
-                                <div>
-                                    Price: ${spot.price}
-                                </div>
-                            </div>
-                            <div>
-                                <SpotFormModal action="Edit" spotId={spot.id} />
-                                <button className="create_a_spot_button" onClick={() => dispatch(DeleteSpot(spot.id))}>Delete</button>
 
+                            <div className='spot_left_container'>
+
+                                <div className='spot_middle_container'>  
+                                    <div className='spot_name_title'>{spot.name}</div>
+                                    <div>{spot.city}, {spot.state}, {spot.country}</div>
+                                    {/* <div> Description: {spot.description} </div> */}
+                                    <div> Price: ${spot.price} </div>
+
+
+                                    <div className='small_images_container'>  
+                                        <img
+                                            className='spot_detail_small_image'
+                                            src="https://a0.muscache.com/im/pictures/dc09ee21-27e9-4dcd-9b59-7ba7ade0563f.jpg" alt='spot_image'>
+                                        </img>
+                                        <img
+                                            className='spot_detail_small_image'
+                                            src="https://a0.muscache.com/im/pictures/dc09ee21-27e9-4dcd-9b59-7ba7ade0563f.jpg" alt='spot_image'>
+                                        </img>
+                                        <img
+                                            className='spot_detail_small_image'
+                                            src="https://a0.muscache.com/im/pictures/dc09ee21-27e9-4dcd-9b59-7ba7ade0563f.jpg" alt='spot_image'>
+                                        </img>
+                                        <img
+                                            className='spot_detail_small_image'
+                                            src="https://a0.muscache.com/im/pictures/dc09ee21-27e9-4dcd-9b59-7ba7ade0563f.jpg" alt='spot_image'>
+                                        </img>
+                                    </div>
+
+                                </div>
+
+
+                                <div className='listing_buttong_container'>
+                                    <SpotFormModal action="Edit" spotId={spot.id} />
+                                    <button className="reserve_button" onClick={() => dispatch(DeleteSpot(spot.id))}>Delete</button>
+                                    <button className='reserve_button'> Add Image</button>
+
+                                </div>
                             </div>
                         </div>
                     ))

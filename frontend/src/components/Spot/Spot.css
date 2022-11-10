@@ -47,9 +47,12 @@
 }
 
 .spot_preview_image_at_listing {
-    height: 200px; 
-    width: 200px;
-    border-radius: 5px;
+    height: 180px; 
+    width: 300px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+
     
 }
 
@@ -91,9 +94,8 @@
 } */
 
 .spot_image_container{
-    display: flex;
-    height: 100%;
-    /* height: 400px; */
+    border-radius: 10px;
+    max-width: 40%;
     /* background-color: wheat; */
 }
 
@@ -217,16 +219,103 @@
     padding-bottom: 1rem;
     /* margin-left: 10px;
     margin-right: 10px; */
+}
 
+.all_booking_wrapper{
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px #D5D9D9 solid;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    /* background-color: #717171; */
+}
+
+.spot_left_container{
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 20px;
+    /* padding-right: 20px; */
+    /* background-color: #d70a65; */
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spot_middle_container{
+    min-width: 200px;
+    max-width: 700px;
+    width: 70%;
+    /* background-color: #717171; */
+    box-sizing: border-box;
+    padding-left: 20px;
+
+}
+
+.small_images_container{
+    /* background-color: #D5D9D9; */
+    display: flex;
+    box-sizing: border-box;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    gap: 20px;
+
+}
+
+.create_button_wrapper_div{
+    width: 200px;
+}
+
+.listing_buttong_container{
+    /* background-color: antiquewhite; */
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 1px; */
+}
+
+.reserve_button{
+    /* background-color: red; */
+    background: linear-gradient(275deg,#d70a65,#fe3838,#d70a65);
+    /* background-size: 200%; */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 40px;
+    /* outline: none; */
+    /* transition: 1s; */
+    width: 100%; 
+    box-sizing: border-box;
+    /* margin-top: 20px; */
+}
+
+.spot_name_title{
+    font-size: 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.spot_info_container{
+    /* width: 30%; */
+    background-color: #717171;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
 }
 
 .one_spot_container{
     display: flex;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     /* background-color: aqua; */
-    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 20px;
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
 }
 
 
@@ -263,13 +352,6 @@
     /* background-color: red; */
     min-width: 400px;
 }
-
-.spot_left_container{
-    width: 67%;
-    box-sizing: border-box;
-    margin-right: 4rem;
-}
-
 
 
 .price_info_container{
@@ -434,4 +516,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .fee_sub_container{
     display: flex;
     justify-content: space-between;
+}
+
+.spot_detail_small_image{
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 5px;
+    /* object-fit:cover; */
+
+}
+
+.small_image_container{
+    display: flex;
 }
