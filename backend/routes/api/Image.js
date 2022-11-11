@@ -8,11 +8,16 @@ const { Op } = require("sequelize");
 const router = express.Router();
 
 router.get('/', requireAuth, async(req, res, next) => {
-    const images = await findAll({
-
+    const { user } = req
+    let { id } = user
+    const images = await Image.findAll({
+        where: {
+            userId: id
+        }
     })
     res.status(200)
     res.json(images)
+    // console.log("backend!!!!!!", images)
 })
 
 router.delete('/:id', requireAuth, async(req, res, next)=>{

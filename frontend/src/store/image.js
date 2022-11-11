@@ -1,8 +1,8 @@
 import { csrfFetch } from './csrf';
 
+const LOAD_Images = "LOAD_IMAGES"
 const ADD_Images = "ADD_IMAGES"
 const DELETE_Images = "DELETE_IMAGESS"
-const LOAD_Images = "LOAD_IMAGES"
 
 const Get_Image_Action = (images) => ({
     type: LOAD_Images,
@@ -24,10 +24,9 @@ const Delete_Image_Action = (id) => ({
 //get spot images
 
 export const getImages = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spots/:id')
+    const response = await csrfFetch('/api/images')
     if (response.ok) {
-        const spot = await response.json()
-        const images = spot.images
+        const images = await response.json()
 
         dispatch(Get_Image_Action(images))
     }

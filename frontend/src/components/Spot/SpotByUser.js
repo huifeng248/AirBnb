@@ -19,12 +19,9 @@ function SpotDetailByUser() {
     // console.log("filtered spots", filteredSpots)
     useEffect(() => {
         dispatch(getSpotByUser())
-            // .then(()=>) //optional chaining in line 18 where you key into user... might be an easy way to do it as well
+        dispatch(getImages())
             .then(() => {
                 console.log("^^^^^^^^^^", spots)
-    // const filteredSpots = Object.values(spots).filter(spot => spot?.ownerId === user?.id)
-
-                // filteredSpots.forEach(spot=> dispatch(getImages(spot.id)))
                 setIsLoaded(true)})
     }, [dispatch])
 
@@ -57,7 +54,7 @@ function SpotDetailByUser() {
 
 
                                     <div className='small_detail_images_container'> 
-                                        {console.log("!!!!!!!!!", spot.Images[0].url)} 
+                                        {console.log("!!!!!!!!!", spot.Images)} 
                                         <img
                                             className='spot_detail_small_image'
                                             src={spot.Images[0].url} alt='spot_image'>
