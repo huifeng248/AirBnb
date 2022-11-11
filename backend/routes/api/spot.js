@@ -107,7 +107,15 @@ router.get('/', queryParamValidate, async (req, res, next) => {
 
 
     const spots = await Spot.findAll({
-        include: Review,
+        include: [
+            {
+                model: Review,
+            },
+            {
+                model: Image
+            }
+        ],
+    
         where,
         ...pagination
     })
@@ -139,10 +147,25 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     const { user } = req
     let { id } = user
     const spots = await Spot.findAll({
+
+        
+            include: [
+                {
+                    model: Review,
+                },
+                {
+                    model: Image
+                }
+            ],
+        
+            where: {
+                ownerId: id
+            }
+        
      
-        where: {
-            ownerId: id
-        },
+        // where: {
+        //     ownerId: id
+        // },
 
     })
     if (!spots.length) 
@@ -167,6 +190,16 @@ router.get('/:id', async (req, res, next) => {
     }
     
     const numReviews = await Review.count({
+        include: [
+            {
+                model: Review,
+            },
+            {
+                model: Image
+            }
+        ],
+        
+        
         where: {
             spotId
         }

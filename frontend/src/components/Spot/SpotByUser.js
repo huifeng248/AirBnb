@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { DeleteSpot } from '../../store/spot'
 import { useHistory } from 'react-router-dom';
+import {getImages} from '../../store/image'
 // import { Redirect } from "react-router-dom";
 import SpotFormModal from '../SpotFormModal'
 
@@ -19,7 +20,12 @@ function SpotDetailByUser() {
     useEffect(() => {
         dispatch(getSpotByUser())
             // .then(()=>) //optional chaining in line 18 where you key into user... might be an easy way to do it as well
-            .then(() => setIsLoaded(true))
+            .then(() => {
+                console.log("^^^^^^^^^^", spots)
+    // const filteredSpots = Object.values(spots).filter(spot => spot?.ownerId === user?.id)
+
+                // filteredSpots.forEach(spot=> dispatch(getImages(spot.id)))
+                setIsLoaded(true)})
     }, [dispatch])
 
     // if (!user) return history.push('/'); //adding this will cause warming
@@ -50,10 +56,11 @@ function SpotDetailByUser() {
                                     <div> Price: ${spot.price} </div>
 
 
-                                    <div className='small_detail_images_container'>  
+                                    <div className='small_detail_images_container'> 
+                                        {console.log("!!!!!!!!!", spot.Images[0].url)} 
                                         <img
                                             className='spot_detail_small_image'
-                                            src="https://a0.muscache.com/im/pictures/dc09ee21-27e9-4dcd-9b59-7ba7ade0563f.jpg" alt='spot_image'>
+                                            src={spot.Images[0].url} alt='spot_image'>
                                         </img>
                                         <img
                                             className='spot_detail_small_image'

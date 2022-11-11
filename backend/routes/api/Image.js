@@ -7,6 +7,14 @@ const { Op } = require("sequelize");
 
 const router = express.Router();
 
+router.get('/', requireAuth, async(req, res, next) => {
+    const images = await findAll({
+
+    })
+    res.status(200)
+    res.json(images)
+})
+
 router.delete('/:id', requireAuth, async(req, res, next)=>{
     const userId = req.user.id
     const imageId = req.params.id
