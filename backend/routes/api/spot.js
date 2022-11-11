@@ -180,6 +180,21 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     const spotId = req.params.id
     const spot = await Spot.findByPk(spotId)
+
+    // const spot = await Spot.findAll({
+    //     include: [
+    //         {
+    //             model: Review,
+    //         },
+    //         {
+    //             model: Image
+    //         }
+    //     ],
+    
+    //     where: {
+    //         id: spotId
+    //     }
+    // })
     const userId = spot.ownerId
     if (!spot.id) {
         const err = new Error('Invalid credentials');
@@ -190,16 +205,6 @@ router.get('/:id', async (req, res, next) => {
     }
     
     const numReviews = await Review.count({
-        include: [
-            {
-                model: Review,
-            },
-            {
-                model: Image
-            }
-        ],
-        
-        
         where: {
             spotId
         }
@@ -623,7 +628,8 @@ router.post('/:id/bookings', requireAuth, validateBooking, spotValidaton, bookin
 
 
 //Add an Image to a Spot based on the Spot's id
-router.post('/:id/images', requireAuth, imageValidate, 
+router.post('/:id/images', requireAuth, 
+    // imageValidate, 
     singleMulterUpload("url"), 
     
     async(req, res, next)=>{
@@ -632,7 +638,9 @@ router.post('/:id/images', requireAuth, imageValidate,
     const spotId = req.params.id
     const spot = await Spot.findByPk(spotId)
     // const {url} = req.body
+    console.log("at the backend")
     const url = await singlePublicFileUpload(req.file)
+    console.log("URL~~~~~~~", url)
 
     if (!spot) {
         const err = new Error('');
