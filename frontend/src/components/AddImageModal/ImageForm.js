@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { CreateImage } from "../../store/image"
+import { CreateImage, getImages } from "../../store/image"
 
 
 
@@ -15,6 +15,9 @@ function ImageForm({ spotId, onClose }) {
         if (file) setImage(file);
     };
 
+
+
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([])

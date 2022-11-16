@@ -123,7 +123,7 @@ function SpotDetail() {
                         <div className='spot_small_image_container'>
                             {
                                 spot.images &&
-                                spot.images.map((image, index) => (
+                                spot.images.slice(0,4).map((image, index) => (
                                     // <div key={index} className='image_div'>
                                         <img key={index} className='spot_small_image' src={image.url}></img>
                                     // </div>

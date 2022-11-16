@@ -4,7 +4,7 @@ const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth')
 const { check } = require('express-validator');
 const { handleValidationErrors, validateReview, validateBooking,imageValidate, queryParamValidate } = require('../../utils/validation');
 const { Op } = require("sequelize");
-const {multiplePublicFileUpload, singleMulterUpload } = require('../../awsS3')
+const {singlePublicFileUpload, multiplePublicFileUpload, singleMulterUpload } = require('../../awsS3')
 
 
 
