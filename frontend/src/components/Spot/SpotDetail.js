@@ -137,7 +137,7 @@ function SpotDetail() {
             </div>
             <div className='wrapping_booking_container'>
 
-                <div className='spot_left_container' >
+                <div className='spot_detail_spot_left_container' >
                     <div className='detail_discription_container'>
                         <h2>Entire home hosted by {spot.owner.firstName}</h2>
                         <div className='spot_description'>
