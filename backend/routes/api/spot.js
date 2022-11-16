@@ -4,6 +4,8 @@ const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth')
 const { check } = require('express-validator');
 const { handleValidationErrors, validateReview, validateBooking,imageValidate, queryParamValidate } = require('../../utils/validation');
 const { Op } = require("sequelize");
+const {singlePublicFileUpload, multiplePublicFileUpload, singleMulterUpload } = require('../../awsS3')
+
 
 
 const router = express.Router();
@@ -105,7 +107,15 @@ router.get('/', queryParamValidate, async (req, res, next) => {
 
 
     const spots = await Spot.findAll({
-        include: Review,
+        include: [
+            {
+                model: Review,
+            },
+            {
+                model: Image
+            }
+        ],
+    
         where,
         ...pagination
     })
@@ -137,10 +147,25 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     const { user } = req
     let { id } = user
     const spots = await Spot.findAll({
+
+        
+            include: [
+                {
+                    model: Review,
+                },
+                {
+                    model: Image
+                }
+            ],
+        
+            where: {
+                ownerId: id
+            }
+        
      
-        where: {
-            ownerId: id
-        },
+        // where: {
+        //     ownerId: id
+        // },
 
     })
     if (!spots.length) 
@@ -155,6 +180,21 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     const spotId = req.params.id
     const spot = await Spot.findByPk(spotId)
+
+    // const spot = await Spot.findAll({
+    //     include: [
+    //         {
+    //             model: Review,
+    //         },
+    //         {
+    //             model: Image
+    //         }
+    //     ],
+    
+    //     where: {
+    //         id: spotId
+    //     }
+    // })
     const userId = spot.ownerId
     if (!spot.id) {
         const err = new Error('Invalid credentials');
@@ -588,11 +628,19 @@ router.post('/:id/bookings', requireAuth, validateBooking, spotValidaton, bookin
 
 
 //Add an Image to a Spot based on the Spot's id
-router.post('/:id/images', requireAuth, imageValidate, async(req, res, next)=>{
+router.post('/:id/images', requireAuth, 
+    // imageValidate, 
+    singleMulterUpload("url"), 
+    
+    async(req, res, next)=>{
+
     const userId = req.user.id
     const spotId = req.params.id
     const spot = await Spot.findByPk(spotId)
-    const {url} = req.body
+    // const {url} = req.body
+    console.log("at the backend")
+    const url = await singlePublicFileUpload(req.file)
+    console.log("URL~~~~~~~", url)
 
     if (!spot) {
         const err = new Error('');

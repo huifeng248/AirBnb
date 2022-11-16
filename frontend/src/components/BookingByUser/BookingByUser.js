@@ -12,6 +12,8 @@ function BookingByUser() {
     const spots = useSelector(state => state.spots)
     const [errors, setErrors] = useState([])
     const today = new Date()
+    console.log("TTTTT", today)
+
     const [showModal, setShowModal] = useState(false)
 
 
@@ -69,7 +71,8 @@ function BookingByUser() {
                             ))}
                         </div>} */}
 
-                            {new Date(booking.startDate) > today &&
+                            {new Date(booking.startDate) >= today &&
+                                
                                 <div className='booking_button_container'>
                                     <button 
                                         className='booking_buttons reserve_button'

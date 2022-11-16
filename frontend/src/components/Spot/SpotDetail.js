@@ -115,29 +115,29 @@ function SpotDetail() {
                 </div>
 
                 <div className='main_body'>
-
-                    <div className='spot_image_container'>
+                
+                    {/* <div className='spot_big_image_container'> */}
                         <div className='spot_prevew_image_container'>
                             <img className='spot_prevew_image' src={spot.previewImage}></img>
                         </div>
                         <div className='spot_small_image_container'>
                             {
                                 spot.images &&
-                                spot.images.map((image, index) => (
-                                    <div key={index} className='image_div'>
-                                        <img className='spot_small_image' src={image.url}></img>
-                                    </div>
+                                spot.images.slice(0,4).map((image, index) => (
+                                    // <div key={index} className='image_div'>
+                                        <img key={index} className='spot_small_image' src={image.url}></img>
+                                    // </div>
                                 )
                                 )
-
+                                
                             }
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
             <div className='wrapping_booking_container'>
 
-                <div className='spot_left_container' >
+                <div className='spot_detail_spot_left_container' >
                     <div className='detail_discription_container'>
                         <h2>Entire home hosted by {spot.owner.firstName}</h2>
                         <div className='spot_description'>
