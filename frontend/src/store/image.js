@@ -38,14 +38,14 @@ export const CreateImage = (newImage, spotId) => async (dispatch) => {
     const formData = new FormData();
     formData.append('url', image);
     console.log("form data~~~~~", formData)
-const response = await csrfFetch(`/api/spots/${spotId}/images`, {
+    const response = await csrfFetch(`/api/spots/${spotId}/images`, {
     method: "POST",
     headers: {
         "Content-Type": "multipart/form-data",
     },
     body: formData
 })
-    console.log("come herer")
+
 if (response.ok) {
     const data = await response.json()
     console.log("after fetch~~~~~~~", data)
@@ -81,6 +81,8 @@ const imageReducer = (state = initialState, action) => {
         }
         case ADD_Images: {
             newState = { ...state }
+            // debugger
+            console.log("reducer", action)
             newState[action.image.id] = action.image
             return newState
         }

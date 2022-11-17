@@ -12,7 +12,7 @@ function BookingByUser() {
     const spots = useSelector(state => state.spots)
     const [errors, setErrors] = useState([])
     const today = new Date()
-    console.log("TTTTT", today)
+    // console.log("TTTTT", today)
 
     const [showModal, setShowModal] = useState(false)
 

@@ -657,13 +657,16 @@ router.post('/:id/images', requireAuth,
             imageableType: "Spot"
         })
 
-        const result = {}
-        result.id = newImage.id,
-        result.imageableId = newImage.spotId,
-        result.imageableType = newImage.imageableType
-        result.url = url
+        const image = await Image.findByPk(newImage.id)
         res.status(200)
-        return res.json(result)
+        return res.json(image)
+        // const result = {}
+        // result.id = newImage.id,
+        // result.imageableId = newImage.spotId,
+        // result.imageableType = newImage.imageableType
+        // result.url = url
+        // res.status(200)
+        // return res.json(result)
 
     } else {
         const err = new Error();
