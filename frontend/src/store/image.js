@@ -33,11 +33,11 @@ export const getImages = () => async (dispatch) => {
 }
 
 export const CreateImage = (newImage, spotId) => async (dispatch) => {
-    console.log("Thunk~~~~~~", newImage, spotId)
+
     const { image } = newImage
     const formData = new FormData();
     formData.append('url', image);
-    console.log("form data~~~~~", formData)
+
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
     method: "POST",
     headers: {
@@ -48,7 +48,7 @@ export const CreateImage = (newImage, spotId) => async (dispatch) => {
 
 if (response.ok) {
     const data = await response.json()
-    console.log("after fetch~~~~~~~", data)
+
     dispatch(Create_Image_Action(data))
     return response
 }
@@ -62,7 +62,7 @@ export const DeleteImage = (id) => async (dispatch) => {
 
     if (response.ok) {
         const image = await response.json()
-        console.log("thunk delete response", image)
+
 
         dispatch(Delete_Image_Action(id))
     }
@@ -82,7 +82,6 @@ const imageReducer = (state = initialState, action) => {
         case ADD_Images: {
             newState = { ...state }
             // debugger
-            console.log("reducer", action)
             newState[action.image.id] = action.image
             return newState
         }
