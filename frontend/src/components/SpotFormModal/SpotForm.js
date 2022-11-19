@@ -24,10 +24,10 @@ const SpotForm = ({ action, spotId, onClose }) => {
     const [isLoaded, setIsloaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
-    // const updateFile = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) setPreviewImage(file);
-    // };
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setPreviewImage(file);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -46,6 +46,7 @@ const SpotForm = ({ action, spotId, onClose }) => {
             previewImage
         }
 
+
         if (action === 'Edit') {
 
             dispatch(UpdateSpot(payload))
@@ -53,6 +54,8 @@ const SpotForm = ({ action, spotId, onClose }) => {
                 // .then(()=> history.push('/spots/current')) //it does not work cause it stay in the original page
                 .catch(async (res) => {
                     const data = await res.json()
+
+                    
                     if (data && data.errors) setErrors(data.errors)
                 })
         } else if (action = 'Create a List') {
@@ -213,19 +216,19 @@ const SpotForm = ({ action, spotId, onClose }) => {
                         <label>
                             Preview Image
                         </label>
-                        <input className='spot_details_input'
+                        {/* <input className='spot_details_input'
                             value={previewImage}
                             onChange={e => setPreviewImage(e.target.value)}
                             placeholder='Preview image url'
                             // required
                             type='url'
-                        />
+                        /> */}
 
-                        {/* <input className='edit_input_field'
+                        <input className='edit_input_field'
                             type='file'
                             required
                             onChange={(e) => { updateFile(e) }}
-                        /> */}
+                        />
                     </div>
                     <div className='spot_details'>
 

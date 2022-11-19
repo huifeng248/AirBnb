@@ -54,12 +54,30 @@ export const DeleteSpot = (id) => async(dispatch) => {
 
 //update spot
 export const UpdateSpot = (spot) => async(dispatch) => {
+
+    const {address, city, state, country, lat, lng, name, description, price, previewImage } = spot
+    const formData = new FormData();
+    formData.append("address", address)
+    formData.append("city", city)
+    formData.append("state", state)
+    formData.append("country", country)
+    formData.append("lat", lat)
+    formData.append("lng", lng)
+    formData.append("name", name)
+    formData.append("description", description)
+    formData.append("price", price)
+    formData.append('previewImage', previewImage);
+
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/json'
+            "Content-Type": "multipart/form-data",
+
         },
-        body: JSON.stringify(spot)
+        // body: JSON.stringify(spot)
+        body: formData
+
     })
     
     if (response.ok) {
@@ -72,12 +90,31 @@ export const UpdateSpot = (spot) => async(dispatch) => {
 
 //create spot
 export const CreateSpot = (spot) => async (dispatch) => {
+    const {address, city, state, country, lat, lng, name, description, price, previewImage } = spot
+    const formData = new FormData();
+    formData.append("address", address)
+
+    formData.append("city", city)
+    formData.append("state", state)
+    formData.append("country", country)
+    formData.append("lat", lat)
+    formData.append("lng", lng)
+    formData.append("name", name)
+    formData.append("description", description)
+    formData.append("price", price)
+    formData.append('previewImage', previewImage);
+
+
+
+
     const response = await csrfFetch('/api/spots', {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/json'
+            "Content-Type": "multipart/form-data",
         },
-        body: JSON.stringify(spot)
+        // body: JSON.stringify(spot)
+        body: formData
     })
 
     if (response.ok) {
