@@ -288,10 +288,18 @@ router.get('/:id', async (req, res, next) => {
 })
 
 //Create a Spot
-router.post('/', restoreUser, requireAuth, validateSpotPost, async (req, res, next) => {
-    const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
+router.post('/', restoreUser, requireAuth, 
+    singleMulterUpload("previewImage"),
+    validateSpotPost, 
+    async (req, res, next) => {
+    // const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
+
+    const { address, city, state, country, lat, lng, name, description, price} = req.body
+    console.log("REQQQQQ BODY", req.body)
 
     const ownerId = req.user.id
+
+    const previewImage = await singlePublicFileUpload(req.file);
 
     const newSpot = await Spot.create({
         ownerId,
@@ -313,11 +321,21 @@ router.post('/', restoreUser, requireAuth, validateSpotPost, async (req, res, ne
 })
 
 //Edit a Spot
-router.put('/:id', requireAuth, validateSpotPost, async (req, res, next) => {
+router.put('/:id', requireAuth, 
+    singleMulterUpload("previewImage"),
+    validateSpotPost, 
+    async (req, res, next) => {
+
     const spotId = req.params.id
     const ownerId = req.user.id
 
-    const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
+    // const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body
+
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+
+    const previewImage = await singlePublicFileUpload(req.file);
+
+
     const spot = await Spot.findByPk(spotId)
 
     if (!spot) {
@@ -657,13 +675,16 @@ router.post('/:id/images', requireAuth,
             imageableType: "Spot"
         })
 
-        const result = {}
-        result.id = newImage.id,
-        result.imageableId = newImage.spotId,
-        result.imageableType = newImage.imageableType
-        result.url = url
+        const image = await Image.findByPk(newImage.id)
         res.status(200)
-        return res.json(result)
+        return res.json(image)
+        // const result = {}
+        // result.id = newImage.id,
+        // result.imageableId = newImage.spotId,
+        // result.imageableType = newImage.imageableType
+        // result.url = url
+        // res.status(200)
+        // return res.json(result)
 
     } else {
         const err = new Error();

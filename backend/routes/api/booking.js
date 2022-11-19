@@ -57,10 +57,11 @@ router.put('/:id',requireAuth, validateBooking, async(req, res, next) => {
             where: {
                 id:{
                     [Op.notIn]: [bookingId],  
-                }
+                },
+                spotId:booking.spotId
             }
         })
-       
+        console.log("existing bookingggggggs", existingBookings)
         let dates = []
         for (let booking of existingBookings) {
             dates.push([booking.startDate, booking.endDate])

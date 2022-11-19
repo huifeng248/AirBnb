@@ -250,7 +250,7 @@ function SpotDetail() {
                         <div className='fee_sub_container total_spend'>
                             <div>Total Spend</div>
                             {startDate && endDate && totalStay(startDate, endDate) ?
-                                <div> ${(spot.price * totalStay(startDate, endDate) + 200) * 1.15} </div> :
+                                <div> ${((spot.price * totalStay(startDate, endDate) + 200) * 1.15).toFixed(0) } </div> :
                                 <div> $ 0</div>
                             }
                         </div>

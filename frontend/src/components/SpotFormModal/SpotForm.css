@@ -1,35 +1,85 @@
-.Spot_form_container{
-    height: 500px;
-    width: 500px;
+.Spot_form_container {
+    /* height: 500px; */
+    width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
     /* margin: auto; */
 }
 
-.spot_details{
+.spot_details {
+    /* background-color: rebeccapurple; */
+    margin-top: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    /* background-color: rosybrown; */
-    width: 90%;
-    margin: auto;
-}
-
-.spot_details_input{
-    border-radius: 5px;
-
-}
-
-.submit_create_button{
-    margin-top: 10px;
     width: 100%;
-    /* margin: auto; */
-    /* margin-left: auto;
-    margin-right: auto; */
-    background-color: red;
+    /* gap: 10px; */
+    box-sizing: border-box;
+}
+
+.spot_edit_form_container {
+    width: 100%;
+    display: flex;
+    font-size: 16px;
+
+
+}
+
+
+.spot_Modal_Booking_form {
+    width: 600px;
+    padding: 20px;
+    /* padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px; */
+    box-sizing: border-box;
+    /* background-color: #EFF2F2; */
+    /* height: auto; */
+    max-height: 750px;
+}
+
+.spot_details_input {
+    /* border-radius: 10px;
+    height: 40px;
+    border: 2px solid #DCDFE2;
+    font-size: 14px; */
+    margin-top: 10px;
     border-radius: 5px;
+    border: 1px solid grey;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 16px;
+
+}
+
+.submit_create_button {
+    /* margin-top: 10px;
+    width: 100%;
+    background-color: red;
+    border-radius: 10px;
     border: gray;
     color: white;
+    height: 40px;
+    font-size: 20px; */
+    /* background-color: red; */
+    background: linear-gradient(275deg, #d70a65, #fe3838, #d70a65);
+    /* background-size: 200%; */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 40px;
+    /* outline: none; */
+    /* transition: 1s; */
+    width: 100%;
+    box-sizing: border-box;
+    /* margin-top: 20px; */
 }
 
-.create_form_title{
+
+.create_form_title {
     width: 90%;
     margin-left: auto;
     margin-right: auto;

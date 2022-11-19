@@ -24,7 +24,7 @@ function ImageForm({ spotId, onClose }) {
         const newImage = {
             image: image
         }
-        console.log("newIMage ~~~~~", newImage)
+        console.log("handle submit newIMage ~~~~~", newImage)
 
         dispatch(CreateImage(newImage, spotId))
             .then(() => onClose())

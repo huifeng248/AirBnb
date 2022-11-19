@@ -17,7 +17,6 @@ function SpotDetailByUser() {
     const spots = useSelector((state) => state.spots)
     const user = useSelector((state) => state.session.user)
     const images = useSelector(state => state.images)
-    console.log("imagessssss", images)
     const filteredSpots = Object.values(spots).filter(spot => spot?.ownerId === user?.id)
     function filteredImages(Id, images) {
         return Object.values(images).filter(image => image?.spotId === Id)
@@ -33,19 +32,10 @@ function SpotDetailByUser() {
             })
     }, [dispatch, images.length])
 
-    useEffect(() => {
-        dispatch(getImages())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getImages())
+    // }, [dispatch])
 
-    // const updateFile = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         setImage(file)
-    //         dispatch(CreateImage())
-    //     };
-    // };
-
-    // if (!user) return history.push('/'); //adding this will cause warming
 
     return (
         isLoaded && <div className='managing_bookings_container'>
@@ -74,7 +64,6 @@ function SpotDetailByUser() {
 
 
                                     {filteredImages(spot.id, images).length && <div className='small_detail_images_container'>
-                                        {console.log("!!!!!!!!!", filteredImages)}
 
                                         {filteredImages(spot.id, images).map((image, index) =>
                                             <div className='edit_image_container'>
